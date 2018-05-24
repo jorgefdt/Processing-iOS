@@ -9,11 +9,6 @@
 import UIKit
 
 class FileContentTableViewCell: UITableViewCell {
-
-    
     @IBOutlet weak var fileTypeNameLabel: UILabel!
     @IBOutlet weak var fileTypeIcon: UIImageView!
-    
-
-    
 }
