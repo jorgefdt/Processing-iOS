@@ -36,14 +36,35 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib.init(nibName: "FileContentTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "file-cell")
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(FolderContentBrowserTableViewController.done))]
+        tableView.register(
+            UINib.init(nibName: "FileContentTableViewCell", bundle: Bundle.main),
+            forCellReuseIdentifier: "file-cell")
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(
+                barButtonSystemItem: .done,
+                target: self,
+                action: #selector(FolderContentBrowserTableViewController.done)
+            )
+        ]
 
         self.navigationController?.setToolbarHidden(false, animated: false)
-        let importToolbarItem = UIBarButtonItem(title: "Import…", style: .plain, target: self, action: #selector(FolderContentBrowserTableViewController.importFiles))
-        let editToolbarItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(FolderContentBrowserTableViewController.importFiles))
+        let importToolbarItem = UIBarButtonItem(
+            title: "Import…",
+            style: .plain,
+            target: self,
+            action: #selector(FolderContentBrowserTableViewController.importFiles)
+        )
+        let editToolbarItem = UIBarButtonItem(
+            barButtonSystemItem: .edit,
+            target: self,
+            action: #selector(FolderContentBrowserTableViewController.importFiles)
+        )
         editToolbarItem.isEnabled = false
-        let exportToolbarItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(FolderContentBrowserTableViewController.importFiles))
+        let exportToolbarItem = UIBarButtonItem(
+            barButtonSystemItem: .action,
+            target: self,
+            action: #selector(FolderContentBrowserTableViewController.importFiles)
+        )
         exportToolbarItem.isEnabled = false
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         self.toolbarItems = [importToolbarItem, flexibleSpace, exportToolbarItem, flexibleSpace, editToolbarItem]
@@ -55,7 +76,8 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
 
     @objc func importFiles() {
         if #available(iOS 11.0, *) {
-            UINavigationBar.appearance(whenContainedInInstancesOf: [UIDocumentBrowserViewController.self]).tintColor = nil
+            UINavigationBar.appearance(whenContainedInInstancesOf: [UIDocumentBrowserViewController.self])
+                .tintColor = nil
         }
         let filePickerViewController = UIDocumentPickerViewController(documentTypes: ["public.item"], in: .import)
         filePickerViewController.delegate = self
@@ -74,7 +96,10 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "file-cell", for: indexPath) as! FileContentTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "file-cell", for: indexPath)
+            as? FileContentTableViewCell else {
+                fatalError("Misconfigured cell type!")
+        }
 
         let path = "\(currentPath)/\(contents[indexPath.row])"
         cell.fileTypeNameLabel.text = contents[indexPath.row]
@@ -100,7 +125,9 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
         let exists = FileManager.default.fileExists(atPath: path, isDirectory: &directory)
         if exists && directory.boolValue {
             // open new folder content
-            let dataFolderVC = FolderContentBrowserTableViewController(withPath: URL(string: currentPath)!.appendingPathComponent(contents[indexPath.row]).path, basePath: basePath)
+            let dataFolderVC = FolderContentBrowserTableViewController(
+                withPath: URL(string: currentPath)!.appendingPathComponent(contents[indexPath.row]).path,
+                basePath: basePath)
             navigationController?.pushViewController(dataFolderVC, animated: true)
         } else {
             // open file inspector
@@ -108,11 +135,14 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
     }
 
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        let destinationURL = URL(string: basePath)!.appendingPathComponent("data").appendingPathComponent(url.lastPathComponent)
+        let destinationURL = URL(string: basePath)!
+            .appendingPathComponent("data").appendingPathComponent(url.lastPathComponent)
         try! FileManager.default.copyItem(atPath: url.path, toPath: destinationURL.path)
         if let lastPathComponent = URL(string: currentPath)?.lastPathComponent {
             if lastPathComponent != "data" {
-                let dataFolderVC = FolderContentBrowserTableViewController(withPath: URL(string: currentPath)!.appendingPathComponent("data").path, basePath: basePath)
+                let dataFolderVC = FolderContentBrowserTableViewController(
+                    withPath: URL(string: currentPath)!.appendingPathComponent("data").path,
+                    basePath: basePath)
                 navigationController?.pushViewController(dataFolderVC, animated: true)
             }
         }

@@ -8,12 +8,14 @@
 
 import UIKit
 
-class ProjectSelectionTableViewController: UITableViewController, UIViewControllerPreviewingDelegate, UIAlertViewDelegate {
+class ProjectSelectionTableViewController: UITableViewController,
+                                        UIViewControllerPreviewingDelegate,
+                                        UIAlertViewDelegate {
 
     @IBOutlet weak var projectsCountLabel: UIBarButtonItem!
 
-    var projects: Array<PDESketch>?
-    var filteredProjects: Array<PDESketch>?
+    var projects: [PDESketch]?
+    var filteredProjects: [PDESketch]?
     let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
@@ -40,7 +42,10 @@ class ProjectSelectionTableViewController: UITableViewController, UIViewControll
 
         refreshProjectsCountLabel()
         projectsCountLabel.isEnabled = false
-        projectsCountLabel.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 13)], for: .disabled)
+        projectsCountLabel.setTitleTextAttributes(
+            [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 13)],
+            for: .disabled
+        )
         registerForPreviewing(with: self, sourceView: tableView)
     }
 
@@ -74,7 +79,10 @@ class ProjectSelectionTableViewController: UITableViewController, UIViewControll
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "project-cell", for: indexPath) as! ProjectTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "project-cell", for: indexPath)
+            as? ProjectTableViewCell else {
+                fatalError("Misconfigured cell type!")
+        }
 
         if isFiltering() {
             if let project = filteredProjects?[indexPath.row] {
@@ -107,11 +115,16 @@ class ProjectSelectionTableViewController: UITableViewController, UIViewControll
         return true
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle,
+                            forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if let project = projects?[indexPath.row] {
 
-                let alertController = UIAlertController(title: "Delete Project", message: "Are you sure that you want to delete the project \"\(project.sketchName!)\"? This cannot be undone.", preferredStyle: .alert)
+                let alertController = UIAlertController(
+                    title: "Delete Project",
+                    message: "Are you sure that you want to delete the project \"\(project.sketchName!)\"? " +
+                        "This cannot be undone.",
+                    preferredStyle: .alert)
 
                 let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) in
                     SketchController.deleteSketch(withName: project.sketchName)
@@ -178,7 +191,8 @@ class ProjectSelectionTableViewController: UITableViewController, UIViewControll
                 if fileName == "" {
                     message = "Name should be at least one character"
                 } else if self.nameAlreadyExists(name: fileName) {
-                    message = "File with name '\(fileName)' already exists. Please choose another name or delete the exiting one first."
+                    message = "File with name '\(fileName)' already exists. " +
+                        "Please choose another name or delete the exiting one first."
                 } else if fileName.contains(" ") {
                     message = "File name should not contain spaces."
                     suggestedName = fileName.replacingOccurrences(of: " ", with: "_")
@@ -190,7 +204,10 @@ class ProjectSelectionTableViewController: UITableViewController, UIViewControll
                     SketchController.save(newProject)
 
                     let newFile = PDEFile(fileName: fileName, partOf: newProject)
-                    newFile?.saveCode("void setup() {\n   size(screen.width, screen.height);\n}\n\nvoid draw() {\n   background(0,0,255);\n}")
+                    newFile?.saveCode(
+                        "void setup() {\n   size(screen.width, screen.height);\n}\n\n" +
+                        "void draw() {\n   background(0,0,255);\n}"
+                    )
 
                     SketchController.loadSketches { (projects) in
                         self.projects = projects
@@ -198,15 +215,18 @@ class ProjectSelectionTableViewController: UITableViewController, UIViewControll
                         self.refreshProjectsCountLabel()
 
                         var index: Int?
-                        for (i, project) in projects!.enumerated() {
-                            if project.sketchName == newProject?.sketchName {
-                                index = i
+                        for (ind, project) in projects!.enumerated()
+                            where project.sketchName == newProject?.sketchName {
+                                index = ind
                                 break
-                            }
                         }
 
                         if let index = index {
-                            self.tableView.selectRow(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .middle)
+                            self.tableView.selectRow(
+                                at: IndexPath(row: index, section: 0),
+                                animated: true,
+                                scrollPosition: .middle
+                            )
                         }
                     }
                     return
@@ -225,15 +245,14 @@ class ProjectSelectionTableViewController: UITableViewController, UIViewControll
     }
 
     private func nameAlreadyExists(name: String) -> Bool {
-        for project in projects! {
-            if project.sketchName == name {
-                return true
-            }
+        for project in projects! where project.sketchName == name {
+            return true
         }
         return false
     }
 
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing,
+                           viewControllerForLocation location: CGPoint) -> UIViewController? {
         if let indexPath = tableView.indexPathForRow(at: location) {
             let cell = tableView.cellForRow(at: indexPath)
             previewingContext.sourceRect = (cell?.frame)!
@@ -251,7 +270,8 @@ class ProjectSelectionTableViewController: UITableViewController, UIViewControll
         return nil
     }
 
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing,
+                           commit viewControllerToCommit: UIViewController) {
         navigationController?.pushViewController(viewControllerToCommit, animated: false)
 
     }

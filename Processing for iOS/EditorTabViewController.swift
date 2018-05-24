@@ -32,18 +32,47 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
 
         self.title = self.project.sketchName
 
-        let runButton = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(EditorTabViewController.runSketch))
-        let addNewPDEFile = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(EditorTabViewController.addNewPDEFile))
+        let runButton = UIBarButtonItem(
+            barButtonSystemItem: .play,
+            target: self,
+            action: #selector(EditorTabViewController.runSketch)
+        )
+        let addNewPDEFile = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(EditorTabViewController.addNewPDEFile)
+        )
         self.navigationItem.rightBarButtonItems = [runButton, addNewPDEFile]
 
-        let formatButton = UIBarButtonItem(title: "Format Code", style: .plain, target: self, action: #selector(EditorTabViewController.formatCode))
-        let codeReferenceButton = UIBarButtonItem(title: "Reference", style: .plain, target: self, action: #selector(EditorTabViewController.showCodeReference))
+        let formatButton = UIBarButtonItem(
+            title: "Format Code",
+            style: .plain,
+            target: self,
+            action: #selector(EditorTabViewController.formatCode)
+        )
+
+        let codeReferenceButton = UIBarButtonItem(
+            title: "Reference",
+            style: .plain,
+            target: self,
+            action: #selector(EditorTabViewController.showCodeReference)
+        )
+
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let organize = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(EditorTabViewController.showFolderContent))
+        let organize = UIBarButtonItem(
+            barButtonSystemItem: .organize,
+            target: self,
+            action: #selector(EditorTabViewController.showFolderContent)
+        )
 
         self.toolbarItems = [formatButton, flexibleSpace, organize, flexibleSpace, codeReferenceButton]
 
-        NotificationCenter.default.addObserver(self, selector: #selector(EditorTabViewController.saveCode), name: NSNotification.Name(rawValue: "saveCode"), object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(EditorTabViewController.saveCode),
+            name: NSNotification.Name(rawValue: "saveCode"),
+            object: nil
+        )
 
         self.bar.appearance = TabmanBar.Appearance({ (appearance) in
 
@@ -60,7 +89,7 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
     }
 
     func reloadBarTitles() {
-        var titles = Array<Item>()
+        var titles = [Item]()
         for pdeFile in project.pdeFiles {
             titles.append(Item(title: "\(pdeFile.fileName!).pde"))
         }
@@ -73,7 +102,8 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
         return project.pdeFiles.count
     }
 
-    func viewController(for pageboyViewController: PageboyViewController, at index: PageboyViewController.PageIndex) -> UIViewController? {
+    func viewController(for pageboyViewController: PageboyViewController,
+                        at index: PageboyViewController.PageIndex) -> UIViewController? {
         return PDEEditorViewController(pdeSketch: project.pdeFiles![index])
     }
 
@@ -83,10 +113,30 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
 
     override var keyCommands: [UIKeyCommand]? {
         return [
-            UIKeyCommand(input: "t", modifierFlags: .command, action: #selector(EditorTabViewController.formatCode), discoverabilityTitle: "Format Code"),
-            UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(EditorTabViewController.runSketch), discoverabilityTitle: "Run Code"),
-            UIKeyCommand(input: "w", modifierFlags: .command, action: #selector(EditorTabViewController.close), discoverabilityTitle: "Close Project"),
-            UIKeyCommand(input: UIKeyInputEscape, modifierFlags: UIKeyModifierFlags(rawValue: 0), action: #selector(EditorTabViewController.close), discoverabilityTitle: "Close Project")
+            UIKeyCommand(
+                input: "t",
+                modifierFlags: .command,
+                action: #selector(EditorTabViewController.formatCode),
+                discoverabilityTitle: "Format Code"
+            ),
+            UIKeyCommand(
+                input: "r",
+                modifierFlags: .command,
+                action: #selector(EditorTabViewController.runSketch),
+                discoverabilityTitle: "Run Code"
+            ),
+            UIKeyCommand(
+                input: "w",
+                modifierFlags: .command,
+                action: #selector(EditorTabViewController.close),
+                discoverabilityTitle: "Close Project"
+            ),
+            UIKeyCommand(
+                input: UIKeyInputEscape,
+                modifierFlags: UIKeyModifierFlags(rawValue: 0),
+                action: #selector(EditorTabViewController.close),
+                discoverabilityTitle: "Close Project"
+            )
         ]
     }
 
@@ -116,7 +166,10 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
     }
 
     @objc func showFolderContent() {
-        let folderContenVC = FolderContentBrowserTableViewController(withPath: self.project.filePath(), basePath: self.project.filePath())
+        let folderContenVC = FolderContentBrowserTableViewController(
+            withPath: self.project.filePath(),
+            basePath: self.project.filePath()
+        )
         let navC = ProcessingNavigationViewController(rootViewController: folderContenVC)
         navigationController?.present(navC, animated: true, completion: nil)
 
@@ -129,13 +182,20 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
     func addNewFileName(withErrorMessage errorMessage: String?, predefinedFileName: String?) {
         var fileNameAlertController: UIAlertController
         if let errorMessage = errorMessage, let predefinedFileName = predefinedFileName {
-            fileNameAlertController = UIAlertController(title: "Error Creating New .pde File", message: errorMessage, preferredStyle: .alert)
+            fileNameAlertController = UIAlertController(
+                title: "Error Creating New .pde File",
+                message: errorMessage, preferredStyle: .alert
+            )
             fileNameAlertController.addTextField { (textfield) in
                 textfield.placeholder = "File Name"
                 textfield.text = predefinedFileName
             }
         } else {
-            fileNameAlertController = UIAlertController(title: "New .pde File", message: "Creating a .pde file in this project.", preferredStyle: .alert)
+            fileNameAlertController = UIAlertController(
+                title: "New .pde File",
+                message: "Creating a .pde file in this project.",
+                preferredStyle: .alert
+            )
             fileNameAlertController.addTextField { (textfield) in
                 textfield.placeholder = "File Name"
             }
@@ -149,13 +209,25 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
                     letters.addCharacters(in: "-_1234567890")
 
                     if newFileName.contains(" ") {
-                        self.addNewFileName(withErrorMessage: "The name should not contain any spaces.", predefinedFileName: newFileName.replacingOccurrences(of: " ", with: "_"))
+                        self.addNewFileName(
+                            withErrorMessage: "The name should not contain any spaces.",
+                            predefinedFileName: newFileName.replacingOccurrences(of: " ", with: "_")
+                        )
                     } else if newFileName == "" {
-                        self.addNewFileName(withErrorMessage: "Name should be at least one character.", predefinedFileName: newFileName)
+                        self.addNewFileName(
+                            withErrorMessage: "Name should be at least one character.",
+                            predefinedFileName: newFileName
+                        )
                     } else if self.nameAlreadyExists(name: newFileName) {
-                        self.addNewFileName(withErrorMessage: "A file with the same name already exists. Please chose another name.", predefinedFileName: newFileName)
+                        self.addNewFileName(
+                            withErrorMessage: "A file with the same name already exists. Please chose another name.",
+                            predefinedFileName: newFileName
+                        )
                     } else if !letters.isSuperset(of: CharacterSet.init(charactersIn: newFileName)) {
-                        self.addNewFileName(withErrorMessage: "Please don't use any fancy characters in the file name.", predefinedFileName: newFileName)
+                        self.addNewFileName(
+                            withErrorMessage: "Please don't use any fancy characters in the file name.",
+                            predefinedFileName: newFileName
+                        )
                     } else {
                         //everything is fine, create new file
                         let newPDEFile = PDEFile(fileName: newFileName, partOf: self.project)
@@ -177,10 +249,8 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
     }
 
     func nameAlreadyExists(name fileName: String) -> Bool {
-        for file in project.pdeFiles {
-            if file.fileName == fileName {
-                return true
-            }
+        for file in project.pdeFiles where file.fileName == fileName {
+            return true
         }
         return false
     }
