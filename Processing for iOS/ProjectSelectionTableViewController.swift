@@ -169,6 +169,12 @@ class ProjectSelectionTableViewController: UITableViewController, UIViewControll
     
     func showCreateAlert(title: String, name: String) {
         let alertController = UIAlertController(title: title, message: "", preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel
+            , handler: { (_) in
+                alertController.dismiss(animated: true, completion: nil)
+        }))
+        
         alertController.addAction(UIAlertAction(title: "Create", style: .default, handler: { (action) in
             NSLog("SAVE PUSHED")
             if let fileName = alertController.textFields?[0].text {
@@ -218,13 +224,8 @@ class ProjectSelectionTableViewController: UITableViewController, UIViewControll
             }
         }))
         
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .default
-            , handler: { (_) in
-                alertController.dismiss(animated: true, completion: nil)
-        }))
-        
         alertController.addTextField(configurationHandler: { (textField) -> Void in
-            textField.textAlignment = .center
+            textField.textAlignment = .left
             textField.text = name
         })
         
