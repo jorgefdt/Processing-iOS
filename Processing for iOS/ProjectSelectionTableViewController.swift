@@ -43,7 +43,7 @@ class ProjectSelectionTableViewController: UITableViewController, UIViewControll
         
         refreshProjectsCountLabel()
         projectsCountLabel.isEnabled = false
-        projectsCountLabel.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 13)], for: .disabled)
+        projectsCountLabel.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 13)], for: .disabled)
         registerForPreviewing(with: self, sourceView: tableView)
     }
     
@@ -164,17 +164,20 @@ class ProjectSelectionTableViewController: UITableViewController, UIViewControll
     }
     
     @IBAction func createNewProject(_ sender: Any) {
-        let alertView = UIAlertView(title: "New Processing Project", message: "", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Create")
-        alertView.alertViewStyle = .plainTextInput
-        alertView.show()
+        showCreateAlert(title: "New Processing Project", name: "")
     }
     
-    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
-        let textField = alertView.textField(at: 0)
-        textField?.resignFirstResponder()
+    func showCreateAlert(title: String, name: String) {
+        let alertController = UIAlertController(title: title, message: "", preferredStyle: .alert)
         
-        if buttonIndex == 1 {
-            if let fileName = textField?.text {
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel
+            , handler: { (_) in
+                alertController.dismiss(animated: true, completion: nil)
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Create", style: .default, handler: { (action) in
+            NSLog("SAVE PUSHED")
+            if let fileName = alertController.textFields?[0].text {
                 let letters = NSMutableCharacterSet.letters as! NSMutableCharacterSet
                 letters.addCharacters(in: "-_1234567890")
                 
@@ -182,7 +185,7 @@ class ProjectSelectionTableViewController: UITableViewController, UIViewControll
                 var suggestedName = fileName
                 if fileName == "" {
                     message = "Name should be at least one character"
-                } else if nameAlreadyExists(name: fileName) {
+                } else if self.nameAlreadyExists(name: fileName) {
                     message = "File with name '\(fileName)' already exists. Please choose another name or delete the exiting one first."
                 } else if fileName.contains(" ") {
                     message = "File name should not contain spaces."
@@ -217,15 +220,16 @@ class ProjectSelectionTableViewController: UITableViewController, UIViewControll
                     return
                 }
                 
-                let alertView = UIAlertView(title: "Error", message: message, delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Create")
-                alertView.alertViewStyle = .plainTextInput
-                if suggestedName != "" {
-                    alertView.textField(at: 0)?.text = suggestedName
-                }
-                alertView.show()
-                
+                self.showCreateAlert(title: message, name: suggestedName)
             }
-        }
+        }))
+        
+        alertController.addTextField(configurationHandler: { (textField) -> Void in
+            textField.textAlignment = .left
+            textField.text = name
+        })
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     private func nameAlreadyExists(name: String) -> Bool {
