@@ -309,6 +309,7 @@
 				51CEE4411B3E9A1D0031D1BE /* Resources */,
 				6EECE228D83B0D03E1848D53 /* [CP] Embed Pods Frameworks */,
 				838749B898F8E207C28B7DC0 /* [CP] Copy Pods Resources */,
+				63CFE56B20B75369004872B2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -455,6 +456,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Processing for iOSTests/Pods-Processing for iOSTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		63CFE56B20B75369004872B2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint";
 		};
 		6EECE228D83B0D03E1848D53 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

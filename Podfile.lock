@@ -21,6 +21,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.9)
   - Pageboy (2.0.4)
   - PureLayout (3.0.2)
+  - SwiftLint (0.25.0)
   - Tabman (1.0.5):
     - Pageboy (~> 2.0.0)
     - PureLayout (~> 3.0.0)
@@ -28,6 +29,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Core
   - Firebase/Storage
+  - SwiftLint
   - Tabman (~> 1.0)
 
 SPEC CHECKSUMS:
@@ -40,8 +42,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   Pageboy: 5970f6138b035380fd633b1813b7cc056784b784
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
+  SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
   Tabman: 9f87244fdbbd070fe6a518f445880b2b4a56ea1b
 
-PODFILE CHECKSUM: 0960467fa6e08cbdcb6a8ee15da578ce8a37007a
+PODFILE CHECKSUM: 31175e6632327200be31bb34991da444cb8286f2
 
 COCOAPODS: 1.4.0
