@@ -176,15 +176,25 @@ class ProjectSelectionTableViewController: UITableViewController,
 
     func showCreateAlert(title: String, name: String) {
         let alertController = UIAlertController(title: title, message: "", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel
-            , handler: { (_) in
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
                 alertController.dismiss(animated: true, completion: nil)
         }))
-        
-        alertController.addAction(UIAlertAction(title: "Create", style: .default, handler: { (_) in
+
+        alertController.addAction(createAlertAction(alertController: alertController))
+
+        alertController.addTextField(configurationHandler: { (textField) -> Void in
+            textField.textAlignment = .left
+            textField.text = name
+        })
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    func createAlertAction(alertController: UIAlertController) -> UIAlertAction {
+        return UIAlertAction(title: "Create", style: .default, handler: { (_) in
             if let fileName = alertController.textFields?[0].text {
-                let letters = NSMutableCharacterSet.letters as! NSMutableCharacterSet
-                letters.addCharacters(in: "-_1234567890")
+                let letters = NSMutableCharacterSet.letters as? NSMutableCharacterSet
+                letters?.addCharacters(in: "-_1234567890")
 
                 var message = ""
                 var suggestedName = fileName
@@ -192,11 +202,11 @@ class ProjectSelectionTableViewController: UITableViewController,
                     message = "Name should be at least one character"
                 } else if self.nameAlreadyExists(name: fileName) {
                     message = "File with name '\(fileName)' already exists. " +
-                        "Please choose another name or delete the exiting one first."
+                    "Please choose another name or delete the exiting one first."
                 } else if fileName.contains(" ") {
                     message = "File name should not contain spaces."
                     suggestedName = fileName.replacingOccurrences(of: " ", with: "_")
-                } else if !letters.isSuperset(of: CharacterSet.init(charactersIn: fileName)) {
+                } else if !(letters?.isSuperset(of: CharacterSet.init(charactersIn: fileName)))! {
                     message = "File name should contain no fancy symbols."
                 } else {
                     // filename is correct
@@ -234,14 +244,7 @@ class ProjectSelectionTableViewController: UITableViewController,
 
                 self.showCreateAlert(title: message, name: suggestedName)
             }
-        }))
-
-        alertController.addTextField(configurationHandler: { (textField) -> Void in
-            textField.textAlignment = .left
-            textField.text = name
         })
-
-        self.present(alertController, animated: true, completion: nil)
     }
 
     private func nameAlreadyExists(name: String) -> Bool {

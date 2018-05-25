@@ -47,7 +47,6 @@
 		51CEE47B1B3EAC1C0031D1BE /* container.html in Resources */ = {isa = PBXBuildFile; fileRef = 51CEE47A1B3EAC1C0031D1BE /* container.html */; };
 		860DBA451E5736300022C90F /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 860DBA431E5736300022C90F /* AboutViewController.m */; };
 		860DBA461E5736300022C90F /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 860DBA441E5736300022C90F /* AboutViewController.xib */; };
-		861890C91E7CB95000321C55 /* HighlightsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 861890C81E7CB95000321C55 /* HighlightsTableViewController.m */; };
 		865964121E7CB6250035F0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 865964111E7CB6250035F0E3 /* GoogleService-Info.plist */; };
 		86CA24621E7ABF0F005FB881 /* processing.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 86CA24611E7ABF0F005FB881 /* processing.min.js */; };
 		86D0673E1E509C390033A4FF /* PDEEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D0673C1E509C390033A4FF /* PDEEditorViewController.m */; };
@@ -126,8 +125,6 @@
 		860DBA421E5736300022C90F /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		860DBA431E5736300022C90F /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		860DBA441E5736300022C90F /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
-		861890C71E7CB95000321C55 /* HighlightsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightsTableViewController.h; sourceTree = "<group>"; };
-		861890C81E7CB95000321C55 /* HighlightsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightsTableViewController.m; sourceTree = "<group>"; };
 		865964111E7CB6250035F0E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		86CA24611E7ABF0F005FB881 /* processing.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = processing.min.js; sourceTree = "<group>"; };
 		86D0673B1E509C380033A4FF /* PDEEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDEEditorViewController.h; sourceTree = "<group>"; };
@@ -241,8 +238,6 @@
 				510926FE1FA0D72A00C255D1 /* PDESketch.m */,
 				51CEE46C1B3E9D5E0031D1BE /* PDEFile.h */,
 				51CEE46D1B3E9D5E0031D1BE /* PDEFile.m */,
-				861890C71E7CB95000321C55 /* HighlightsTableViewController.h */,
-				861890C81E7CB95000321C55 /* HighlightsTableViewController.m */,
 				515230F81B74B3D1003497F9 /* SettingsViewController.h */,
 				515230F91B74B3D1003497F9 /* SettingsViewController.m */,
 				510F51AE20ACB12C0082B979 /* EditorTabViewController.swift */,
@@ -559,7 +554,6 @@
 				510926FF1FA0D72A00C255D1 /* PDESketch.m in Sources */,
 				515230FA1B74B3D1003497F9 /* SettingsViewController.m in Sources */,
 				5192E55320A8A67300354BC8 /* FileContentTableViewCell.swift in Sources */,
-				861890C91E7CB95000321C55 /* HighlightsTableViewController.m in Sources */,
 				86D0673E1E509C390033A4FF /* PDEEditorViewController.m in Sources */,
 				51CEE44C1B3E9A270031D1BE /* AppDelegate.m in Sources */,
 				510F51A420AB64C40082B979 /* ProjectTableViewCell.swift in Sources */,

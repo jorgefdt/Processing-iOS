@@ -156,13 +156,13 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
     }
 
     @objc func formatCode() {
-        let pdeFileViewController = currentViewController as! PDEEditorViewController
-        pdeFileViewController.formatCode()
+        let pdeFileViewController = currentViewController as? PDEEditorViewController
+        pdeFileViewController?.formatCode()
     }
 
     @objc func saveCode() {
-        let pdeFileViewController = currentViewController as! PDEEditorViewController
-        pdeFileViewController.saveCode()
+        let pdeFileViewController = currentViewController as? PDEEditorViewController
+        pdeFileViewController?.saveCode()
     }
 
     @objc func showFolderContent() {
@@ -201,12 +201,22 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
             }
         }
 
-        let createAction = UIAlertAction(title: "Create", style: .default) { (_) in
+        fileNameAlertController.addAction(createAction(fileNameAlertController: fileNameAlertController))
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        fileNameAlertController.addAction(cancelAction)
+
+        self.present(fileNameAlertController, animated: true, completion: nil)
+    }
+
+    func createAction(fileNameAlertController: UIAlertController) -> UIAlertAction {
+        return UIAlertAction(title: "Create", style: .default) { (_) in
             if let newFileNameTextField = fileNameAlertController.textFields?.first {
                 if let newFileName = newFileNameTextField.text {
 
-                    let letters = NSMutableCharacterSet.letters as! NSMutableCharacterSet
-                    letters.addCharacters(in: "-_1234567890")
+                    let letters = NSMutableCharacterSet.letters as? NSMutableCharacterSet
+                    letters?.addCharacters(in: "-_1234567890")
 
                     if newFileName.contains(" ") {
                         self.addNewFileName(
@@ -223,7 +233,7 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
                             withErrorMessage: "A file with the same name already exists. Please chose another name.",
                             predefinedFileName: newFileName
                         )
-                    } else if !letters.isSuperset(of: CharacterSet.init(charactersIn: newFileName)) {
+                    } else if !(letters?.isSuperset(of: CharacterSet.init(charactersIn: newFileName)))! {
                         self.addNewFileName(
                             withErrorMessage: "Please don't use any fancy characters in the file name.",
                             predefinedFileName: newFileName
@@ -239,13 +249,6 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
                 }
             }
         }
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
-        fileNameAlertController.addAction(createAction)
-        fileNameAlertController.addAction(cancelAction)
-
-        self.present(fileNameAlertController, animated: true, completion: nil)
     }
 
     func nameAlreadyExists(name fileName: String) -> Bool {

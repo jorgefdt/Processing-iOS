@@ -17,13 +17,23 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
     init(withPath path: String, basePath: String) {
         self.basePath = basePath
         currentPath = path
-        contents =  try! FileManager.default.contentsOfDirectory(atPath: path)
+        do {
+            contents =  try FileManager.default.contentsOfDirectory(atPath: path)
+        } catch _ {
+            contents = [""]
+        }
+
         super.init(nibName: "FolderContentBrowserTableViewController", bundle: Bundle.main)
         title = "Folder Contents"
     }
 
     private func reload() {
-        contents =  try! FileManager.default.contentsOfDirectory(atPath: currentPath)
+        do {
+            contents =  try FileManager.default.contentsOfDirectory(atPath: currentPath)
+        } catch _ {
+            contents = [""]
+        }
+
         tableView.reloadData()
     }
 
@@ -137,7 +147,12 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
         let destinationURL = URL(string: basePath)!
             .appendingPathComponent("data").appendingPathComponent(url.lastPathComponent)
-        try! FileManager.default.copyItem(atPath: url.path, toPath: destinationURL.path)
+        do {
+            try FileManager.default.copyItem(atPath: url.path, toPath: destinationURL.path)
+        } catch _ {
+            fatalError("Shit, cannot copy")
+        }
+
         if let lastPathComponent = URL(string: currentPath)?.lastPathComponent {
             if lastPathComponent != "data" {
                 let dataFolderVC = FolderContentBrowserTableViewController(
