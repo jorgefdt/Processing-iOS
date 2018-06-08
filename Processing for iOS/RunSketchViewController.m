@@ -42,6 +42,8 @@
         NSString* content = [NSString stringWithFormat:[FileManager containerFile],processingjs,self.pdeSketch.cummulatedSourceCode];
         
         NSURL* baseURL = [[NSURL fileURLWithPath:pdeSketch.filePath] URLByAppendingPathComponent:@"data"];
+        
+        [self.sketchWebView loadFileURL: baseURL allowingReadAccessToURL: baseURL];
         [self.sketchWebView loadHTMLString:content baseURL: baseURL];
         
         self.motionManager = [CMMotionManager new];
