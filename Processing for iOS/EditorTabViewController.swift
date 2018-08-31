@@ -65,7 +65,13 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
             action: #selector(EditorTabViewController.showFolderContent)
         )
 
-        self.toolbarItems = [formatButton, flexibleSpace, organize, flexibleSpace, codeReferenceButton]
+        let shareButton = UIBarButtonItem(
+            barButtonSystemItem: .action,
+            target: self,
+            action: #selector(EditorTabViewController.shareCode)
+        )
+
+        self.toolbarItems = [formatButton, flexibleSpace, organize, flexibleSpace, codeReferenceButton, shareButton]
 
         NotificationCenter.default.addObserver(
             self,
@@ -158,6 +164,22 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
     @objc func formatCode() {
         let pdeFileViewController = currentViewController as? PDEEditorViewController
         pdeFileViewController?.formatCode()
+    }
+
+    func exportToFileURL() -> URL? {
+        saveCode()
+        return URL(fileURLWithPath: project.filePath(), isDirectory: true)
+    }
+
+    @objc func shareCode(_ sender: UIBarButtonItem) {
+        let url = exportToFileURL()!
+        let activityViewController = UIActivityViewController(
+            activityItems: [url],
+            applicationActivities: nil)
+        if let popoverPresentationController = activityViewController.popoverPresentationController {
+            popoverPresentationController.barButtonItem = sender
+        }
+        present(activityViewController, animated: true, completion: nil)
     }
 
     @objc func saveCode() {

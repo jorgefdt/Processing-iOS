@@ -45,6 +45,7 @@
 		51CEE4711B3E9E390031D1BE /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 51CEE4701B3E9E390031D1BE /* FileManager.m */; };
 		51CEE4791B3EA6FC0031D1BE /* RunSketchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51CEE4781B3EA6FC0031D1BE /* RunSketchViewController.m */; };
 		51CEE47B1B3EAC1C0031D1BE /* container.html in Resources */ = {isa = PBXBuildFile; fileRef = 51CEE47A1B3EAC1C0031D1BE /* container.html */; };
+		63296F0C2139BABD00A290DD /* processing app icon.001-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 63296F0B2139BABC00A290DD /* processing app icon.001-40.png */; };
 		860DBA451E5736300022C90F /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 860DBA431E5736300022C90F /* AboutViewController.m */; };
 		860DBA461E5736300022C90F /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 860DBA441E5736300022C90F /* AboutViewController.xib */; };
 		865964121E7CB6250035F0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 865964111E7CB6250035F0E3 /* GoogleService-Info.plist */; };
@@ -121,6 +122,7 @@
 		51CEE4781B3EA6FC0031D1BE /* RunSketchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunSketchViewController.m; sourceTree = "<group>"; };
 		51CEE47A1B3EAC1C0031D1BE /* container.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = container.html; sourceTree = "<group>"; };
 		57D0A912304A1FC223B9ABD8 /* Pods_Processing_for_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Processing_for_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63296F0B2139BABC00A290DD /* processing app icon.001-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "processing app icon.001-40.png"; path = "Processing for iOS/Images.xcassets/AppIcon.appiconset/processing app icon.001-40.png"; sourceTree = "<group>"; };
 		75506C019411DF8A4B4F7575 /* Pods-Processing for iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Processing for iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Processing for iOS/Pods-Processing for iOS.release.xcconfig"; sourceTree = "<group>"; };
 		860DBA421E5736300022C90F /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		860DBA431E5736300022C90F /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 		51CEE43A1B3E9A1B0031D1BE = {
 			isa = PBXGroup;
 			children = (
+				63296F0B2139BABC00A290DD /* processing app icon.001-40.png */,
 				51CEE4451B3E9A1D0031D1BE /* Processing for iOS */,
 				51CEE45F1B3E9A310031D1BE /* Processing for iOSTests */,
 				51CEE4441B3E9A1D0031D1BE /* Products */,
@@ -382,6 +385,7 @@
 				860DBA461E5736300022C90F /* AboutViewController.xib in Resources */,
 				5199DD781B3F232C004437DB /* SourceCodePro-Light.ttf in Resources */,
 				5199DD7B1B3F232C004437DB /* SourceCodePro-Semibold.ttf in Resources */,
+				63296F0C2139BABD00A290DD /* processing app icon.001-40.png in Resources */,
 				511A4BF21B6D12C200B03259 /* Example_Draw.pde in Resources */,
 				86CA24621E7ABF0F005FB881 /* processing.min.js in Resources */,
 				5199DD791B3F232C004437DB /* SourceCodePro-Medium.ttf in Resources */,
