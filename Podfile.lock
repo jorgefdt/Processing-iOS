@@ -1,37 +1,61 @@
 PODS:
-  - AutoInsetter (1.2.3)
-  - Firebase/Core (5.0.1):
+  - AutoInsetter (1.2.6)
+  - Firebase/Core (5.7.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.0.0)
-  - Firebase/CoreOnly (5.0.1):
-    - FirebaseCore (= 5.0.1)
-  - Firebase/Storage (5.0.1):
+    - FirebaseAnalytics (= 5.1.1)
+  - Firebase/CoreOnly (5.7.0):
+    - FirebaseCore (= 5.1.2)
+  - Firebase/Storage (5.7.0):
     - Firebase/CoreOnly
-    - FirebaseStorage (= 3.0.0)
-  - FirebaseAnalytics (5.0.0):
-    - FirebaseCore (~> 5.0)
-    - FirebaseInstanceID (~> 3.0)
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - FirebaseStorage (= 3.0.1)
+  - FirebaseAnalytics (5.1.1):
+    - FirebaseCore (~> 5.1)
+    - FirebaseInstanceID (~> 3.2)
+    - GoogleAppMeasurement (~> 5.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
+    - GoogleUtilities/MethodSwizzler (~> 5.2.0)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseCore (5.0.1):
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseInstanceID (3.0.0):
-    - FirebaseCore (~> 5.0)
-  - FirebaseStorage (3.0.0):
+  - FirebaseCore (5.1.2):
+    - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseInstanceID (3.2.1):
+    - FirebaseCore (~> 5.1)
+    - GoogleUtilities/Environment (~> 5.2)
+  - FirebaseStorage (3.0.1):
     - FirebaseCore (~> 5.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleToolboxForMac/Defines (2.1.4)
-  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
-    - GoogleToolboxForMac/Defines (= 2.1.4)
-  - GTMSessionFetcher/Core (1.1.15)
+  - GoogleAppMeasurement (5.1.1):
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
+    - GoogleUtilities/MethodSwizzler (~> 5.2.0)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - GoogleUtilities/AppDelegateSwizzler (5.2.2):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (5.2.2)
+  - GoogleUtilities/Logger (5.2.2):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (5.2.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (5.2.2):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (5.2.2)"
+  - GoogleUtilities/Reachability (5.2.2):
+    - GoogleUtilities/Logger
+  - GTMSessionFetcher/Core (1.2.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - Pageboy (2.5.1)
-  - SwiftLint (0.25.1)
-  - Tabman (1.8.2):
+  - Pageboy (2.5.4)
+  - SwiftLint (0.27.0)
+  - Tabman (1.9.2):
     - AutoInsetter (~> 1.2.0)
     - Pageboy (~> 2.5.0)
 
@@ -49,7 +73,8 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseInstanceID
     - FirebaseStorage
-    - GoogleToolboxForMac
+    - GoogleAppMeasurement
+    - GoogleUtilities
     - GTMSessionFetcher
     - nanopb
     - Pageboy
@@ -57,19 +82,20 @@ SPEC REPOS:
     - Tabman
 
 SPEC CHECKSUMS:
-  AutoInsetter: 1a8f8ad5e7da8e993970b3809cfb8e8e330f4db1
-  Firebase: d6861c2059d8c32d1e6dd8932e22ada346d90a3a
-  FirebaseAnalytics: 19812b49fa5f283dd6b23edf8a14b5d477029ab8
-  FirebaseCore: cafc814b2d84fc8733f09e653041cc2165332ad7
-  FirebaseInstanceID: 83e0040351565df711a5db3d8ebe5ea21aca998a
-  FirebaseStorage: 7ca4bb7b58a25fa647b04f524033fc7cb7eb272b
-  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
-  GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
+  AutoInsetter: 3713c857f3c0cc4b6265fe55ecf0c14bfe8622ee
+  Firebase: 734a4f92957aa6c40e7ae3fda3d9359e1890aa87
+  FirebaseAnalytics: 993577e91157feb40945abedd6ab346d8a4b6ac8
+  FirebaseCore: 3a97432acb324b439fbed338e642f9cbb516a63d
+  FirebaseInstanceID: ea5af6920d0a4a29b40459d055bebe4a6c1333c4
+  FirebaseStorage: 43f823b96b72a08539eba21a7de043348a69d4c6
+  GoogleAppMeasurement: f7507b39b70ad0bd80b3d81518b2f43868974307
+  GoogleUtilities: 06b66f9567769a7958db20a92f0128b2843e49d5
+  GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  Pageboy: f0295ea949f0b0123a1b486fd347ea892d0078e0
-  SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
-  Tabman: 69ce69b44cec1ad693b82c24cdbdf0c45915668c
+  Pageboy: 46d743783414a18f8b27a988485e0ed2ea219ff7
+  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
+  Tabman: a09f7d7aa62b231ec475ca9eb9171f7cc973a3d7
 
-PODFILE CHECKSUM: 31175e6632327200be31bb34991da444cb8286f2
+PODFILE CHECKSUM: 1aff3c556fe994f99e223ac7103699c21f8a4c7e
 
 COCOAPODS: 1.5.3
