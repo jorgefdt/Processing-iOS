@@ -67,9 +67,9 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
         let editToolbarItem = UIBarButtonItem(
             barButtonSystemItem: .edit,
             target: self,
-            action: #selector(FolderContentBrowserTableViewController.importFiles)
+            action: #selector(FolderContentBrowserTableViewController.toggleEdit)
         )
-        editToolbarItem.isEnabled = false
+
         let exportToolbarItem = UIBarButtonItem(
             barButtonSystemItem: .action,
             target: self,
@@ -82,6 +82,10 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
 
     @objc func done() {
         self.dismiss(animated: true, completion: nil)
+    }
+
+    @objc func toggleEdit() {
+        tableView.setEditing(!tableView.isEditing, animated: true)
     }
 
     @objc func importFiles() {
@@ -127,6 +131,14 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let path = "\(currentPath)/\(contents[indexPath.row])"
+            try? FileManager.default.removeItem(atPath: path)
+            reload()
+        }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
