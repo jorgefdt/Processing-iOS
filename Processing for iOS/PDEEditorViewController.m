@@ -164,6 +164,10 @@
         NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:self.editor.text];
         [string addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"SourceCodePro-Regular" size:18] range:NSMakeRange(0, string.length)];
         
+        if (@available(iOS 13.0, *)) {
+            [string addAttribute: NSForegroundColorAttributeName value: UIColor.labelColor range: NSMakeRange(0, string.length)];
+        }
+        
         
         for(NSDictionary *syntaxPattern in [FileManager syntaxHighlighterDictionary]) {
             NSString *patternString = syntaxPattern[@"regex"];

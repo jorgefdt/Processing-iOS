@@ -55,6 +55,7 @@ PODS:
   - nanopb/encode (0.3.8)
   - Pageboy (2.5.4)
   - SwiftLint (0.27.0)
+  - SwiftyStoreKit (0.15.0)
   - Tabman (1.9.2):
     - AutoInsetter (~> 1.2.0)
     - Pageboy (~> 2.5.0)
@@ -63,10 +64,11 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Storage
   - SwiftLint
+  - SwiftyStoreKit
   - Tabman (~> 1.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - AutoInsetter
     - Firebase
     - FirebaseAnalytics
@@ -80,6 +82,8 @@ SPEC REPOS:
     - Pageboy
     - SwiftLint
     - Tabman
+  trunk:
+    - SwiftyStoreKit
 
 SPEC CHECKSUMS:
   AutoInsetter: 3713c857f3c0cc4b6265fe55ecf0c14bfe8622ee
@@ -94,8 +98,9 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Pageboy: 46d743783414a18f8b27a988485e0ed2ea219ff7
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
+  SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   Tabman: a09f7d7aa62b231ec475ca9eb9171f7cc973a3d7
 
-PODFILE CHECKSUM: 1aff3c556fe994f99e223ac7103699c21f8a4c7e
+PODFILE CHECKSUM: 356f89e40d69906ae164f75652cfbc297eb36695
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.3

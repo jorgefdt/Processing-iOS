@@ -176,6 +176,7 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
     }
 
     @objc func addNewPDEFile() {
+        saveCode()
         addNewFileName(withErrorMessage: nil, predefinedFileName: nil)
     }
 

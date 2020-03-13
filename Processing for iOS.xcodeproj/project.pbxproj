@@ -24,6 +24,7 @@
 		5128B7531B3EEAA700572894 /* syntax highlighting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5128B7521B3EEAA700572894 /* syntax highlighting.plist */; };
 		513CADDF1FCD712100B9A6F1 /* FirstStart.m in Sources */ = {isa = PBXBuildFile; fileRef = 513CADDE1FCD712100B9A6F1 /* FirstStart.m */; };
 		515230FA1B74B3D1003497F9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 515230F91B74B3D1003497F9 /* SettingsViewController.m */; };
+		516A422224154D7100D0181B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 516A422124154D7100D0181B /* StoreKit.framework */; };
 		5192E54D20A8A15E00354BC8 /* FolderContentBrowserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5192E54B20A8A15E00354BC8 /* FolderContentBrowserTableViewController.swift */; };
 		5192E54E20A8A15E00354BC8 /* FolderContentBrowserTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5192E54C20A8A15E00354BC8 /* FolderContentBrowserTableViewController.xib */; };
 		5192E55320A8A67300354BC8 /* FileContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5192E55120A8A67300354BC8 /* FileContentTableViewCell.swift */; };
@@ -90,6 +91,7 @@
 		513CADDE1FCD712100B9A6F1 /* FirstStart.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstStart.m; sourceTree = "<group>"; };
 		515230F81B74B3D1003497F9 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		515230F91B74B3D1003497F9 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		516A422124154D7100D0181B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		5192E54A20A8A15D00354BC8 /* Processing for iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Processing for iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		5192E54B20A8A15E00354BC8 /* FolderContentBrowserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderContentBrowserTableViewController.swift; sourceTree = "<group>"; };
 		5192E54C20A8A15E00354BC8 /* FolderContentBrowserTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FolderContentBrowserTableViewController.xib; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0708F45A019FA07554E4C242 /* Pods_Processing_for_iOS.framework in Frameworks */,
+				516A422224154D7100D0181B /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +171,7 @@
 		47B535D0FA9E13A148AEF96F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				516A422124154D7100D0181B /* StoreKit.framework */,
 				199569DDED991500E4F252CB /* Pods_Processing_for_iOS.framework */,
 				57D0A912304A1FC223B9ABD8 /* Pods_Processing_for_iOSTests.framework */,
 			);
@@ -453,11 +457,12 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Processing for iOS/Pods-Processing for iOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Processing for iOS/Pods-Processing for iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AutoInsetter/AutoInsetter.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Pageboy/Pageboy.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Tabman/Tabman.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -467,12 +472,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pageboy.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tabman.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Processing for iOS/Pods-Processing for iOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Processing for iOS/Pods-Processing for iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9888C6E5FA88BF5A331062C9 /* [CP] Check Pods Manifest.lock */ = {
@@ -663,10 +669,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = 52U6XAJSSF;
 				INFOPLIST_FILE = "Processing for iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.polarapps.processing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Processing for iOS/Processing for iOS-Bridging-Header.h";
@@ -682,10 +690,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = 52U6XAJSSF;
 				INFOPLIST_FILE = "Processing for iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.polarapps.processing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Processing for iOS/Processing for iOS-Bridging-Header.h";

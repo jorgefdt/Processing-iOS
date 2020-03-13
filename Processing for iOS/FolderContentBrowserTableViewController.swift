@@ -161,8 +161,8 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
             .appendingPathComponent("data").appendingPathComponent(url.lastPathComponent)
         do {
             try FileManager.default.copyItem(atPath: url.path, toPath: destinationURL.path)
-        } catch _ {
-            fatalError("Shit, cannot copy")
+        } catch {
+            print("copy failed")
         }
 
         if let lastPathComponent = URL(string: currentPath)?.lastPathComponent {

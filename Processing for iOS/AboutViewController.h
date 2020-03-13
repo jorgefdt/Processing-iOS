@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@import StoreKit;
 
-@interface AboutViewController : UIViewController
+@interface AboutViewController : UIViewController  <SKProductsRequestDelegate, SKPaymentTransactionObserver>
+
+@property (weak, nonatomic) IBOutlet UIButton *tier1Button;
+@property (weak, nonatomic) IBOutlet UIButton *tier2Button;
+
 
 @end
