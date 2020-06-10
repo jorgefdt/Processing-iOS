@@ -25,6 +25,7 @@
 		513CADDF1FCD712100B9A6F1 /* FirstStart.m in Sources */ = {isa = PBXBuildFile; fileRef = 513CADDE1FCD712100B9A6F1 /* FirstStart.m */; };
 		515230FA1B74B3D1003497F9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 515230F91B74B3D1003497F9 /* SettingsViewController.m */; };
 		516A422224154D7100D0181B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 516A422124154D7100D0181B /* StoreKit.framework */; };
+		517758DF24917B6200C9B79B /* HomeScreenSharer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517758DE24917B6200C9B79B /* HomeScreenSharer.swift */; };
 		5192E54D20A8A15E00354BC8 /* FolderContentBrowserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5192E54B20A8A15E00354BC8 /* FolderContentBrowserTableViewController.swift */; };
 		5192E54E20A8A15E00354BC8 /* FolderContentBrowserTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5192E54C20A8A15E00354BC8 /* FolderContentBrowserTableViewController.xib */; };
 		5192E55320A8A67300354BC8 /* FileContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5192E55120A8A67300354BC8 /* FileContentTableViewCell.swift */; };
@@ -92,6 +93,7 @@
 		515230F81B74B3D1003497F9 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		515230F91B74B3D1003497F9 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		516A422124154D7100D0181B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		517758DE24917B6200C9B79B /* HomeScreenSharer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenSharer.swift; sourceTree = "<group>"; };
 		5192E54A20A8A15D00354BC8 /* Processing for iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Processing for iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		5192E54B20A8A15E00354BC8 /* FolderContentBrowserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderContentBrowserTableViewController.swift; sourceTree = "<group>"; };
 		5192E54C20A8A15E00354BC8 /* FolderContentBrowserTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FolderContentBrowserTableViewController.xib; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				86D067401E5266C70033A4FF /* Example_Gyroscope_Accelerometer.pde */,
 				51CEE47A1B3EAC1C0031D1BE /* container.html */,
 				5128B7521B3EEAA700572894 /* syntax highlighting.plist */,
+				517758DE24917B6200C9B79B /* HomeScreenSharer.swift */,
 				5199DD6D1B3F232C004437DB /* Schriftart */,
 				51CEE44A1B3E9A250031D1BE /* AppDelegate.h */,
 				51CEE44B1B3E9A270031D1BE /* AppDelegate.m */,
@@ -462,6 +465,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Pageboy/Pageboy.framework",
+				"${BUILT_PRODUCTS_DIR}/Swifter/Swifter.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Tabman/Tabman.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -472,6 +476,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pageboy.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swifter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tabman.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -512,6 +517,7 @@
 				510F51B020ACB12C0082B979 /* EditorTabViewController.swift in Sources */,
 				510926FC1FA0CE1E00C255D1 /* SketchController.m in Sources */,
 				510926FF1FA0D72A00C255D1 /* PDESketch.m in Sources */,
+				517758DF24917B6200C9B79B /* HomeScreenSharer.swift in Sources */,
 				515230FA1B74B3D1003497F9 /* SettingsViewController.m in Sources */,
 				5192E55320A8A67300354BC8 /* FileContentTableViewCell.swift in Sources */,
 				86D0673E1E509C390033A4FF /* PDEEditorViewController.m in Sources */,

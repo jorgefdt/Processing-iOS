@@ -14,6 +14,7 @@
 -(instancetype)initWithSketchName:(NSString*)sketchName;
 -(NSString*)filePath;
 -(NSString*)cummulatedSourceCode;
+-(NSString*)htmlPage;
 
 @property(nonatomic,strong) NSString* sketchName;
 @property(nonatomic,strong) NSDate* creationDate;

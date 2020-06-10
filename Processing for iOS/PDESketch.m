@@ -51,6 +51,14 @@
     return result.copy;
 }
 
+-(NSString*)htmlPage {
+    NSString *processingjs = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"processing.min" ofType:@"js"] encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString* content = [NSString stringWithFormat:[FileManager containerFile], processingjs, self.cummulatedSourceCode];
+    
+    return content;
+}
+
 -(NSDate *)creationDate {
     NSFileManager* fm = [NSFileManager defaultManager];
     NSDictionary* attrs = [fm attributesOfItemAtPath:self.filePath error:nil];

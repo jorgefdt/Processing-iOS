@@ -54,6 +54,7 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Pageboy (2.5.4)
+  - Swifter (1.4.7)
   - SwiftLint (0.27.0)
   - SwiftyStoreKit (0.15.0)
   - Tabman (1.9.2):
@@ -63,6 +64,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Core
   - Firebase/Storage
+  - Swifter (~> 1.4.7)
   - SwiftLint
   - SwiftyStoreKit
   - Tabman (~> 1.0)
@@ -83,6 +85,7 @@ SPEC REPOS:
     - SwiftLint
     - Tabman
   trunk:
+    - Swifter
     - SwiftyStoreKit
 
 SPEC CHECKSUMS:
@@ -97,10 +100,11 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Pageboy: 46d743783414a18f8b27a988485e0ed2ea219ff7
+  Swifter: 2327ef5d872c638aebab79646ce494af508b0c8f
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   Tabman: a09f7d7aa62b231ec475ca9eb9171f7cc973a3d7
 
-PODFILE CHECKSUM: 356f89e40d69906ae164f75652cfbc297eb36695
+PODFILE CHECKSUM: 4585105037df697cf1c80127182cdc33ad5eb779
 
 COCOAPODS: 1.8.3

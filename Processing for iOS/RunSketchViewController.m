@@ -7,7 +7,7 @@
 //
 
 #import "RunSketchViewController.h"
-
+#import "Processing_for_iOS-Swift.h"
 
 @implementation RunSketchViewController
 
@@ -50,10 +50,16 @@
 
         [self startAccelerometerListener];
         [self startGyroscopeListener];
+        
+        [[self navigationItem] setRightBarButtonItem: [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)]];
 
     }
 
     return self;
+}
+
+-(void) share {
+    [HomeScreenSharer shareWithSketch: _pdeSketch];
 }
     
     
