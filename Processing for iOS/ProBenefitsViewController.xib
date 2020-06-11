@@ -19,15 +19,15 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Export your Processing Sketches as Apps on your home screen!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIS-U4-TsD">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Export your Processing Projects as Apps on your home screen!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIS-U4-TsD">
                     <rect key="frame" x="20" y="64" width="374" height="118.5"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lB2-Le-FLk">
-                    <rect key="frame" x="20" y="201" width="374" height="100.5"/>
-                    <string key="text">With Processing Pro, you‘ll support the further development of this app and get access to many exclusive features, such as exporting your sketches as apps!</string>
+                    <rect key="frame" x="20" y="201" width="374" height="125.5"/>
+                    <string key="text">With Processing Pro, you can support the further development of this app and get access to many exclusive features, such as exporting your sketches as apps!</string>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -54,7 +54,7 @@
                     </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" image="export_upsell" translatesAutoresizingMaskIntoConstraints="NO" id="NZP-SS-LsC">
-                    <rect key="frame" x="20" y="321.5" width="374" height="394.5"/>
+                    <rect key="frame" x="20" y="346.5" width="374" height="369.5"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -80,6 +80,6 @@
         </view>
     </objects>
     <resources>
-        <image name="export_upsell" width="1485" height="328"/>
+        <image name="export_upsell" width="686" height="342"/>
     </resources>
 </document>

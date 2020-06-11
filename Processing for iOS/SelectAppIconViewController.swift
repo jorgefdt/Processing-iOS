@@ -36,16 +36,63 @@ class SelectAppIconViewController: UIViewController {
     var selectedColor = UIColor.systemRed
     var selectedIconIndex = 0
     
-    let availableIcons = [
-        UIImage(systemName: "sun.max.fill"),
-        UIImage(systemName: "person.3.fill"),
-        UIImage(systemName: "person.3.fill"),
-        UIImage(systemName: "person.3.fill"),
-        UIImage(systemName: "person.3.fill"),
-        UIImage(systemName: "person.3.fill"),
-        UIImage(systemName: "person.3.fill"),
-        UIImage(systemName: "person.3.fill"),
+    let availableIconNames = [
+        "alarm",
+        "alert",
+        "award",
+        "bang",
+        "bell",
+        "book",
+        "brush",
+        "calendar",
+        "2d",
+        "3d",
+        "command",
+        "cube",
+        "document",
+        "euro",
+        "fire",
+        "flashlight",
+        "folder",
+        "fx",
+        "guitars",
+        "heart",
+        "keyboard",
+        "lightbulb",
+        "like",
+        "lock",
+        "magic",
+        "message",
+        "mic",
+        "on-off",
+        "paper plane",
+        "paperclip",
+        "pen tip",
+        "pencil",
+        "people",
+        "play",
+        "qr code",
+        "radio",
+        "rain",
+        "small sun",
+        "smile",
+        "snow",
+        "speaker",
+        "sunset",
+        "thunder",
+        "trash",
+        "video",
+        "video playback",
+        "volume"
     ]
+    
+    var availableIcons: [UIImage] {
+        get {
+            availableIconNames.map { (iconName) -> UIImage in
+                return UIImage(named: iconName)!
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

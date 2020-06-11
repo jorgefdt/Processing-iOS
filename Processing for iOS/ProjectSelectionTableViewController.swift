@@ -172,32 +172,33 @@ UIAlertViewDelegate {
     
     @IBAction func createNewProject(_ sender: UIBarButtonItem) {
         
-        guard let button = sender.value(forKey: "view") as? UIView else {
-            return
-        }
+        self.showCreateAlert(title: "New Processing Project", name: "")
         
-        let actionSheet = UIAlertController(title: "Type of new Project", message: nil, preferredStyle: .actionSheet)
-        actionSheet.modalPresentationStyle = .popover
-        
-        
-        let processing = UIAlertAction(title: "Processing Project", style: .default) { (_) in
-            self.showCreateAlert(title: "New Processing Project", name: "")
-        }
-        
-        let p5js = UIAlertAction(title: "P5.js Project", style: .default) { (_) in
-            self.showCreateAlert(title: "New P5.js Project", name: "")
-        }
-        
-        actionSheet.addAction(processing)
-        actionSheet.addAction(p5js)
-        
-        if let popover = actionSheet.popoverPresentationController {
-            popover.sourceView = button
-            popover.sourceRect = button.frame
-        }
-        
-        present(actionSheet, animated: true)
-        
+//        guard let button = sender.value(forKey: "view") as? UIView else {
+//            return
+//        }
+//
+//        let actionSheet = UIAlertController(title: "Type of new Project", message: nil, preferredStyle: .actionSheet)
+//        actionSheet.modalPresentationStyle = .popover
+//
+//
+//        let processing = UIAlertAction(title: "Processing Project", style: .default) { (_) in
+//            self.showCreateAlert(title: "New Processing Project", name: "")
+//        }
+//
+//        let p5js = UIAlertAction(title: "P5.js Project", style: .default) { (_) in
+//            self.showCreateAlert(title: "New P5.js Project", name: "")
+//        }
+//
+//        actionSheet.addAction(processing)
+//        actionSheet.addAction(p5js)
+//
+//        if let popover = actionSheet.popoverPresentationController {
+//            popover.sourceView = button
+//            popover.sourceRect = button.frame
+//        }
+//
+//        present(actionSheet, animated: true)
     }
     
     
