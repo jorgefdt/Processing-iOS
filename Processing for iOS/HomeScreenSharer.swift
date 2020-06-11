@@ -13,8 +13,10 @@ import UIKit
 
 class HomeScreenSharer: NSObject {
     
+    private static let server = HttpServer()
     @objc static func share(sketch: PDESketch) {
-        let server = HttpServer()
+        
+        server.stop()
         
         let sourceCode = sketch.htmlPage()
         let base64 = sourceCode!.base64
@@ -26,8 +28,8 @@ class HomeScreenSharer: NSObject {
         server["manifest.json"] = { request in
             return HttpResponse.ok(.json(
                 [
-                    "name": "\(sketch.sketchName)",
-                    "short_name": "\(sketch.sketchName)",
+                    "name": "\(sketch.sketchName!)",
+                    "short_name": "\(sketch.sketchName!)",
                     "start_url": "index.html",
                     "display": "standalone",
                     "icons": [[

@@ -2,7 +2,7 @@ float gyroscopeX, gyroscopeY, gyroscopeZ;
 
 
 void setup() {
-   size(screen.width, screen.height, P3D);
+   size(screenWidth, screenHeight, P3D);
 }
 
 void draw() {

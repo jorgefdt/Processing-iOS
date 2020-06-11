@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "UIColor+ProcessingColor.h"
 #import "SketchController.h"
+#import "Processing_for_iOS-Swift.h"
+
 @import Firebase;
 
 
@@ -32,6 +34,12 @@
     if (@available(iOS 11.0, *)) {
         [[UINavigationBar appearance] setLargeTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     }
+    
+    
+    [ProBenefitsViewController preloadProductInfo];
+    [ProBenefitsViewController completePendingTransactions];
+    [ProBenefitsViewController updateExpirationDate];
+    
     return YES;
 }
 

@@ -1,5 +1,5 @@
 void setup() {
-   size(screen.width, screen.height);
+   size(screenWidth, screenHeight);
    background(255);
 }
 

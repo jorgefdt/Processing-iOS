@@ -51,15 +51,29 @@
         [self startAccelerometerListener];
         [self startGyroscopeListener];
         
-        [[self navigationItem] setRightBarButtonItem: [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)]];
-
+        [[self navigationItem] setRightBarButtonItem: [[UIBarButtonItem alloc] initWithTitle:@"Add App to home screen…" style:UIBarButtonItemStylePlain target:self action: @selector(addToHomeScreen)]];
     }
 
     return self;
 }
 
--(void) share {
-    [HomeScreenSharer shareWithSketch: _pdeSketch];
+-(void) addToHomeScreen {
+    
+    if ([ProBenefitsViewController isCurrentlySubscribed]) {
+        AddToHomeScreenViewController *addToHomeVC = [[AddToHomeScreenViewController alloc] init];
+        addToHomeVC.project = self.pdeSketch;
+        addToHomeVC.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self.navigationController presentViewController:addToHomeVC animated:YES completion:nil];
+    } else {
+        
+        ProBenefitsViewController *proVC = [[ProBenefitsViewController alloc] init];
+        
+        
+        UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:proVC];
+        navC.modalPresentationStyle = UIModalPresentationFormSheet;
+        
+        [[self navigationController] presentViewController:navC animated:YES completion:nil];
+    }
 }
     
     

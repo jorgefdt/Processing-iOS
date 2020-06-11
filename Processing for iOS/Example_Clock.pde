@@ -6,7 +6,7 @@ float hoursRadius;
 float clockDiameter;
 
 void setup() {
-   size(screen.width, screen.height);
+   size(screenWidth, screenHeight);
    stroke(255);
    
    int radius = min(width, height) / 2;

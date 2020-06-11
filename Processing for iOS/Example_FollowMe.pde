@@ -4,7 +4,7 @@ float[] y = new float[20];
 float segLength = 18;
 
 void setup() {
-   size(screen.width, screen.height);
+   size(screenWidth, screenHeight);
    strokeWeight(9);
    stroke(255, 100);
 }
