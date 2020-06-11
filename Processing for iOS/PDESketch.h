@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "PDEFile.h"
 
+@import UIKit;
+
 @interface PDESketch : NSObject
 
 -(instancetype)initWithSketchName:(NSString*)sketchName;
@@ -19,6 +21,7 @@
 @property(nonatomic,strong) NSString* sketchName;
 @property(nonatomic,strong) NSDate* creationDate;
 @property(nonatomic,strong) NSArray<PDEFile*>* pdeFiles;
+@property(nonatomic,strong) UIImage* appIcon;
 
 
 @end

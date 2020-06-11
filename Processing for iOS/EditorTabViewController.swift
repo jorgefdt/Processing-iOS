@@ -167,10 +167,14 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
         let homescreen = UIAlertAction(title: "Add App to Homescreen", style: .default) { (_) in
             
             if ProBenefitsViewController.isCurrentlySubscribed {
-                let homeScreenShareVC = AddToHomeScreenViewController()
-                homeScreenShareVC.modalPresentationStyle = .formSheet
-                homeScreenShareVC.project = self.project
-                self.present(homeScreenShareVC, animated: true)
+                if #available(iOS 13.0, *) {
+                    let homeScreenShareVC = SelectAppIconViewController()
+                    homeScreenShareVC.project = self.project
+                    let navC = UINavigationController(rootViewController: homeScreenShareVC)
+                    navC.modalPresentationStyle = .formSheet
+                    self.present(navC, animated: true)
+                }
+                
             } else {
                 let proBenefistVC = ProBenefitsViewController()
                 

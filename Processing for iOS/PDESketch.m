@@ -8,6 +8,7 @@
 
 #import "PDESketch.h"
 #import "SketchController.h"
+#import "Processing_for_iOS-Swift.h"
 
 @implementation PDESketch
 
@@ -54,7 +55,10 @@
 -(NSString*)htmlPage {
     NSString *processingjs = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"processing.min" ofType:@"js"] encoding:NSUTF8StringEncoding error:nil];
     
-    NSString* content = [NSString stringWithFormat: [FileManager containerFile], processingjs, self.cummulatedSourceCode];
+    UIImage* appIconImage = [self.appIcon resizeWithNewWidth:192];
+    NSString* base64 = [appIconImage base64];
+    
+    NSString* content = [NSString stringWithFormat: [FileManager containerFile], base64, processingjs, self.cummulatedSourceCode];
     
     return content;
 }
@@ -71,3 +75,4 @@
 }
 
 @end
+

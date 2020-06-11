@@ -25,6 +25,9 @@ class HomeScreenSharer: NSObject {
             return HttpResponse.ok(.text("<HTML><script>window.location.href='data:text/html;charset=UTF-8;base64,\(base64)'</script></HTML>"))
         }
         
+        
+        
+        
         server["manifest.json"] = { request in
             return HttpResponse.ok(.json(
                 [
@@ -33,13 +36,14 @@ class HomeScreenSharer: NSObject {
                     "start_url": "index.html",
                     "display": "standalone",
                     "icons": [[
-                    "src": "assets/images/logo-pwa.png",
+                    "src": "",
                     "sizes": "192x192",
                     "type": "image/png"
                     ]]
                 ]
                 ))
         }
+
         
         try? server.start(42096)
         
@@ -63,4 +67,25 @@ extension String {
         return data!.base64EncodedString()
     }
     
+}
+
+
+extension UIImage {
+    @objc func resize(newWidth: CGFloat) -> UIImage {
+
+        let scale = newWidth / self.size.width
+        let newHeight = self.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        self.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return newImage!
+    }
+    
+    @objc func base64() -> String {
+        let imageData = UIImagePNGRepresentation(self)!
+        let strBase64:String = imageData.base64EncodedString()
+        return strBase64
+    }
 }

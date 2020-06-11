@@ -28,4 +28,9 @@ class AddToHomeScreenViewController: UIViewController {
         
         dismiss(animated: true)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+        super.viewWillAppear(animated)
+    }
 }

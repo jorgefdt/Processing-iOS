@@ -37,9 +37,7 @@
         self.sketchWebView.scrollView.bounces = NO;
         
         
-        NSString *processingjs = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"processing.min" ofType:@"js"] encoding:NSUTF8StringEncoding error:nil];
-        
-        NSString* content = [NSString stringWithFormat:[FileManager containerFile],processingjs,self.pdeSketch.cummulatedSourceCode];
+        NSString* content = [[self pdeSketch] htmlPage];
         
         NSURL* baseURL = [[NSURL fileURLWithPath:pdeSketch.filePath] URLByAppendingPathComponent:@"data"];
         
@@ -60,10 +58,13 @@
 -(void) addToHomeScreen {
     
     if ([ProBenefitsViewController isCurrentlySubscribed]) {
-        AddToHomeScreenViewController *addToHomeVC = [[AddToHomeScreenViewController alloc] init];
+        SelectAppIconViewController *addToHomeVC = [[SelectAppIconViewController alloc] init];
         addToHomeVC.project = self.pdeSketch;
-        addToHomeVC.modalPresentationStyle = UIModalPresentationFormSheet;
-        [self.navigationController presentViewController:addToHomeVC animated:YES completion:nil];
+        UINavigationController * navC = [[UINavigationController alloc] initWithRootViewController:addToHomeVC];
+        
+        navC.modalPresentationStyle = UIModalPresentationFormSheet;
+        
+        [self.navigationController presentViewController:navC animated:YES completion:nil];
     } else {
         
         ProBenefitsViewController *proVC = [[ProBenefitsViewController alloc] init];
