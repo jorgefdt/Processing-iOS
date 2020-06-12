@@ -20,13 +20,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Export your Processing Projects as Apps on your home screen!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIS-U4-TsD">
-                    <rect key="frame" x="20" y="64" width="374" height="118.5"/>
+                    <rect key="frame" x="20" y="98" width="374" height="118.5"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lB2-Le-FLk">
-                    <rect key="frame" x="20" y="201" width="374" height="125.5"/>
+                    <rect key="frame" x="20" y="235" width="374" height="125.5"/>
                     <string key="text">With Processing Pro, you can support the further development of this app and get access to many exclusive features, such as exporting your sketches as apps!</string>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
                     <nil key="textColor"/>
@@ -54,8 +54,15 @@
                     </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" image="export_upsell" translatesAutoresizingMaskIntoConstraints="NO" id="NZP-SS-LsC">
-                    <rect key="frame" x="20" y="346.5" width="374" height="369.5"/>
+                    <rect key="frame" x="20" y="380.5" width="374" height="335.5"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hm-ov-eUz">
+                    <rect key="frame" x="251" y="52" width="143" height="30"/>
+                    <state key="normal" title="Restore Subscription"/>
+                    <connections>
+                        <action selector="restore:" destination="-1" eventType="touchUpInside" id="3AB-LR-LFy"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
@@ -64,15 +71,17 @@
                 <constraint firstItem="Umy-pc-bxA" firstAttribute="top" secondItem="xe3-Mu-IPF" secondAttribute="bottom" constant="20" id="AVx-pm-E89"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lB2-Le-FLk" secondAttribute="trailing" constant="20" id="BGZ-st-Gox"/>
                 <constraint firstItem="dIS-U4-TsD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="NTr-Ic-wSO"/>
+                <constraint firstItem="dIS-U4-TsD" firstAttribute="top" secondItem="3hm-ov-eUz" secondAttribute="bottom" constant="16" id="VeL-VB-7lu"/>
                 <constraint firstItem="xe3-Mu-IPF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="cWd-fX-ydL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Umy-pc-bxA" secondAttribute="bottom" constant="20" id="dEx-xY-Q6r"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3hm-ov-eUz" secondAttribute="trailing" constant="20" id="gb9-dD-AdC"/>
                 <constraint firstItem="NZP-SS-LsC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="kyN-L0-EcE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xe3-Mu-IPF" secondAttribute="trailing" constant="20" id="p94-dT-6BH"/>
-                <constraint firstItem="dIS-U4-TsD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="pgU-Ja-b5T"/>
                 <constraint firstItem="Umy-pc-bxA" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="rcY-4Z-uVW"/>
                 <constraint firstItem="xe3-Mu-IPF" firstAttribute="top" secondItem="NZP-SS-LsC" secondAttribute="bottom" constant="20" id="sCv-yQ-mxy"/>
                 <constraint firstItem="lB2-Le-FLk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="wGY-xd-Idd"/>
                 <constraint firstItem="NZP-SS-LsC" firstAttribute="top" secondItem="lB2-Le-FLk" secondAttribute="bottom" constant="20" id="xiY-NM-zLk"/>
+                <constraint firstItem="3hm-ov-eUz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="yTB-hO-1HZ"/>
                 <constraint firstItem="lB2-Le-FLk" firstAttribute="top" secondItem="dIS-U4-TsD" secondAttribute="bottom" constant="18.5" id="yia-mG-pf9"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

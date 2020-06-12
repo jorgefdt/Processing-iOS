@@ -11,7 +11,7 @@ import SwiftyStoreKit
 
 class ProBenefitsViewController: UIViewController {
     
-    @IBOutlet weak var buyButton: UIButton!
+    @IBOutlet weak var buyButton: ActivityButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +41,25 @@ class ProBenefitsViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func restore(_ sender: Any) {
+        
+        ProBenefitsViewController.restorePurchases { (results) in
+            self.buyButton.showLoading()
+            
+            if results.restoredPurchases.count > 0 {
+                ProBenefitsViewController.updateExpirationDate()
+                let thxVC = WelcomeToProViewController()
+                self.navigationController?.pushViewController(thxVC, animated: true)
+            }
+        }
+        
+    }
+    
+    func handlePurchaseResults(purchaseDetails: PurchaseDetails) {
+        
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)

@@ -10,9 +10,14 @@ import UIKit
 
 class WelcomeToProViewController: UIViewController {
 
+    @IBOutlet weak var getStartedButton: ActivityButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getStartedButton.layer.cornerRadius = 16
+        
         // Do any additional setup after loading the view.
     }
 

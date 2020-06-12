@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeToProViewController" customModule="Processing_for_iOS" customModuleProvider="target">
             <connections>
+                <outlet property="getStartedButton" destination="63r-Eh-xCB" id="R4v-6s-QZP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -47,6 +48,9 @@ On top of that, your support helps to keep up with the further development of th
                         <action selector="getStarted:" destination="-1" eventType="touchUpInside" id="aFG-S0-L94"/>
                     </connections>
                 </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="748" image="education" translatesAutoresizingMaskIntoConstraints="NO" id="2wO-FA-zbc">
+                    <rect key="frame" x="20" y="382.33333333333326" width="374" height="383.66666666666674"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
@@ -54,14 +58,21 @@ On top of that, your support helps to keep up with the further development of th
                 <constraint firstItem="Rlt-3e-mfq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="4k5-mo-Yk7"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="63r-Eh-xCB" secondAttribute="bottom" constant="20" id="Eg9-rH-TIH"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="63r-Eh-xCB" secondAttribute="trailing" constant="20" id="MN0-PR-g6Z"/>
+                <constraint firstItem="2wO-FA-zbc" firstAttribute="top" secondItem="XPr-5P-Ubx" secondAttribute="bottom" constant="20" id="Mfe-8A-dUA"/>
                 <constraint firstItem="XPr-5P-Ubx" firstAttribute="top" secondItem="Rlt-3e-mfq" secondAttribute="bottom" constant="18.5" id="RmH-ye-Hhv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="leading" secondItem="XPr-5P-Ubx" secondAttribute="leading" constant="-20" id="X16-bx-1Gp"/>
                 <constraint firstItem="Rlt-3e-mfq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="b49-qh-44S"/>
+                <constraint firstItem="2wO-FA-zbc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="fbx-KT-jpg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2wO-FA-zbc" secondAttribute="trailing" constant="20" id="nrv-me-T7z"/>
+                <constraint firstItem="63r-Eh-xCB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2wO-FA-zbc" secondAttribute="bottom" constant="20" id="qaq-vg-XEh"/>
                 <constraint firstItem="Rlt-3e-mfq" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-20" id="wpZ-ct-Oli"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XPr-5P-Ubx" secondAttribute="trailing" constant="20" id="yi1-xe-wDj"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="154"/>
+            <point key="canvasLocation" x="137.68115942028987" y="153.34821428571428"/>
         </view>
     </objects>
+    <resources>
+        <image name="education" width="960" height="433"/>
+    </resources>
 </document>
