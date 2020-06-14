@@ -146,6 +146,7 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
     }
     
     @objc func close() {
+        saveCode()
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -155,6 +156,8 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
     }
     
     @objc func share(sender: UIBarButtonItem) {
+        
+        saveCode()
         
         guard let view = sender.value(forKey: "view") as? UIView else {
             return

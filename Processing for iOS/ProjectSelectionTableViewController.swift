@@ -30,6 +30,16 @@ UIAlertViewDelegate {
         searchController.searchBar.tintColor = UIColor.white
         searchController.searchBar.barStyle = .black
         
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+            navBarAppearance.backgroundColor = UIColor.processing()
+            self.navigationItem.scrollEdgeAppearance = navBarAppearance
+            self.navigationItem.standardAppearance = navBarAppearance
+        }
+        
         if #available(iOS 11.0, *) {
             navigationItem.searchController = searchController
         }

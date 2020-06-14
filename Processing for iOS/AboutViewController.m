@@ -98,6 +98,13 @@ SKProduct* tier2Product;
     [SKPaymentQueue.defaultQueue addPayment:tier2Payment];
 }
 
+- (IBAction)showTerms:(id)sender {
+    SFSafariViewController *sfvc = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"http://processing-app.org/terms"]];
+    
+    [self presentViewController:sfvc animated:YES completion:nil];
+}
+
+
 -(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray<SKPaymentTransaction *> *)transactions {
     
     for (SKPaymentTransaction* transation in transactions) {

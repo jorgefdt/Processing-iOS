@@ -34,7 +34,7 @@ class HomeScreenSharer: NSObject {
                     "name": "\(sketch.sketchName!)",
                     "short_name": "\(sketch.sketchName!)",
                     "start_url": "index.html",
-                    "display": "standalone",
+                    "display": "fullscreen",
                     "icons": [[
                     "src": "",
                     "sizes": "192x192",

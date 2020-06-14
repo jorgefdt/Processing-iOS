@@ -25,14 +25,35 @@
     
     [FIRApp configure];
     
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTintColor: [UIColor whiteColor]];
     
-    [[UISegmentedControl appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor processingColor]];
+    [[UISegmentedControl appearance] setTintColor: [UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor: [UIColor processingColor]];
+    
+    
+    [[UISearchBar appearance] setBarTintColor: [UIColor processingColor]];
+    
     [[UINavigationBar appearance] setTranslucent:NO];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     if (@available(iOS 11.0, *)) {
         [[UINavigationBar appearance] setLargeTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    }
+    
+    
+    
+    
+    
+    
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance* appearance = [[UINavigationBarAppearance alloc] init];
+        
+        [appearance configureWithOpaqueBackground];
+        [appearance setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+        [appearance setLargeTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+        [appearance setBackgroundColor: [UIColor processingColor]];
+        
+        [[UINavigationBar appearanceWhenContainedInInstancesOfClasses: @[UINavigationController.class] ] setStandardAppearance:appearance];
+        [[UINavigationBar appearanceWhenContainedInInstancesOfClasses: @[UINavigationController.class] ] setScrollEdgeAppearance:appearance];
     }
     
     

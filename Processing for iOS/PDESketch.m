@@ -58,7 +58,7 @@
     UIImage* appIconImage = [self.appIcon resizeWithNewWidth:192];
     NSString* base64 = [appIconImage base64];
     
-    NSString* content = [NSString stringWithFormat: [FileManager containerFile], base64, processingjs, self.cummulatedSourceCode];
+    NSString* content = [NSString stringWithFormat: [FileManager containerFile], base64, processingjs, _sketchName, self.cummulatedSourceCode];
     
     return content;
 }

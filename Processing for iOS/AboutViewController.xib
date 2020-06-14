@@ -32,7 +32,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="46R-Ij-rOu">
-                            <rect key="frame" x="97" y="341" width="220" height="99"/>
+                            <rect key="frame" x="97" y="328" width="220" height="99"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hit me up on Twitter if you have any questions or ideas how to improve this app:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AT6-Cp-5MC">
                                     <rect key="frame" x="0.0" y="0.0" width="220" height="61"/>
@@ -54,13 +54,13 @@
                             </subviews>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Support further development of Processing for iOS:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b27-2E-g9L">
-                            <rect key="frame" x="44" y="473" width="326" height="40.666666666666629"/>
+                            <rect key="frame" x="44" y="460" width="326" height="40.666666666666686"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="cY8-EA-aGK">
-                            <rect key="frame" x="30" y="535.66666666666663" width="354" height="128"/>
+                            <rect key="frame" x="30" y="522.66666666666663" width="354" height="128"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="94L-AG-Bni">
                                     <rect key="frame" x="0.0" y="0.0" width="152" height="128"/>
@@ -122,22 +122,26 @@
                                 </view>
                             </subviews>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMq-tx-CZP">
-                            <rect key="frame" x="138" y="675" width="140" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                            <state key="normal" title="Terms &amp; Conditions"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMq-tx-CZP">
+                            <rect key="frame" x="63" y="666.66666666666663" width="288" height="33"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <state key="normal" title="Terms &amp; Conditions &amp; Privacy Policy"/>
+                            <connections>
+                                <action selector="showTerms:" destination="-1" eventType="touchUpInside" id="E7n-hl-oVH"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="T2n-i2-mKv" firstAttribute="centerX" secondItem="Q4j-i4-VUi" secondAttribute="centerX" id="0T4-QS-Thl"/>
                         <constraint firstItem="b27-2E-g9L" firstAttribute="leading" secondItem="Q4j-i4-VUi" secondAttribute="leading" constant="44" id="2qD-be-UQ0"/>
-                        <constraint firstItem="T2n-i2-mKv" firstAttribute="top" secondItem="cY8-EA-aGK" secondAttribute="bottom" constant="44" id="4rc-LL-LBl"/>
+                        <constraint firstItem="AMq-tx-CZP" firstAttribute="centerX" secondItem="Q4j-i4-VUi" secondAttribute="centerX" id="A3F-YK-Vir"/>
                         <constraint firstItem="b27-2E-g9L" firstAttribute="top" secondItem="46R-Ij-rOu" secondAttribute="bottom" constant="33" id="GHz-3M-nSQ"/>
+                        <constraint firstItem="AMq-tx-CZP" firstAttribute="top" secondItem="cY8-EA-aGK" secondAttribute="bottom" constant="16" id="Gn7-pB-Q0n"/>
                         <constraint firstItem="46R-Ij-rOu" firstAttribute="centerX" secondItem="T2n-i2-mKv" secondAttribute="centerX" id="Q3k-Hg-wsp"/>
                         <constraint firstAttribute="trailing" secondItem="cY8-EA-aGK" secondAttribute="trailing" constant="30" id="VcX-F5-kgf"/>
                         <constraint firstItem="cY8-EA-aGK" firstAttribute="leading" secondItem="Q4j-i4-VUi" secondAttribute="leading" constant="30" id="YnN-qL-kX7"/>
+                        <constraint firstItem="T2n-i2-mKv" firstAttribute="top" secondItem="AMq-tx-CZP" secondAttribute="bottom" constant="8" id="aJe-vd-Jir"/>
                         <constraint firstAttribute="trailing" secondItem="b27-2E-g9L" secondAttribute="trailing" constant="44" id="daz-0h-4ur"/>
                         <constraint firstItem="cY8-EA-aGK" firstAttribute="top" secondItem="b27-2E-g9L" secondAttribute="bottom" constant="22" id="eiF-ww-rub"/>
                         <constraint firstItem="T2n-i2-mKv" firstAttribute="bottom" secondItem="Q4j-i4-VUi" secondAttribute="bottomMargin" id="xNN-XW-Eb0"/>
