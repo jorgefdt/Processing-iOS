@@ -327,7 +327,7 @@ UIAlertViewDelegate {
                         
                         if let index = index {
                             self.tableView.selectRow(
-                                at: IndexPath(row: index, section: 0),
+                                at: IndexPath(row: index, section: 1),
                                 animated: true,
                                 scrollPosition: .middle
                             )

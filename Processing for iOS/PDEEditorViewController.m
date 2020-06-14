@@ -8,6 +8,7 @@
 
 #import "PDEEditorViewController.h"
 #import "Processing_for_iOS-Swift.h"
+#import "FRFileManager.h"
 @import SafariServices;
 
 @implementation PDEEditorViewController
@@ -169,7 +170,7 @@
         }
         
         
-        for(NSDictionary *syntaxPattern in [FileManager syntaxHighlighterDictionary]) {
+        for(NSDictionary *syntaxPattern in [FRFileManager syntaxHighlighterDictionary]) {
             NSString *patternString = syntaxPattern[@"regex"];
 
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:patternString options:NSRegularExpressionCaseInsensitive error:NULL];

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FileManager.h"
+
 @class PDESketch;
 
 @interface PDEFile : NSObject

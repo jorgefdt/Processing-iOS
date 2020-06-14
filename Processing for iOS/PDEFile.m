@@ -8,6 +8,7 @@
 
 #import "PDEFile.h"
 #import "PDESketch.h"
+#import "FRFileManager.h"
 
 @implementation PDEFile
 
@@ -23,7 +24,7 @@
 }
 
 -(NSString*)filePath {
-    return [[FileManager documentsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"/sketches/%@/%@.pde",self.sketch.sketchName,self.fileName]];
+    return [[FRFileManager documentsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"/sketches/%@/%@.pde",self.sketch.sketchName,self.fileName]];
 }
 
 -(NSString *)loadCode {

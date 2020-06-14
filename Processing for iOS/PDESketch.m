@@ -9,6 +9,7 @@
 #import "PDESketch.h"
 #import "SketchController.h"
 #import "Processing_for_iOS-Swift.h"
+#import "FRFileManager.h"
 
 @implementation PDESketch
 
@@ -40,7 +41,7 @@
 }
 
 -(NSString*)filePath {
-    return [NSString stringWithFormat:@"%@/sketches/%@",[FileManager documentsDirectory],self.sketchName];
+    return [NSString stringWithFormat:@"%@/sketches/%@",[FRFileManager documentsDirectory],self.sketchName];
 }
 
 -(NSString*)cummulatedSourceCode {
@@ -58,7 +59,7 @@
     UIImage* appIconImage = [self.appIcon resizeWithNewWidth:192];
     NSString* base64 = [appIconImage base64];
     
-    NSString* content = [NSString stringWithFormat: [FileManager containerFile], base64, processingjs, _sketchName, self.cummulatedSourceCode];
+    NSString* content = [NSString stringWithFormat: [FRFileManager containerFile], base64, processingjs, _sketchName, self.cummulatedSourceCode];
     
     return content;
 }

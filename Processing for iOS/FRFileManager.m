@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Frederik Riedel. All rights reserved.
 //
 
-#import "FileManager.h"
+#import "FRFileManager.h"
 
-@implementation FileManager
+@implementation FRFileManager
 
 static NSString *documentsDirectory;
 static NSString *container;

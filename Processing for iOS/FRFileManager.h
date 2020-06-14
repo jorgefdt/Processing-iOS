@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FileManager : NSObject
+@interface FRFileManager : NSObject
 
 +(NSString *) documentsDirectory;
 +(NSString *) containerFile;
