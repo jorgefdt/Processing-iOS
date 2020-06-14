@@ -8,7 +8,7 @@
 
 import UIKit
 
-@available(iOS 13.0, *)
+@available(iOS 11.0, *)
 class SelectAppIconViewController: UIViewController {
 
     @IBOutlet weak var iconCollectionView: UICollectionView!
@@ -132,7 +132,7 @@ class SelectAppIconViewController: UIViewController {
     
 }
 
-@available(iOS 13.0, *)
+@available(iOS 11.0, *)
 extension SelectAppIconViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

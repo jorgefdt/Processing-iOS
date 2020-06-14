@@ -30,6 +30,8 @@ UIAlertViewDelegate {
         searchController.searchBar.tintColor = UIColor.white
         searchController.searchBar.barStyle = .black
         
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         if #available(iOS 13.0, *) {
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithOpaqueBackground()
@@ -57,6 +59,17 @@ UIAlertViewDelegate {
             for: .disabled
         )
         registerForPreviewing(with: self, sourceView: tableView)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didChangeSubscriptionStatus),
+            name: NSNotification.Name(rawValue: "upgradedToPro"),
+            object: nil
+        )
+    }
+    
+    @objc func didChangeSubscriptionStatus() {
+        tableView.reloadSections([0], with: .automatic)
     }
     
     func refreshProjectsCountLabel() {
@@ -67,13 +80,25 @@ UIAlertViewDelegate {
         }
     }
     
+    @IBAction func startSearch(_ sender: Any) {
+        searchController.searchBar.becomeFirstResponder()
+    }
+    
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if section == 0 {
+            if ProBenefitsViewController.currentMembershipStatus == .subscribed {
+                return 0
+            }
+            return 1
+        }
         
         if isFiltering() {
             if let count = filteredProjects?.count {
@@ -89,6 +114,14 @@ UIAlertViewDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "pro-ad-cell", for: indexPath)
+            cell.layoutSubviews()
+            cell.layoutIfNeeded()
+            return cell
+        }
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "project-cell", for: indexPath)
             as? ProjectTableViewCell else {
                 fatalError("Misconfigured cell type!")
@@ -115,10 +148,20 @@ UIAlertViewDelegate {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if indexPath.section == 0 {
+            return UITableViewAutomaticDimension
+        }
+        
         return 66
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        if indexPath.section == 0 {
+            return false
+        }
+        
         if isFiltering() {
             return false
         }
@@ -158,6 +201,18 @@ UIAlertViewDelegate {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.section == 0 {
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+            let proBenefistVC = ProBenefitsViewController()
+            let navC = UINavigationController(rootViewController: proBenefistVC)
+            navC.modalPresentationStyle = .formSheet
+            
+            self.present(navC, animated: true)
+            
+            return
+        }
         
         var currentProjects = projects
         if isFiltering() {
@@ -295,7 +350,14 @@ UIAlertViewDelegate {
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing,
                            viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        
         if let indexPath = tableView.indexPathForRow(at: location) {
+            
+            if indexPath.section == 0 {
+                return nil
+            }
+            
             let cell = tableView.cellForRow(at: indexPath)
             previewingContext.sourceRect = (cell?.frame)!
             

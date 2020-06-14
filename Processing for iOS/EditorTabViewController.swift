@@ -170,7 +170,7 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
         let homescreen = UIAlertAction(title: "Add App to Homescreen", style: .default) { (_) in
             
             if ProBenefitsViewController.isCurrentlySubscribed {
-                if #available(iOS 13.0, *) {
+                if #available(iOS 11.0, *) {
                     let homeScreenShareVC = SelectAppIconViewController()
                     homeScreenShareVC.project = self.project
                     let navC = UINavigationController(rootViewController: homeScreenShareVC)
@@ -180,8 +180,6 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
                 
             } else {
                 let proBenefistVC = ProBenefitsViewController()
-                
-                
                 let navC = UINavigationController(rootViewController: proBenefistVC)
                 navC.modalPresentationStyle = .formSheet
                 
