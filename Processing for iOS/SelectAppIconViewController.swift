@@ -17,7 +17,7 @@ class SelectAppIconViewController: UIViewController {
     @IBOutlet weak var continueButton: UIButton!
     
     
-    @objc var project: PDESketch?
+    @objc var project: SimpleTextProject?
     
     let availableColors = [
         UIColor.systemRed,

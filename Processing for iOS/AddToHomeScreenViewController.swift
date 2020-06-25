@@ -11,7 +11,7 @@ import UIKit
 class AddToHomeScreenViewController: UIViewController {
 
     @IBOutlet weak var continueInSafariButton: ActivityButton!
-    @objc var project: PDESketch?
+    @objc var project: SimpleTextProject?
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -11,7 +11,7 @@
 #import "PDESketch.h"
 
 @class DetectedBug;
-
+@class SimpleTextProject;
 
 @protocol RunSketchViewControllerDelegate <NSObject>
 
@@ -24,7 +24,7 @@
 
 @interface RunSketchViewController : UIViewController<UIWebViewDelegate, WKScriptMessageHandler>
     
-    @property(nonatomic,strong) PDESketch *pdeSketch;
+    @property(nonatomic,strong) SimpleTextProject *project;
     @property(nonatomic,strong) WKWebView *sketchWebView;
     
     @property (nonatomic,strong) CMMotionManager* motionManager;
@@ -32,6 +32,6 @@
     @property (nonatomic, weak) id<RunSketchViewControllerDelegate> delegate;
     
     
--(id)initWithPDEFile:(PDESketch*)pdeSketch;
+-(id)initWithSimpleTextProject:(SimpleTextProject*)project;
 
 @end

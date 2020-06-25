@@ -8,18 +8,11 @@
 
 #import "SketchController.h"
 #import "FirstStart.h"
+#import "Processing_for_iOS-Swift.h"
 
 @implementation SketchController
 
-+(void)loadSketches:(void (^)(NSArray<PDESketch*>* sketches))callback {
-    if (![self haveSketchesBeenUpdated]) {
-        // start update routine
-        [self updateFilesToNewFolderStructure];
-        if (![self haveSketchesBeenUpdated]) {
-            NSLog(@"Error occured while updating to new folder structure.");
-        }
-    }
-    
++(void)copySampleProjectsOnFirstStart {
     if ([FirstStart isFirstStart]) {
         NSArray<NSString*>* sampleProjects = @[@"Example_3D",@"Example_Draw",@"Example_Clock",@"Example_FollowMe",@"Example_Multitouch", @"Example_Gyroscope_Accelerometer"];
         
@@ -35,6 +28,18 @@
         }
         
     }
+}
+
++(void)loadSketches:(void (^)(NSArray<PDESketch*>* sketches))callback {
+    if (![self haveSketchesBeenUpdated]) {
+        // start update routine
+        [self updateFilesToNewFolderStructure];
+        if (![self haveSketchesBeenUpdated]) {
+            NSLog(@"Error occured while updating to new folder structure.");
+        }
+    }
+    
+    [self copySampleProjectsOnFirstStart];
     
     NSMutableArray<PDESketch*>* pdeSketches = [NSMutableArray array];
     NSArray *filePathsArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[self documentsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"sketches"]]  error:nil];
@@ -51,6 +56,67 @@
     }];
     
     callback(sortedArray);
+}
+
++(void)loadProjects:(void (^)(NSArray<SimpleTextProject *> *))callback {
+    
+    [self copySampleProjectsOnFirstStart];
+    
+    NSMutableArray<SimpleTextProject*>* projects = [NSMutableArray array];
+    
+    NSArray *filePathsArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[self documentsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"sketches"]]  error:nil];
+    
+    for (NSString* projectFolder in filePathsArray) {
+        
+        NSString* projectName = [projectFolder lastPathComponent];
+        
+        if (![projectName isEqualToString:@".DS_Store"]) {
+            
+            NSMutableArray* projectFiles = [NSMutableArray arrayWithArray: [[NSFileManager defaultManager] contentsOfDirectoryAtPath: [[SketchController documentsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"sketches/%@", projectFolder]]  error:nil]];
+            
+            NSString* fileFormat;
+            
+            for (NSString* projectFile in projectFiles) {
+                
+                NSString* extension = [projectFile pathExtension];
+                
+                if ([extension isEqualToString:@"pde"]) {
+                    fileFormat = @"pde";
+                }
+                
+                if ([extension isEqualToString:@"js"]) {
+                    fileFormat = @"js";
+                }
+                
+                if ([extension isEqualToString:@"txt"]) {
+                    fileFormat = @"txt";
+                }
+            }
+            
+            if ([fileFormat isEqualToString:@"pde"]) {
+                
+                
+                PDEProject* project = [[PDEProject alloc] initWithProjectName:projectFolder];
+                [projects addObject:project];
+                
+            } else if ([fileFormat isEqualToString:@"js"]) {
+                
+                P5JSProject* project = [[P5JSProject alloc] initWithProjectName:projectFolder];
+                [projects addObject:project];
+                
+            } else if ([fileFormat isEqualToString:@"txt"]) {
+                SimpleTextProject* project = [[SimpleTextProject alloc] initWith:projectFolder sourceCodeExtension:@"txt"];
+                [projects addObject:project];
+            }
+        }
+    }
+    
+    NSArray* sortedArray = [projects sortedArrayUsingComparator:^NSComparisonResult(SimpleTextProject* project1, SimpleTextProject* project2) {
+        return [project1.name.lowercaseString compare: project2.name.lowercaseString];
+    }];
+    
+    callback(sortedArray);
+    
 }
 
 +(void)updateFilesToNewFolderStructure {

@@ -8,9 +8,9 @@
 
 import Foundation
 
-class P5JSProject: SimpleTextProject {
+@objc class P5JSProject: SimpleTextProject {
     
-    init(withProjectName name: String) {
+    @objc init(withProjectName name: String) {
         super.init(with: name, sourceCodeExtension: "js")
     }
     
@@ -22,7 +22,7 @@ class P5JSProject: SimpleTextProject {
         let p5jsMin = try! String(contentsOfFile: Bundle.main.path(forResource: "p5.min", ofType: "js")!)
         let p5jsSoundMin = try! String(contentsOfFile: Bundle.main.path(forResource: "p5.sound.min", ofType: "js")!)
                 
-        return String(format: P5JSProject.containerFile, name, p5jsMin, p5jsSoundMin, cummulatedSourceCode)
+        return String(format: P5JSProject.containerFile, name, "base64-icon-empty", p5jsMin, p5jsSoundMin, cummulatedSourceCode)
     }
     
     override var emptyFile: String {

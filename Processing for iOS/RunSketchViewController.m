@@ -11,12 +11,12 @@
 
 @implementation RunSketchViewController
 
--(id)initWithPDEFile:(PDESketch*)pdeSketch {
+-(id)initWithSimpleTextProject:(SimpleTextProject*)project {
     self = [super initWithNibName:nil bundle:nil];
     
     if(self) {
-        self.pdeSketch = pdeSketch;
-        self.title = self.pdeSketch.sketchName;
+        self.project = project;
+        self.title = self.project.name;
         
         WKWebViewConfiguration* configuration = [WKWebViewConfiguration new];
         WKUserContentController* contentController = [WKUserContentController new];
@@ -39,9 +39,9 @@
         self.sketchWebView.scrollView.bounces = NO;
         
         
-        NSString* content = [[self pdeSketch] htmlPage];
+        NSString* content = [[self project] htmlPage];
         
-        NSURL* baseURL = [[NSURL fileURLWithPath:pdeSketch.filePath] URLByAppendingPathComponent:@"data"];
+        NSURL* baseURL = [self.project.folder URLByAppendingPathComponent:@"data"];
         
         [self.sketchWebView loadFileURL: baseURL allowingReadAccessToURL: baseURL];
         [self.sketchWebView loadHTMLString:content baseURL: baseURL];
@@ -67,7 +67,7 @@
     
     if ([ProBenefitsViewController isCurrentlySubscribed]) {
         SelectAppIconViewController *addToHomeVC = [[SelectAppIconViewController alloc] init];
-        addToHomeVC.project = self.pdeSketch;
+        addToHomeVC.project = self.project;
         UINavigationController * navC = [[UINavigationController alloc] initWithRootViewController:addToHomeVC];
         
         navC.modalPresentationStyle = UIModalPresentationFormSheet;
@@ -92,12 +92,6 @@
         NSString* errorMessage = message.body[@"message"];
         
         DetectedBug* bug = [CodeErrorDetectionEngine bugFromString:errorMessage];
-        
-        if (bug.bugType == BugTypeReferenceError) {
-            
-        } else if (bug.bugType == BugTypeSyntaxErrorVarUsage) {
-            
-        }
         
         if (bug) {
             
@@ -135,8 +129,6 @@
     } else {
         NSLog(@"didReceiveScriptMessage: %@", message.body);
     }
-    
-    
 }
     
     
@@ -181,9 +173,6 @@
                                                          "pjs.gyroscopeUpdated(%f,%f,%f);", gyroData.rotationRate.x, gyroData.rotationRate.y, gyroData.rotationRate.z] completionHandler:^(id _Nullable result, NSError * _Nullable error) {
 
                  }];
-                 
-                 
-                 
              }];
     }
     else

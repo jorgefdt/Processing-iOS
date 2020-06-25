@@ -14,12 +14,12 @@
 
 @implementation PDEEditorViewController
 
--(instancetype)initWithPDESketch:(PDEFile*)pdeFile {
+-(instancetype)initWithSourceCodeFile:(SourceCodeFile*)sourceCodeFile {
     self = [super init];
     if (!self) {
         return nil;
     }
-    self.pdeFile = pdeFile;
+    self.sourceCodeFile = sourceCodeFile;
     return self;
 }
 
@@ -36,7 +36,7 @@
     
     
     
-    self.editor.text = [self.pdeFile loadCode];
+    self.editor.text = self.sourceCodeFile.content;
     
     [self highlightCode];
     [self codeLineIndent];
@@ -240,7 +240,7 @@
     self.bugToHighlight = detectedBug.wrongCode;
     [self highlightCode];
     
-    NSString* text = [self.pdeFile loadCode];
+    NSString* text = [self.sourceCodeFile content];
     NSRange range = [text rangeOfString: self.bugToHighlight];
     
     NSRange fullRange = [text rangeOfString:[NSString stringWithFormat:@"%@();", self.bugToHighlight]];
@@ -355,7 +355,7 @@
 }
 
 -(void)replaceCharactersInRange:(NSRange)range withString:(NSString *)string {
-    NSString* currentText = self.pdeFile.loadCode;
+    NSString* currentText = self.sourceCodeFile.content;
     NSString* newText = [currentText stringByReplacingCharactersInRange:range withString:string];
     self.editor.text = newText;
     [self highlightCode];
@@ -397,7 +397,7 @@
 }
 
 -(void)saveCode {
-    [self.pdeFile saveCode:self.editor.text];
+    [self.sourceCodeFile saveWithNewContent: self.editor.text];
 }
 
 -(void)textViewDidChange:(UITextView *) textView {

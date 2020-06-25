@@ -8,9 +8,9 @@
 
 import Foundation
 
-class PDEProject: SimpleTextProject {
+@objc class PDEProject: SimpleTextProject {
     
-    init(with name: String) {
+    @objc init(withProjectName name: String) {
         super.init(with: name, sourceCodeExtension: "pde")
     }
     
@@ -18,7 +18,7 @@ class PDEProject: SimpleTextProject {
         return try! String(contentsOfFile: Bundle.main.path(forResource: "container", ofType: "html")!)
     }
     
-    override var htmlPage: String {
+    @objc override var htmlPage: String {
         
         let processingJs = try! String(contentsOfFile: Bundle.main.path(forResource: "processing.min", ofType: "js")!)
         

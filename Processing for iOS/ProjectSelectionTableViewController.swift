@@ -14,8 +14,8 @@ UIAlertViewDelegate {
     
     @IBOutlet weak var projectsCountLabel: UIBarButtonItem!
     
-    var projects: [PDESketch]?
-    var filteredProjects: [PDESketch]?
+    var projects: [SimpleTextProject]?
+    var filteredProjects: [SimpleTextProject]?
     let searchController = UISearchController(searchResultsController: nil)
     
     var adType: Benefit = .export
@@ -53,10 +53,15 @@ UIAlertViewDelegate {
         }
         definesPresentationContext = true
         
-        SketchController.loadSketches { (projects) in
+        SketchController.loadProjects { (projects) in
             self.projects = projects
             self.tableView.reloadData()
         }
+        
+//        SketchController.loadSketches { (projects) in
+//            self.projects = projects
+//            self.tableView.reloadData()
+//        }
         
         refreshProjectsCountLabel()
         projectsCountLabel.isEnabled = false
@@ -142,13 +147,13 @@ UIAlertViewDelegate {
         
         if isFiltering() {
             if let project = filteredProjects?[indexPath.row] {
-                cell.projectNameLabel.text = project.sketchName
+                cell.projectNameLabel.text = project.name
             }
             return cell
         }
         
         if let project = projects?[indexPath.row] {
-            cell.projectNameLabel.text = project.sketchName
+            cell.projectNameLabel.text = project.name
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium
@@ -188,14 +193,14 @@ UIAlertViewDelegate {
                 
                 let alertController = UIAlertController(
                     title: "Delete Project",
-                    message: "Are you sure that you want to delete the project \"\(project.sketchName!)\"? " +
+                    message: "Are you sure that you want to delete the project \"\(project.name)\"? " +
                     "This cannot be undone.",
                     preferredStyle: .alert)
                 
                 let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) in
-                    SketchController.deleteSketch(withName: project.sketchName)
+                    SketchController.deleteSketch(withName: project.name)
                     
-                    SketchController.loadSketches { (projects) in
+                    SketchController.loadProjects { (projects) in
                         self.projects = projects
                         self.tableView.deleteRows(at: [indexPath], with: .automatic)
                         self.refreshProjectsCountLabel()
@@ -258,7 +263,7 @@ UIAlertViewDelegate {
         }
 
         let actionSheet = UIAlertController(title: "Create a new Project", message: "This app supports working with Processing (.pde) and P5.js (.js) project files.", preferredStyle: .actionSheet)
-        
+
         actionSheet.modalPresentationStyle = .popover
 
 
@@ -354,17 +359,19 @@ UIAlertViewDelegate {
     }
     
     private func selectNewSketch(withName name: String) {
-        SketchController.loadSketches { (projects) in
+        
+        SketchController.loadProjects { (projects) in
             self.projects = projects
             self.tableView.reloadData()
             self.refreshProjectsCountLabel()
             
-            var index: Int?
-            for (ind, project) in projects!.enumerated()
-                where project.sketchName == name {
-                    index = ind
-                    break
-            }
+            let index = projects?.enumerated().reduce(nil, { (result, enumerator) -> Int? in
+                if name == enumerator.element.name {
+                    return enumerator.offset
+                }
+                
+                return result
+            })
             
             if let index = index {
                 self.tableView.selectRow(
@@ -373,12 +380,15 @@ UIAlertViewDelegate {
                     scrollPosition: .middle
                 )
             }
+            
         }
+        
+    
     }
     
     
     private func nameAlreadyExists(name: String) -> Bool {
-        for project in projects! where project.sketchName == name {
+        for project in projects! where project.name == name {
             return true
         }
         return false
@@ -397,7 +407,7 @@ UIAlertViewDelegate {
             let cell = tableView.cellForRow(at: indexPath)
             previewingContext.sourceRect = (cell?.frame)!
             
-            let project: PDESketch
+            let project: SimpleTextProject
             if isFiltering() {
                 project = filteredProjects![indexPath.row]
             } else {
@@ -423,7 +433,7 @@ UIAlertViewDelegate {
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         filteredProjects = projects?.filter({ (project) -> Bool in
-            return project.sketchName!.lowercased().contains(searchText.lowercased())
+            return project.name.lowercased().contains(searchText.lowercased())
         })
         
         tableView.reloadData()

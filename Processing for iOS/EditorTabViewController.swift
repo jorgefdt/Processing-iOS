@@ -13,9 +13,9 @@ import SafariServices
 
 class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSource {
     
-    let project: PDESketch!
+    let project: SimpleTextProject!
     
-    init(withProject project: PDESketch) {
+    init(withProject project: SimpleTextProject) {
         self.project = project
         super.init(nibName: "EditorTabViewController", bundle: Bundle.main)
         self.automaticallyAdjustsChildScrollViewInsets = true
@@ -30,7 +30,7 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
         super.viewDidLoad()
         self.bar.style = .scrollingButtonBar
         
-        self.title = self.project.sketchName
+        self.title = self.project.name
         
         let runButton = UIBarButtonItem(
             barButtonSystemItem: .play,
@@ -95,8 +95,8 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
     
     func reloadBarTitles() {
         var titles = [Item]()
-        for pdeFile in project.pdeFiles {
-            titles.append(Item(title: "\(pdeFile.fileName!).pde"))
+        for sourceCodeFile in project.sourceCodeFiles {
+            titles.append(Item(title: "\(sourceCodeFile.fileName)"))
         }
         if titles.count > 0 {
             self.bar.items = titles
@@ -104,12 +104,12 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
     }
     
     func numberOfViewControllers(in pageboyViewController: PageboyViewController) -> Int {
-        return project.pdeFiles.count
+        return project.sourceCodeFiles.count
     }
     
     func viewController(for pageboyViewController: PageboyViewController,
                         at index: PageboyViewController.PageIndex) -> UIViewController? {
-        return PDEEditorViewController(pdeSketch: project.pdeFiles![index])
+        return PDEEditorViewController(sourceCodeFile: project.sourceCodeFiles[index])
     }
     
     func defaultPage(for pageboyViewController: PageboyViewController) -> PageboyViewController.Page? {
@@ -233,7 +233,7 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
     
     @objc func runSketch() {
         saveCode()
-        let runVC = RunSketchViewController(pdeFile: project)!
+        let runVC = RunSketchViewController(simpleTextProject: project)!
         runVC.delegate = self
         navigationController?.pushViewController(runVC, animated: true)
     }
@@ -250,8 +250,8 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
     
     @objc func showFolderContent() {
         let folderContenVC = FolderContentBrowserTableViewController(
-            withPath: self.project.filePath(),
-            basePath: self.project.filePath()
+            withPath: self.project.folder.path,
+            basePath: self.project.folder.path
         )
         let navC = ProcessingNavigationViewController(rootViewController: folderContenVC)
         navigationController?.present(navC, animated: true, completion: nil)
@@ -324,9 +324,10 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
                         )
                     } else {
                         //everything is fine, create new file
-                        let newPDEFile = PDEFile(fileName: newFileName, partOf: self.project)
+                        
                         let className = newFileName.capitalized
-                        newPDEFile?.saveCode("class \(className) {\n   \n   \(className)() {\n      \n   }\n}")
+                        let newClassCode = "class \(className) {\n   \n   \(className)() {\n      \n   }\n}"
+                        self.project.createNewFile(withName: newFileName, content: newClassCode)
                         self.reloadPages()
                         self.reloadBarTitles()
                     }
@@ -336,7 +337,7 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
     }
     
     func nameAlreadyExists(name fileName: String) -> Bool {
-        for file in project.pdeFiles where file.fileName == fileName {
+        for file in project.sourceCodeFiles where file.fileName == "\(fileName).\(project.sourceCodeExtension)" {
             return true
         }
         return false
@@ -347,12 +348,12 @@ extension EditorTabViewController: RunSketchViewControllerDelegate {
     
     func didDetect(_ bug: DetectedBug!) {
         var fileIndex: Int?
-        project.pdeFiles.enumerated().forEach { (iterator) in
+        project.sourceCodeFiles.enumerated().forEach { (iterator) in
             
             let index = iterator.offset
             let file = iterator.element
             
-            let code = file.loadCode()!.lowercased()
+            let code = file.content!.lowercased()
             
             if code.contains(bug.wrongCode.lowercased()) {
                 fileIndex = index

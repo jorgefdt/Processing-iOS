@@ -8,17 +8,21 @@
 
 import Foundation
 
-class SourceCodeFile {
+@objc class SourceCodeFile: NSObject {
     
-    var filePath: String
-    var content: String?
+    @objc var filePath: String
+    @objc var content: String?
     
     init(filePath: String) {
         self.filePath = filePath
         self.content = try? String(contentsOfFile: filePath)
     }
     
-    func save(newContent: String? = nil) {
+    @objc var fileName: String {
+        return URL(fileURLWithPath: filePath).lastPathComponent
+    }
+    
+    @objc func save(newContent: String? = nil) {
         
         if let newContent = newContent {
             self.content = newContent
