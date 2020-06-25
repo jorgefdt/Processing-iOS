@@ -21,7 +21,9 @@
         WKWebViewConfiguration* configuration = [WKWebViewConfiguration new];
         WKUserContentController* contentController = [WKUserContentController new];
         configuration.userContentController = contentController;
-        [configuration.userContentController addScriptMessageHandler:self name:@"iosbridge"];
+        [configuration.userContentController addScriptMessageHandler:self name: @"iosbridge"];
+        [configuration.userContentController addScriptMessageHandler:self name: @"error"];
+        [[configuration preferences] setValue: [NSNumber numberWithBool:YES] forKey:@"allowFileAccessFromFileURLs"];
         
         self.sketchWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) configuration:configuration];
 
@@ -50,9 +52,15 @@
         [self startGyroscopeListener];
         
         [[self navigationItem] setRightBarButtonItem: [[UIBarButtonItem alloc] initWithTitle:@"Add App to home screen…" style:UIBarButtonItemStylePlain target:self action: @selector(addToHomeScreen)]];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(upgradedToPro) name:@"upgradedToPro" object:nil];
     }
 
     return self;
+}
+
+-(void) upgradedToPro {
+    [self.sketchWebView reload];
 }
 
 -(void) addToHomeScreen {
@@ -69,9 +77,9 @@
         
         ProBenefitsViewController *proVC = [[ProBenefitsViewController alloc] init];
         
-        
         UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:proVC];
         navC.modalPresentationStyle = UIModalPresentationFormSheet;
+        
         
         [[self navigationController] presentViewController:navC animated:YES completion:nil];
     }
@@ -79,7 +87,56 @@
     
     
 -(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
-    NSLog(@"didReceiveScriptMessage: %@", message.body);
+    
+    if ([message.name isEqualToString:@"error"]) {
+        NSString* errorMessage = message.body[@"message"];
+        
+        DetectedBug* bug = [CodeErrorDetectionEngine bugFromString:errorMessage];
+        
+        if (bug.bugType == BugTypeReferenceError) {
+            
+        } else if (bug.bugType == BugTypeSyntaxErrorVarUsage) {
+            
+        }
+        
+        if (bug) {
+            
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Faulty Code Detected" message:@"Cannot run your project because there‘s a problem with your code. Processing can help you to figure out which part of your code is faulty." preferredStyle: UIAlertControllerStyleAlert];
+            
+            UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            
+            UIAlertAction* subscribe = [UIAlertAction actionWithTitle:@"Show Bug in Code" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                if ([ProBenefitsViewController isCurrentlySubscribed]) {
+                    
+                    [self.delegate didDetectBug:bug];
+                    [[self navigationController] popViewControllerAnimated:true];
+                    
+                } else {
+                    ProBenefitsViewController* proBenefitsVC = [[ProBenefitsViewController alloc] init];
+                    
+                    proBenefitsVC.shownBenefits = BenefitCodeFix;
+                    proBenefitsVC.modalPresentationStyle = UIModalPresentationFormSheet;
+                    
+                    UINavigationController* navCon = [[UINavigationController alloc] initWithRootViewController:proBenefitsVC];
+                    
+                    [[self navigationController] presentViewController:navCon animated:YES completion:nil];
+                }
+                
+            }];
+            
+            [alert addAction:cancel];
+            [alert addAction:subscribe];
+            
+            [[self navigationController] presentViewController:alert animated:YES completion:nil];
+        }
+    } else {
+        NSLog(@"didReceiveScriptMessage: %@", message.body);
+    }
+    
+    
 }
     
     
@@ -93,7 +150,7 @@
                                                      [self.sketchWebView evaluateJavaScript:[NSString stringWithFormat:@"var pjs = Processing.getInstanceById('Sketch');"
                                                                                              "pjs.accelerometerUpdated(%f,%f,%f);", accelerometerData.acceleration.x, accelerometerData.acceleration.y, accelerometerData.acceleration.z] completionHandler:^(id _Nullable result, NSError * _Nullable error) {
 
-                                                         NSLog(@"%@, %@",result, error.description);
+//                                                         NSLog(@"%@, %@",result, error.description);
 
 
                                                      }];

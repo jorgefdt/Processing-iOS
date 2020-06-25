@@ -22,11 +22,8 @@ class HomeScreenSharer: NSObject {
         let base64 = sourceCode!.base64
         
         server["load"] = { request in
-            return HttpResponse.ok(.text("<HTML><script>window.location.href='data:text/html;charset=UTF-8;base64,\(base64)'</script></HTML>"))
+            return HttpResponse.ok(.text("<html><script>window.location.href='data:text/html;charset=UTF-8;base64,\(base64)'</script></html>"))
         }
-        
-        
-        
         
         server["manifest.json"] = { request in
             return HttpResponse.ok(.json(
@@ -45,9 +42,13 @@ class HomeScreenSharer: NSObject {
         }
 
         
-        try? server.start(42096)
+        do {
+            try server.start(42069)
+        } catch {
+            print(error)
+        }
         
-        guard let url = URL(string: "http://localhost:42096/load") else { return }
+        guard let url = URL(string: "http://localhost:42069/load") else { return }
         UIApplication.shared.open(url)
     }
     

@@ -22,7 +22,7 @@
 		<key>name</key>
 		<string>parameters</string>
 		<key>regex</key>
-		<string>(?&lt;= |\n|\(|,)(mouseX|mouseY|mousePressed|screenHeight|screenWidth)(?= |\n|\)|,)</string>
+		<string>(?&lt;= |\n|\(|,)(mouseX|mouseY|pmouseX|pmouseY|mousePressed|screenHeight|screenWidth)(?= |\n|\)|,)</string>
 		<key>color</key>
 		<string>117,143,102</string>
 	</dict>

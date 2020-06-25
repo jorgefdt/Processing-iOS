@@ -9,14 +9,45 @@
 import UIKit
 import SwiftyStoreKit
 
+@objc enum Benefit: Int {
+    case export, codeFix
+}
+
 class ProBenefitsViewController: UIViewController {
     
+    @IBOutlet weak var proBenefitsTitle: UILabel!
+    @IBOutlet weak var proBenefitsExplanation: UILabel!
+    @IBOutlet weak var proBenefitsBanner: UIImageView!
+    
+    
     @IBOutlet weak var buyButton: ActivityButton!
+    
+    @objc var shownBenefits = Benefit.export {
+        didSet {
+            reloadUI()
+        }
+    }
+    
+    private func reloadUI() {
+        if isViewLoaded {
+            if shownBenefits == .export {
+                proBenefitsTitle.text = "Export your Processing Projects as Apps on your home screen!"
+                proBenefitsExplanation.text = "With Processing Pro, you can support the further development of this app and get access to many exclusive features, such as exporting your sketches as apps!"
+                proBenefitsBanner.image = UIImage(named: "export_upsell")
+            } else if shownBenefits == .codeFix {
+                proBenefitsTitle.text = "Processing analyzes your code and tells you what‘s causing the bug!"
+                proBenefitsExplanation.text = "Processing Pro can now analyze your code and tells you where the problem is. That makes programming even more fun and enjoyable!"
+                proBenefitsBanner.image = UIImage(named: "bug_fixer_screenshot")
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         buyButton.layer.cornerRadius = 16
+        
+        reloadUI()
         // Do any additional setup after loading the view.
     }
     
@@ -36,6 +67,11 @@ class ProBenefitsViewController: UIViewController {
                     self.navigationController?.pushViewController(thxVC, animated: true)
                 case .error(error: let error):
                     print(error)
+                    let alert = UIAlertController(title: "Error Occured", message: error.localizedDescription, preferredStyle: .alert)
+                    let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+                    alert.addAction(cancel)
+                    
+                    self.present(alert, animated: true)
                 }
                 
             }
@@ -44,8 +80,8 @@ class ProBenefitsViewController: UIViewController {
     
     @IBAction func restore(_ sender: Any) {
         
+        self.buyButton.showLoading()
         ProBenefitsViewController.restorePurchases { (results) in
-            self.buyButton.showLoading()
             
             if results.restoredPurchases.count > 0 {
                 ProBenefitsViewController.updateExpirationDate()
@@ -55,10 +91,7 @@ class ProBenefitsViewController: UIViewController {
         }
         
     }
-    
-    func handlePurchaseResults(purchaseDetails: PurchaseDetails) {
-        
-    }
+
     
     
     override func viewWillAppear(_ animated: Bool) {

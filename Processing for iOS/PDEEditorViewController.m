@@ -9,6 +9,7 @@
 #import "PDEEditorViewController.h"
 #import "Processing_for_iOS-Swift.h"
 #import "FRFileManager.h"
+#import "NSString+LevenshteinDistance.h"
 @import SafariServices;
 
 @implementation PDEEditorViewController
@@ -140,8 +141,8 @@
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     style.headIndent = 32;
     NSDictionary *attributes = @{
-                                 NSParagraphStyleAttributeName: style
-                                 };
+        NSParagraphStyleAttributeName: style
+    };
     
     [string addAttributes:attributes range:NSMakeRange(0, string.length)];
     
@@ -159,10 +160,18 @@
 }
 
 
+
 -(void) highlightCode {
     
-    if(self.editor.text) {
-        NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:self.editor.text];
+    NSString* text = self.editor.text;
+    
+    if (text == nil) {
+        text = self.editor.attributedText.string;
+    }
+    
+    
+    if(text) {
+        NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString: text];
         [string addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"SourceCodePro-Regular" size:18] range:NSMakeRange(0, string.length)];
         
         if (@available(iOS 13.0, *)) {
@@ -172,7 +181,7 @@
         
         for(NSDictionary *syntaxPattern in [FRFileManager syntaxHighlighterDictionary]) {
             NSString *patternString = syntaxPattern[@"regex"];
-
+            
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:patternString options:NSRegularExpressionCaseInsensitive error:NULL];
             
             NSArray *matchResults = [regex matchesInString:self.editor.text options:0 range:NSMakeRange(0, self.editor.text.length)];
@@ -194,14 +203,27 @@
                 } else {
                     [string addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"SourceCodePro-Regular" size:18] range:matchRange];
                 }
-                
+            }
+        }
+        
+        if (self.bugToHighlight) {
+            NSRange range = [text rangeOfString: self.bugToHighlight];
+            
+            NSRange fullRange = [text rangeOfString:[NSString stringWithFormat:@"%@();", self.bugToHighlight]];
+            
+            if (fullRange.location != NSNotFound) {
+                range = fullRange;
             }
             
+            [string addAttribute: NSUnderlineStyleAttributeName value: [NSNumber numberWithInt:NSUnderlineStyleThick|NSUnderlineStyleSingle] range: range];
+            [string addAttribute: NSForegroundColorAttributeName value: [UIColor colorNamed:@"redAlertColor"] range: range];
+//            [string addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"SourceCodePro-Semibold" size:18] range:range];
+//            [string addAttribute:NSBackgroundColorAttributeName value: [UIColor colorNamed:@"lightRedAlertColor"] range: range];
         }
         
         //Cursorposition speichern
         CGPoint contentOffset = self.editor.contentOffset;
-                
+        
         self.editor.scrollEnabled=NO;
         NSRange currentCurserPosition = self.editor.selectedRange;
         
@@ -211,6 +233,133 @@
         [self.editor setContentOffset: contentOffset animated:NO];
         self.editor.scrollEnabled=YES;
     }
+}
+
+- (void)highlightCompilerErrorOfCode: (DetectedBug*)detectedBug {
+    
+    self.bugToHighlight = detectedBug.wrongCode;
+    [self highlightCode];
+    
+    NSString* text = [self.pdeFile loadCode];
+    NSRange range = [text rangeOfString: self.bugToHighlight];
+    
+    NSRange fullRange = [text rangeOfString:[NSString stringWithFormat:@"%@();", self.bugToHighlight]];
+    
+    if (fullRange.location != NSNotFound) {
+        range = fullRange;
+    }
+    [self.editor scrollRangeToVisible: range];
+    
+    
+    UITextPosition *beginning = self.editor.beginningOfDocument;
+    UITextPosition *start = [self.editor positionFromPosition:beginning offset:range.location];
+    UITextPosition *end = [self.editor positionFromPosition:start offset:range.length];
+    UITextRange *textRange = [self.editor textRangeFromPosition:start toPosition:end];
+    
+    
+    NSDictionary* fixSuggestions = @{
+        @"clear": @[
+                @{
+                    @"suggestion": @"background(0);",
+                    @"explanation_subtitle": @"“clear();” is not available on iOS. Use “background(0);“ instead for a black background.",
+                    @"explanation": @"Replace with “background(0);”"
+                },
+                @{
+                    @"suggestion": @"background(255);",
+                    @"explanation_subtitle": @"“clear();” is not available on iOS. Use “background(255);“ instead for a white background.",
+                    @"explanation": @"Replace with “background(255);”"
+                }
+        ],
+        @"displayWidth": @[
+                @{
+                    @"suggestion": @"screenWidth",
+                    @"explanation_subtitle": @"“displayWidth” is not available on iOS. Use “screenWidth“ instead.",
+                    @"explanation": @"Replace with “screenWidth”"
+                }
+        ],
+        @"displayHeight": @[
+                @{
+                    @"suggestion": @"screenHeight",
+                    @"explanation_subtitle": @"“displayHeight” is not available on iOS. Use “screenHeight“ instead.",
+                    @"explanation": @"Replace with “screenHeight”"
+                }
+        ]
+    };
+    
+    NSMutableArray<NSDictionary<NSString*, NSString*>*>* suggestionsForWrongCode = [NSMutableArray arrayWithArray:fixSuggestions[detectedBug.wrongCode.lowercaseString]];
+    
+    NSArray<NSString*>* legitCommands = @[
+        @"cos",
+        @"sin",
+        @"float",
+        @"double",
+        @"int",
+        @"fill",
+        @"stroke",
+        @"noStroke",
+        @"strokeWeight",
+        @"rect",
+        @"ellipse",
+        @"map",
+        @"norm",
+        @"line",
+        @"vertex",
+        @"radians",
+        @"endShape",
+        @"beginShape",
+        @"mousePressed",
+        @"screenWidth",
+        @"screenHeight",
+        @"background"
+    ];
+    
+    
+    for (NSString* suggestion in legitCommands) {
+        
+        NSUInteger distance = [suggestion levenshteinDistanceTo: detectedBug.wrongCode];
+        if (distance < 3) {
+            
+            [suggestionsForWrongCode addObject:@{
+                @"suggestion": suggestion,
+                @"explanation_subtitle": [NSString stringWithFormat:@"Replace “%@” with “%@”?", detectedBug.wrongCode, suggestion],
+                @"explanation": [NSString stringWithFormat:@"Replace with “%@”", suggestion]
+            }];
+            
+        }
+    }
+    
+    
+    
+
+    SelectableOptionsViewController* selectOptionsVC = [[SelectableOptionsViewController alloc] initWithSelectableOptions:suggestionsForWrongCode forRange:range bug: detectedBug];
+    
+    CGRect rect = [self.editor firstRectForRange:textRange];
+    
+    CGFloat distanceUnderBottomScreenEdge = self.editor.frame.size.height - rect.origin.y;
+    CGFloat newScrollPosition = self.editor.frame.size.height - distanceUnderBottomScreenEdge - (self.editor.frame.size.height / 2);
+    
+    if (distanceUnderBottomScreenEdge < 100) {
+        [self.editor setContentOffset:CGPointMake(self.editor.contentOffset.x, newScrollPosition)];
+        rect = [self.editor firstRectForRange:textRange];
+    }
+    
+    selectOptionsVC.modalPresentationStyle = UIModalPresentationPopover;
+    selectOptionsVC.popoverPresentationController.sourceView = self.editor;
+    selectOptionsVC.popoverPresentationController.sourceRect = rect;
+    selectOptionsVC.popoverPresentationController.backgroundColor = [UIColor clearColor];
+    
+    selectOptionsVC.delegate = self;
+    
+    [self presentViewController: selectOptionsVC animated: true completion: nil];
+    
+}
+
+-(void)replaceCharactersInRange:(NSRange)range withString:(NSString *)string {
+    NSString* currentText = self.pdeFile.loadCode;
+    NSString* newText = [currentText stringByReplacingCharactersInRange:range withString:string];
+    self.editor.text = newText;
+    [self highlightCode];
+    [self saveCode];
 }
 
 - (void)keyboardWillChange:(NSNotification *)notification {
@@ -242,7 +391,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     //if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
-        [self saveCode];
+    [self saveCode];
     //}
     [super viewWillDisappear:animated];
 }

@@ -18,8 +18,14 @@ UIAlertViewDelegate {
     var filteredProjects: [PDESketch]?
     let searchController = UISearchController(searchResultsController: nil)
     
+    var adType: Benefit = .export
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if Int.random(in: (0...1)) == 1 {
+            adType = .codeFix
+        }
         
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Search Projects"
@@ -116,7 +122,14 @@ UIAlertViewDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "pro-ad-cell", for: indexPath)
+            if adType == .export {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "pro-ad-cell", for: indexPath)
+                cell.layoutSubviews()
+                cell.layoutIfNeeded()
+                return cell
+            }
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "pro-ad-cell-show-bugs", for: indexPath)
             cell.layoutSubviews()
             cell.layoutIfNeeded()
             return cell
@@ -206,6 +219,7 @@ UIAlertViewDelegate {
             tableView.deselectRow(at: indexPath, animated: true)
             
             let proBenefistVC = ProBenefitsViewController()
+            proBenefistVC.shownBenefits = adType
             let navC = UINavigationController(rootViewController: proBenefistVC)
             navC.modalPresentationStyle = .formSheet
             
@@ -237,44 +251,45 @@ UIAlertViewDelegate {
     
     @IBAction func createNewProject(_ sender: UIBarButtonItem) {
         
-        self.showCreateAlert(title: "New Processing Project", name: "")
+//        self.showCreateAlert(title: "New Processing Project", name: "")
         
-//        guard let button = sender.value(forKey: "view") as? UIView else {
-//            return
-//        }
-//
-//        let actionSheet = UIAlertController(title: "Type of new Project", message: nil, preferredStyle: .actionSheet)
-//        actionSheet.modalPresentationStyle = .popover
-//
-//
-//        let processing = UIAlertAction(title: "Processing Project", style: .default) { (_) in
-//            self.showCreateAlert(title: "New Processing Project", name: "")
-//        }
-//
-//        let p5js = UIAlertAction(title: "P5.js Project", style: .default) { (_) in
-//            self.showCreateAlert(title: "New P5.js Project", name: "")
-//        }
-//
-//        actionSheet.addAction(processing)
-//        actionSheet.addAction(p5js)
-//
-//        if let popover = actionSheet.popoverPresentationController {
-//            popover.sourceView = button
-//            popover.sourceRect = button.frame
-//        }
-//
-//        present(actionSheet, animated: true)
+        guard let button = sender.value(forKey: "view") as? UIView else {
+            return
+        }
+
+        let actionSheet = UIAlertController(title: "Create a new Project", message: "This app supports working with Processing (.pde) and P5.js (.js) project files.", preferredStyle: .actionSheet)
+        
+        actionSheet.modalPresentationStyle = .popover
+
+
+        let processing = UIAlertAction(title: "Processing Project", style: .default) { (_) in
+            self.showCreateAlert(title: "New Processing Project", name: "")
+        }
+
+        let p5js = UIAlertAction(title: "P5.js Project", style: .default) { (_) in
+            self.showCreateAlert(title: "New P5.js Project", name: "", type: "js")
+        }
+
+        actionSheet.addAction(processing)
+        actionSheet.addAction(p5js)
+
+        if let popover = actionSheet.popoverPresentationController {
+            popover.sourceView = button
+        }
+
+        present(actionSheet, animated: true)
     }
     
     
     
-    func showCreateAlert(title: String, name: String) {
+    func showCreateAlert(title: String, name: String, type: String = "pde") {
+        
         let alertController = UIAlertController(title: title, message: "", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
             alertController.dismiss(animated: true, completion: nil)
         }))
         
-        alertController.addAction(createAlertAction(alertController: alertController))
+        alertController.addAction(createAlertAction(alertController: alertController, type: type))
         
         alertController.addTextField(configurationHandler: { (textField) -> Void in
             textField.textAlignment = .left
@@ -284,7 +299,7 @@ UIAlertViewDelegate {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func createAlertAction(alertController: UIAlertController) -> UIAlertAction {
+    func createAlertAction(alertController: UIAlertController, type: String) -> UIAlertAction {
         return UIAlertAction(title: "Create", style: .default, handler: { (_) in
             if let fileName = alertController.textFields?[0].text {
                 let letters = NSMutableCharacterSet.letters as? NSMutableCharacterSet
@@ -303,36 +318,13 @@ UIAlertViewDelegate {
                 } else if !(letters?.isSuperset(of: CharacterSet.init(charactersIn: fileName)))! {
                     message = "File name should contain no fancy symbols."
                 } else {
-                    // filename is correct
-                    let newProject = PDESketch(sketchName: fileName)
-                    SketchController.save(newProject)
                     
-                    let newFile = PDEFile(fileName: fileName, partOf: newProject)
-                    newFile?.saveCode(
-                        "void setup() {\n   size(screenWidth, screenHeight);\n}\n\n" +
-                        "void draw() {\n   background(0,0,255);\n}"
-                    )
-                    
-                    SketchController.loadSketches { (projects) in
-                        self.projects = projects
-                        self.tableView.reloadData()
-                        self.refreshProjectsCountLabel()
-                        
-                        var index: Int?
-                        for (ind, project) in projects!.enumerated()
-                            where project.sketchName == newProject?.sketchName {
-                                index = ind
-                                break
-                        }
-                        
-                        if let index = index {
-                            self.tableView.selectRow(
-                                at: IndexPath(row: index, section: 1),
-                                animated: true,
-                                scrollPosition: .middle
-                            )
-                        }
+                    if type == "pde" {
+                        self.createNewProcessingProject(name: fileName)
+                    } else if type == "js" {
+                        self.createNewP5JSProject(name: fileName)
                     }
+                    
                     return
                 }
                 
@@ -340,6 +332,50 @@ UIAlertViewDelegate {
             }
         })
     }
+    
+    private func createNewProcessingProject(name: String) {
+        // filename is correct
+        let newProject = PDESketch(sketchName: name)
+        SketchController.save(newProject)
+        
+        let newFile = PDEFile(fileName: name, partOf: newProject)
+        newFile?.saveCode(
+            "void setup() {\n   size(screenWidth, screenHeight);\n}\n\n" +
+            "void draw() {\n   background(0,0,255);\n}"
+        )
+        
+        selectNewSketch(withName: name)
+
+    }
+    
+    private func createNewP5JSProject(name: String) {
+        let newProject = P5JSProject(withProjectName: name)
+        selectNewSketch(withName: name)
+    }
+    
+    private func selectNewSketch(withName name: String) {
+        SketchController.loadSketches { (projects) in
+            self.projects = projects
+            self.tableView.reloadData()
+            self.refreshProjectsCountLabel()
+            
+            var index: Int?
+            for (ind, project) in projects!.enumerated()
+                where project.sketchName == name {
+                    index = ind
+                    break
+            }
+            
+            if let index = index {
+                self.tableView.selectRow(
+                    at: IndexPath(row: index, section: 1),
+                    animated: true,
+                    scrollPosition: .middle
+                )
+            }
+        }
+    }
+    
     
     private func nameAlreadyExists(name: String) -> Bool {
         for project in projects! where project.sketchName == name {

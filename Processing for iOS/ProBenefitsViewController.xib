@@ -11,6 +11,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProBenefitsViewController" customModule="Processing_for_iOS" customModuleProvider="target">
             <connections>
                 <outlet property="buyButton" destination="xe3-Mu-IPF" id="bbl-aZ-QKw"/>
+                <outlet property="proBenefitsBanner" destination="NZP-SS-LsC" id="RsJ-JE-Zy0"/>
+                <outlet property="proBenefitsExplanation" destination="lB2-Le-FLk" id="lLQ-up-DC7"/>
+                <outlet property="proBenefitsTitle" destination="dIS-U4-TsD" id="UYr-Th-r9A"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

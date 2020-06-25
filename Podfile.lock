@@ -53,6 +53,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - "NSString+LevenshteinDistance (0.0.1)"
   - Pageboy (2.5.4)
   - Swifter (1.4.7)
   - SwiftyStoreKit (0.15.0)
@@ -63,6 +64,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Core
   - Firebase/Storage
+  - "NSString+LevenshteinDistance"
   - Swifter (~> 1.4.7)
   - SwiftyStoreKit
   - Tabman (~> 1.0)
@@ -82,6 +84,7 @@ SPEC REPOS:
     - Pageboy
     - Tabman
   trunk:
+    - "NSString+LevenshteinDistance"
     - Swifter
     - SwiftyStoreKit
 
@@ -96,11 +99,12 @@ SPEC CHECKSUMS:
   GoogleUtilities: 06b66f9567769a7958db20a92f0128b2843e49d5
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  "NSString+LevenshteinDistance": d8dd9edc346e8a6444c6bce79e4cd94577cae4ca
   Pageboy: 46d743783414a18f8b27a988485e0ed2ea219ff7
   Swifter: 2327ef5d872c638aebab79646ce494af508b0c8f
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   Tabman: a09f7d7aa62b231ec475ca9eb9171f7cc973a3d7
 
-PODFILE CHECKSUM: 150fe972dbef6101f8ba7ef1e828aea8d2a50b7c
+PODFILE CHECKSUM: 41c7b101f186539baae563d5dff0eb21f1d8a913
 
 COCOAPODS: 1.8.3

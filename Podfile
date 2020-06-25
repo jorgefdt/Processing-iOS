@@ -10,6 +10,7 @@ target 'Processing for iOS' do
   pod 'Tabman', '~> 1.0'
   pod 'SwiftyStoreKit'
   pod 'Swifter', '~> 1.4.7'
+  pod "NSString+LevenshteinDistance"
 
   # Pods for Processing for iOS
 

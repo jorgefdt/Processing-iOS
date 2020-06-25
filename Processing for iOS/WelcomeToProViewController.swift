@@ -22,7 +22,9 @@ class WelcomeToProViewController: UIViewController {
     }
 
     @IBAction func getStarted(_ sender: Any) {
-        dismiss(animated: true)
+        dismiss(animated: true) {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "upgradedToPro"), object: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -10,8 +10,16 @@
 #import "PDEFile.h"
 #import "PDESketch.h"
 
-@import CoreMotion;
+@class DetectedBug;
 
+
+@protocol RunSketchViewControllerDelegate <NSObject>
+
+-(void)didDetectBug: (DetectedBug*)bug;
+
+@end
+
+@import CoreMotion;
 @import WebKit;
 
 @interface RunSketchViewController : UIViewController<UIWebViewDelegate, WKScriptMessageHandler>
@@ -20,6 +28,8 @@
     @property(nonatomic,strong) WKWebView *sketchWebView;
     
     @property (nonatomic,strong) CMMotionManager* motionManager;
+
+    @property (nonatomic, weak) id<RunSketchViewControllerDelegate> delegate;
     
     
 -(id)initWithPDEFile:(PDESketch*)pdeSketch;

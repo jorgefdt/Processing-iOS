@@ -141,8 +141,34 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
                 modifierFlags: UIKeyModifierFlags(rawValue: 0),
                 action: #selector(EditorTabViewController.close),
                 discoverabilityTitle: "Close Project"
+            ),
+            UIKeyCommand(
+                input: "\t",
+                modifierFlags: .control,
+                action: #selector(EditorTabViewController.nextTab),
+                discoverabilityTitle: "Next Tab"
+            ),
+            UIKeyCommand(
+                input: "\t",
+                modifierFlags: [.control, .shift],
+                action: #selector(EditorTabViewController.previousTab),
+                discoverabilityTitle: "Previous Tab"
+            ),
+            UIKeyCommand(
+                input: "n",
+                modifierFlags: .command,
+                action: #selector(EditorTabViewController.addNewPDEFile),
+                discoverabilityTitle: "Add new File"
             )
         ]
+    }
+    
+    @objc func nextTab() {
+        scrollToPage(.next, animated: true)
+    }
+    
+    @objc func previousTab() {
+        scrollToPage(.previous, animated: true)
     }
     
     @objc func close() {
@@ -208,6 +234,7 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
     @objc func runSketch() {
         saveCode()
         let runVC = RunSketchViewController(pdeFile: project)!
+        runVC.delegate = self
         navigationController?.pushViewController(runVC, animated: true)
     }
     
@@ -313,5 +340,34 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
             return true
         }
         return false
+    }
+}
+
+extension EditorTabViewController: RunSketchViewControllerDelegate {
+    
+    func didDetect(_ bug: DetectedBug!) {
+        var fileIndex: Int?
+        project.pdeFiles.enumerated().forEach { (iterator) in
+            
+            let index = iterator.offset
+            let file = iterator.element
+            
+            let code = file.loadCode()!.lowercased()
+            
+            if code.contains(bug.wrongCode.lowercased()) {
+                fileIndex = index
+            }
+        }
+        
+        if let fileIndex = fileIndex {
+            let page = PageboyViewController.Page.at(index: fileIndex)
+            scrollToPage(page, animated: true) { (newViewController, animated, finished) in
+                if let editor = self.currentViewController as? PDEEditorViewController {
+                    Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { (_) in
+                        editor.highlightCompilerError(ofCode: bug)
+                    }
+                }
+            }
+        }
     }
 }

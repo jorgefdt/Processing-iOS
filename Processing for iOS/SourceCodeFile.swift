@@ -8,7 +8,7 @@
 
 import Foundation
 
-class JSFile {
+class SourceCodeFile {
     
     var filePath: String
     var content: String?
@@ -26,5 +26,4 @@ class JSFile {
         
         try? self.content?.write(toFile: filePath, atomically: true, encoding: .utf8)
     }
-    
 }
