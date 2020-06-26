@@ -6,7 +6,7 @@
 		<key>name</key>
 		<string>new</string>
 		<key>regex</key>
-		<string>( |\n|=)(new)( |\n)</string>
+		<string>( |\n|\t|=)(new)( |\n)</string>
 		<key>color</key>
 		<string>45,154,126</string>
 	</dict>
@@ -14,7 +14,7 @@
 		<key>name</key>
 		<string>types</string>
 		<key>regex</key>
-		<string>(?&lt;=^| |\n|\()(int|String|bool|float|double|PImage)( )?(?=\w|\n|\(|\[)</string>
+		<string>(?&lt;=^| |\t|\n|\()(int|String|bool|float|double|PImage)( )?(?=\w|\n|\(|\[)</string>
 		<key>color</key>
 		<string>228,102,0</string>
 	</dict>
@@ -22,7 +22,7 @@
 		<key>name</key>
 		<string>parameters</string>
 		<key>regex</key>
-		<string>(?&lt;= |\n|\(|,)(mouseX|mouseY|pmouseX|pmouseY|mousePressed|screenHeight|screenWidth)(?= |\n|\)|,)</string>
+		<string>(?&lt;= |\t|\n|\(|,)(mouseX|mouseY|pmouseX|pmouseY|mousePressed|screenHeight|screenWidth)(?= |\n|\)|,)</string>
 		<key>color</key>
 		<string>117,143,102</string>
 	</dict>
@@ -30,7 +30,7 @@
 		<key>name</key>
 		<string>constants</string>
 		<key>regex</key>
-		<string>(?&lt;= |\n|\()(CENTER|RIGHT|LEFT)(?= |\n|\))</string>
+		<string>(?&lt;= |\t|\n|\()(CENTER|RIGHT|LEFT)(?= |\n|\))</string>
 		<key>color</key>
 		<string>117,143,102</string>
 	</dict>
@@ -38,7 +38,7 @@
 		<key>name</key>
 		<string>void</string>
 		<key>regex</key>
-		<string>(^| |\n)(void)($| )</string>
+		<string>(^| |\t|\n)(void)($| )</string>
 		<key>color</key>
 		<string>45,154,126</string>
 	</dict>
@@ -54,7 +54,7 @@
 		<key>name</key>
 		<string>method call</string>
 		<key>regex</key>
-		<string>( |^|\n)(\w)+(?=\()</string>
+		<string>( |^|\t|\n)(\w)+(?=\()</string>
 		<key>color</key>
 		<string>0,101,155</string>
 	</dict>

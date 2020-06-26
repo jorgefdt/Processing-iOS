@@ -32,8 +32,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveCode) name:@"saveCode" object:nil];
     
     
     self.editor.text = self.sourceCodeFile.content;
@@ -179,7 +178,7 @@
         }
         
         
-        for(NSDictionary *syntaxPattern in [FRFileManager syntaxHighlighterDictionary]) {
+        for(NSDictionary *syntaxPattern in [FRFileManager syntaxHighlighterDictionaryForSourceFileType:self.sourceCodeFile.fileExtension]) {
             NSString *patternString = syntaxPattern[@"regex"];
             
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:patternString options:NSRegularExpressionCaseInsensitive error:NULL];

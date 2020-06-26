@@ -12,7 +12,8 @@
 
 static NSString *documentsDirectory;
 static NSString *container;
-static NSArray *syntaxHighlighter;
+static NSArray *pdeSyntaxHighlighter;
+static NSArray *p5jsSyntaxHighlighter;
 
 +(NSString *) documentsDirectory {
     if(!documentsDirectory) {
@@ -37,15 +38,31 @@ static NSArray *syntaxHighlighter;
     return container;
 }
 
-+(NSArray *) syntaxHighlighterDictionary {
-    if(!syntaxHighlighter) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"syntax highlighting"
-                                                         ofType:@"plist"];
-        syntaxHighlighter = [[NSArray alloc]
-                              initWithContentsOfFile:path];
++(NSArray *) syntaxHighlighterDictionaryForSourceFileType:(NSString*)fileExtension {
+    
+    if ([fileExtension isEqualToString:@"pde"]) {
+        
+        if(!pdeSyntaxHighlighter) {
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"syntax-highlighting-pde"
+                                                             ofType:@"plist"];
+            pdeSyntaxHighlighter = [[NSArray alloc]
+                                  initWithContentsOfFile:path];
+        }
+        
+        return pdeSyntaxHighlighter;
+        
+    } else if ([fileExtension isEqualToString:@"js"]) {
+        if(!p5jsSyntaxHighlighter) {
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"syntax-highlighting-p5js"
+                                                             ofType:@"plist"];
+            p5jsSyntaxHighlighter = [[NSArray alloc]
+                                  initWithContentsOfFile:path];
+        }
+        
+        return p5jsSyntaxHighlighter;
     }
     
-    return syntaxHighlighter;
+    return @[];
 }
 
 

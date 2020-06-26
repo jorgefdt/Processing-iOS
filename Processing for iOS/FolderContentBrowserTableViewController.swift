@@ -153,6 +153,9 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
             navigationController?.pushViewController(dataFolderVC, animated: true)
         } else {
             // open file inspector
+            let fileViewer = MultiFileViewController()
+            fileViewer.fileURL = URL(fileURLWithPath: path)
+            navigationController?.pushViewController(fileViewer, animated: true)
         }
     }
 
@@ -160,6 +163,7 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
         let destinationURL = URL(string: basePath)!
             .appendingPathComponent("data").appendingPathComponent(url.lastPathComponent)
         do {
+            FileManager.ensureFolderExists(folderPath: destinationURL.deletingLastPathComponent().path)
             try FileManager.default.copyItem(atPath: url.path, toPath: destinationURL.path)
         } catch {
             print("copy failed")
@@ -178,5 +182,14 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+}
+
+
+extension FileManager {
+    static func ensureFolderExists(folderPath: String) {
+        if !FileManager.default.fileExists(atPath: folderPath) {
+            try? FileManager.default.createDirectory(atPath: folderPath, withIntermediateDirectories: true)
+        }
     }
 }

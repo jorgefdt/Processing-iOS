@@ -12,6 +12,6 @@
 
 +(NSString *) documentsDirectory;
 +(NSString *) containerFile;
-+(NSArray *) syntaxHighlighterDictionary;
++(NSArray *) syntaxHighlighterDictionaryForSourceFileType:(NSString*)fileExtension;
 
 @end

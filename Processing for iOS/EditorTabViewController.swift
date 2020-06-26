@@ -267,7 +267,7 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
         var fileNameAlertController: UIAlertController
         if let errorMessage = errorMessage, let predefinedFileName = predefinedFileName {
             fileNameAlertController = UIAlertController(
-                title: "Error Creating New .pde File",
+                title: "Error Creating New \(project.sourceCodeExtension) File",
                 message: errorMessage, preferredStyle: .alert
             )
             fileNameAlertController.addTextField { (textfield) in
@@ -276,8 +276,8 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
             }
         } else {
             fileNameAlertController = UIAlertController(
-                title: "New .pde File",
-                message: "Creating a .pde file in this project.",
+                title: "New \(project.sourceCodeExtension) File",
+                message: "Creating a \(project.sourceCodeExtension) file in this project.",
                 preferredStyle: .alert
             )
             fileNameAlertController.addTextField { (textfield) in

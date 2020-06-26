@@ -274,7 +274,7 @@
     </scenes>
     <resources>
         <image name="Processing for iOS Icon" width="1014" height="1014"/>
-        <image name="folder" width="116" height="99"/>
+        <image name="folder" width="143" height="156"/>
         <image name="homescreen icon" width="569" height="734"/>
         <image name="magic_wand" width="110" height="112"/>
     </resources>

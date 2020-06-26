@@ -22,8 +22,12 @@ import Foundation
         return URL(fileURLWithPath: filePath).lastPathComponent
     }
     
+    @objc var fileExtension: String {
+        return URL(fileURLWithPath: filePath).pathExtension
+    }
+    
     @objc func save(newContent: String? = nil) {
-        
+        print("save code of file \(fileName)")
         if let newContent = newContent {
             self.content = newContent
         }
