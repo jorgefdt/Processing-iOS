@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreServices
 
 class ProjectSelectionTableViewController: UITableViewController,
     UIViewControllerPreviewingDelegate,
@@ -77,6 +78,42 @@ UIAlertViewDelegate {
             name: NSNotification.Name(rawValue: "upgradedToPro"),
             object: nil
         )
+    }
+    
+    
+    @IBAction func importProject(_ sender: Any) {
+        
+        let documentBrowser = UIDocumentPickerViewController(documentTypes: [kUTTypeText as String], in: .open)
+        documentBrowser.delegate = self
+        self.present(documentBrowser, animated: true)
+        
+//        let actionSheet = UIAlertController(title: "Import folder or file?", message: "Do you want to import a whole project, consisting of multiple files, or a single .pde or .js file?", preferredStyle: .alert)
+//
+//        let folderOption = UIAlertAction(title: "Import folder…", style: .default) { (_) in
+//            let documentBrowser = UIDocumentPickerViewController(documentTypes: [kUTTypeFolder as String], in: .open)
+//            documentBrowser.delegate = self
+//            self.present(documentBrowser, animated: true)
+//        }
+//
+//        let fileOption = UIAlertAction(title: "Import single file…", style: .default) { (_) in
+//            let documentBrowser = UIDocumentPickerViewController(documentTypes: [kUTTypeText as String], in: .open)
+//            documentBrowser.delegate = self
+//            self.present(documentBrowser, animated: true)
+//        }
+//
+//        let cancelOption = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
+//
+//        }
+//
+//        actionSheet.addAction(folderOption)
+//        actionSheet.addAction(fileOption)
+//        actionSheet.addAction(cancelOption)
+//
+//
+//        present(actionSheet, animated: true)
+ 
+        
+
     }
     
     @objc func didChangeSubscriptionStatus() {
@@ -267,16 +304,21 @@ UIAlertViewDelegate {
         actionSheet.modalPresentationStyle = .popover
 
 
-        let processing = UIAlertAction(title: "Processing Project", style: .default) { (_) in
+        let processing = UIAlertAction(title: "New Processing Project", style: .default) { (_) in
             self.showCreateAlert(title: "New Processing Project", name: "")
         }
 
-        let p5js = UIAlertAction(title: "P5.js Project", style: .default) { (_) in
+        let p5js = UIAlertAction(title: "New P5.js Project", style: .default) { (_) in
             self.showCreateAlert(title: "New P5.js Project", name: "", type: "js")
+        }
+        
+        let importButton = UIAlertAction(title: "Import Project…", style: .default) { (sender) in
+            self.importProject(sender)
         }
 
         actionSheet.addAction(processing)
         actionSheet.addAction(p5js)
+        actionSheet.addAction(importButton)
 
         if let popover = actionSheet.popoverPresentationController {
             popover.sourceView = button
@@ -286,15 +328,62 @@ UIAlertViewDelegate {
     }
     
     
+    private func showImportError(error: String) {
+        let alert = UIAlertController(title: "Import Error", message: error, preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: "Ok", style: .cancel) { (_) in
+            
+        }
+        
+        alert.addAction(ok)
+        
+        present(alert, animated: true)
+    }
     
-    func showCreateAlert(title: String, name: String, type: String = "pde") {
+    
+    func importFiles(files: [URL]) {
+        
+        if files.isEmpty {
+            showImportError(error: "No file has been selected.")
+            return
+        }
+        
+        var fileType = ""
+        var fileName = ""
+        if files.count == 1 {
+            fileType = files.first!.pathExtension
+            fileName = files.first!.lastPathComponent.replacingOccurrences(of: ".\(fileType)", with: "")
+        } else {
+            
+            let firstKnownFileExtension = files.first { (url) -> Bool in
+                return url.pathExtension == "pde" || url.pathExtension == "js"
+            }?.pathExtension
+            
+            if let firstKnowFileExtension = firstKnownFileExtension {
+                fileType = firstKnowFileExtension
+            } else {
+                showImportError(error: "Folder does not conain any known file formats (.pde or .js).")
+                return
+            }
+        }
+        
+        if fileType == "" {
+            showImportError(error: "Unknown file format.")
+            return
+        }
+        
+        
+        showCreateAlert(title: "Import Project", name: fileName, type: fileType, importingFiles: files)
+    }
+    
+    func showCreateAlert(title: String, name: String, type: String = "pde", importingFiles: [URL] = []) {
         
         let alertController = UIAlertController(title: title, message: "", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
             alertController.dismiss(animated: true, completion: nil)
         }))
         
-        alertController.addAction(createAlertAction(alertController: alertController, type: type))
+        alertController.addAction(createAlertAction(alertController: alertController, type: type, importingFiles: importingFiles))
         
         alertController.addTextField(configurationHandler: { (textField) -> Void in
             textField.textAlignment = .left
@@ -304,7 +393,7 @@ UIAlertViewDelegate {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func createAlertAction(alertController: UIAlertController, type: String) -> UIAlertAction {
+    func createAlertAction(alertController: UIAlertController, type: String, importingFiles: [URL]) -> UIAlertAction {
         return UIAlertAction(title: "Create", style: .default, handler: { (_) in
             if let fileName = alertController.textFields?[0].text {
                 let letters = NSMutableCharacterSet.letters as? NSMutableCharacterSet
@@ -325,9 +414,9 @@ UIAlertViewDelegate {
                 } else {
                     
                     if type == "pde" {
-                        self.createNewProcessingProject(name: fileName)
+                        self.createNewProcessingProject(name: fileName, importingFiles: importingFiles)
                     } else if type == "js" {
-                        self.createNewP5JSProject(name: fileName)
+                        self.createNewP5JSProject(name: fileName, importingFiles: importingFiles)
                     }
                     
                     return
@@ -338,24 +427,16 @@ UIAlertViewDelegate {
         })
     }
     
-    private func createNewProcessingProject(name: String) {
+    private func createNewProcessingProject(name: String, importingFiles: [URL]) {
         // filename is correct
-        let newProject = PDESketch(sketchName: name)
-        SketchController.save(newProject)
-        
-        let newFile = PDEFile(fileName: name, partOf: newProject)
-        newFile?.saveCode(
-            "void setup() {\n   size(screenWidth, screenHeight);\n}\n\n" +
-            "void draw() {\n   background(0,0,255);\n}"
-        )
-        
-        selectNewSketch(withName: name)
-
+        let newProject = PDEProject(withProjectName: name, importingFiles: importingFiles)
+        selectNewSketch(withName: newProject.name)
     }
     
-    private func createNewP5JSProject(name: String) {
-        let newProject = P5JSProject(withProjectName: name)
-        selectNewSketch(withName: name)
+    private func createNewP5JSProject(name: String, importingFiles: [URL]) {
+        // filename is correct
+        let newProject = P5JSProject(withProjectName: name, importingFiles: importingFiles)
+        selectNewSketch(withName: newProject.name)
     }
     
     private func selectNewSketch(withName name: String) {
@@ -451,5 +532,24 @@ UIAlertViewDelegate {
 extension ProjectSelectionTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
+
+extension ProjectSelectionTableViewController: UIDocumentPickerDelegate {
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        
+        if let folder = urls.first {
+            folder.startAccessingSecurityScopedResource()
+            if let filesInFolder = try? FileManager.default.contentsOfDirectory(atPath: folder.path) {
+                self.importFiles(files: filesInFolder.map({ (path) -> URL in
+                    return URL(fileURLWithPath: path)
+                }))
+                folder.stopAccessingSecurityScopedResource()
+                return
+            }
+            folder.stopAccessingSecurityScopedResource()
+        }
+        
+        self.importFiles(files: urls)
     }
 }

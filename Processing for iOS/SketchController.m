@@ -96,16 +96,16 @@
             if ([fileFormat isEqualToString:@"pde"]) {
                 
                 
-                PDEProject* project = [[PDEProject alloc] initWithProjectName:projectFolder];
+                PDEProject* project = [[PDEProject alloc] initWithProjectName:projectFolder importingFiles:@[]];
                 [projects addObject:project];
                 
             } else if ([fileFormat isEqualToString:@"js"]) {
                 
-                P5JSProject* project = [[P5JSProject alloc] initWithProjectName:projectFolder];
+                P5JSProject* project = [[P5JSProject alloc] initWithProjectName:projectFolder importingFiles:@[]];
                 [projects addObject:project];
                 
             } else if ([fileFormat isEqualToString:@"txt"]) {
-                SimpleTextProject* project = [[SimpleTextProject alloc] initWith:projectFolder sourceCodeExtension:@"txt"];
+                SimpleTextProject* project = [[SimpleTextProject alloc] initWith:projectFolder sourceCodeExtension:@"txt" importingFiles:@[]];
                 [projects addObject:project];
             }
         }

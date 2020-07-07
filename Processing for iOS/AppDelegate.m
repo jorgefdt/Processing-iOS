@@ -11,7 +11,9 @@
 #import "SketchController.h"
 #import "Processing_for_iOS-Swift.h"
 
+#if !TARGET_OS_UIKITFORMAC
 @import Firebase;
+#endif
 
 
 @interface AppDelegate ()
@@ -23,7 +25,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    #if !TARGET_OS_UIKITFORMAC
     [FIRApp configure];
+    #endif
     
     [[UINavigationBar appearance] setTintColor: [UIColor whiteColor]];
     

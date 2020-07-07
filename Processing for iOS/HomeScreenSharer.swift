@@ -33,14 +33,14 @@ class HomeScreenSharer: NSObject {
                     "start_url": "index.html",
                     "display": "fullscreen",
                     "icons": [[
-                    "src": "",
-                    "sizes": "192x192",
-                    "type": "image/png"
+                        "src": "",
+                        "sizes": "192x192",
+                        "type": "image/png"
                     ]]
                 ]
-                ))
+            ))
         }
-
+        
         
         do {
             try server.start(42069)
@@ -73,14 +73,14 @@ extension String {
 
 extension UIImage {
     @objc func resize(newWidth: CGFloat) -> UIImage {
-
+        
         let scale = newWidth / self.size.width
         let newHeight = self.size.height * scale
         UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
         self.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-
+        
         return newImage!
     }
     

@@ -22,6 +22,8 @@
 		511A4BF61B6D134100B03259 /* Example_FollowMe.pde in Resources */ = {isa = PBXBuildFile; fileRef = 511A4BF41B6D134100B03259 /* Example_FollowMe.pde */; };
 		511A4BF81B6D13FF00B03259 /* Example_Multitouch.pde in Resources */ = {isa = PBXBuildFile; fileRef = 511A4BF71B6D13FF00B03259 /* Example_Multitouch.pde */; };
 		5128B7531B3EEAA700572894 /* syntax-highlighting-pde.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5128B7521B3EEAA700572894 /* syntax-highlighting-pde.plist */; };
+		513A14F324AB5F2A004E9D9B /* ARViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513A14F124AB5F2A004E9D9B /* ARViewViewController.swift */; };
+		513A14F424AB5F2A004E9D9B /* ARViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 513A14F224AB5F2A004E9D9B /* ARViewViewController.xib */; };
 		513BF2A824A022C900825346 /* SelectableOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513BF2A624A022C900825346 /* SelectableOptionsViewController.swift */; };
 		513BF2A924A022C900825346 /* SelectableOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 513BF2A724A022C900825346 /* SelectableOptionsViewController.xib */; };
 		513BF2AC24A029A700825346 /* CodeFixSuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513BF2AA24A029A700825346 /* CodeFixSuggestionTableViewCell.swift */; };
@@ -76,6 +78,10 @@
 		51D6F82524A521030007625B /* syntax-highlighting-p5js.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51D6F82424A521030007625B /* syntax-highlighting-p5js.plist */; };
 		51D6F82824A5270E0007625B /* MultiFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D6F82624A5270E0007625B /* MultiFileViewController.swift */; };
 		51D6F82924A5270E0007625B /* MultiFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51D6F82724A5270E0007625B /* MultiFileViewController.xib */; };
+		51DC7D0324B47CA400AFAA55 /* ProBenefitsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC7D0124B47CA400AFAA55 /* ProBenefitsPageViewController.swift */; };
+		51DC7D0424B47CA400AFAA55 /* ProBenefitsPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51DC7D0224B47CA400AFAA55 /* ProBenefitsPageViewController.xib */; };
+		51DC7D0724B47CBD00AFAA55 /* ProBenefitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC7D0524B47CBD00AFAA55 /* ProBenefitViewController.swift */; };
+		51DC7D0824B47CBD00AFAA55 /* ProBenefitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51DC7D0624B47CBD00AFAA55 /* ProBenefitViewController.xib */; };
 		51FD83B624A3B21A0008AB57 /* CodeErrorDetectionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FD83B524A3B21A0008AB57 /* CodeErrorDetectionEngine.swift */; };
 		860DBA451E5736300022C90F /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 860DBA431E5736300022C90F /* AboutViewController.m */; };
 		860DBA461E5736300022C90F /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 860DBA441E5736300022C90F /* AboutViewController.xib */; };
@@ -118,12 +124,15 @@
 		511A4BF41B6D134100B03259 /* Example_FollowMe.pde */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Example_FollowMe.pde; sourceTree = "<group>"; };
 		511A4BF71B6D13FF00B03259 /* Example_Multitouch.pde */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Example_Multitouch.pde; sourceTree = "<group>"; };
 		5128B7521B3EEAA700572894 /* syntax-highlighting-pde.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "syntax-highlighting-pde.plist"; sourceTree = "<group>"; };
+		513A14F124AB5F2A004E9D9B /* ARViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewViewController.swift; sourceTree = "<group>"; };
+		513A14F224AB5F2A004E9D9B /* ARViewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ARViewViewController.xib; sourceTree = "<group>"; };
 		513BF2A624A022C900825346 /* SelectableOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableOptionsViewController.swift; sourceTree = "<group>"; };
 		513BF2A724A022C900825346 /* SelectableOptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectableOptionsViewController.xib; sourceTree = "<group>"; };
 		513BF2AA24A029A700825346 /* CodeFixSuggestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeFixSuggestionTableViewCell.swift; sourceTree = "<group>"; };
 		513BF2AB24A029A700825346 /* CodeFixSuggestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CodeFixSuggestionTableViewCell.xib; sourceTree = "<group>"; };
 		513CADDD1FCD712100B9A6F1 /* FirstStart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstStart.h; sourceTree = "<group>"; };
 		513CADDE1FCD712100B9A6F1 /* FirstStart.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstStart.m; sourceTree = "<group>"; };
+		5140645E24A633EF003874E1 /* Processing for iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Processing for iOS.entitlements"; sourceTree = "<group>"; };
 		515230F81B74B3D1003497F9 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		515230F91B74B3D1003497F9 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		5165FF952496E16500A6B137 /* p5.sound.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = p5.sound.min.js; sourceTree = "<group>"; };
@@ -183,6 +192,10 @@
 		51D6F82424A521030007625B /* syntax-highlighting-p5js.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "syntax-highlighting-p5js.plist"; sourceTree = "<group>"; };
 		51D6F82624A5270E0007625B /* MultiFileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiFileViewController.swift; sourceTree = "<group>"; };
 		51D6F82724A5270E0007625B /* MultiFileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultiFileViewController.xib; sourceTree = "<group>"; };
+		51DC7D0124B47CA400AFAA55 /* ProBenefitsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProBenefitsPageViewController.swift; sourceTree = "<group>"; };
+		51DC7D0224B47CA400AFAA55 /* ProBenefitsPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProBenefitsPageViewController.xib; sourceTree = "<group>"; };
+		51DC7D0524B47CBD00AFAA55 /* ProBenefitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProBenefitViewController.swift; sourceTree = "<group>"; };
+		51DC7D0624B47CBD00AFAA55 /* ProBenefitViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProBenefitViewController.xib; sourceTree = "<group>"; };
 		51FD83B524A3B21A0008AB57 /* CodeErrorDetectionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeErrorDetectionEngine.swift; sourceTree = "<group>"; };
 		57D0A912304A1FC223B9ABD8 /* Pods_Processing_for_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Processing_for_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75506C019411DF8A4B4F7575 /* Pods-Processing for iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Processing for iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Processing for iOS/Pods-Processing for iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -316,6 +329,7 @@
 		51CEE4451B3E9A1D0031D1BE /* Processing for iOS */ = {
 			isa = PBXGroup;
 			children = (
+				5140645E24A633EF003874E1 /* Processing for iOS.entitlements */,
 				865964111E7CB6250035F0E3 /* GoogleService-Info.plist */,
 				5165FF942496E12E00A6B137 /* P5JS */,
 				5165FF932496E11B00A6B137 /* Processing Files */,
@@ -324,6 +338,10 @@
 				51FD83B524A3B21A0008AB57 /* CodeErrorDetectionEngine.swift */,
 				517758E0249182C000C9B79B /* ProBenefitsViewController.swift */,
 				517758E1249182C000C9B79B /* ProBenefitsViewController.xib */,
+				51DC7D0124B47CA400AFAA55 /* ProBenefitsPageViewController.swift */,
+				51DC7D0224B47CA400AFAA55 /* ProBenefitsPageViewController.xib */,
+				51DC7D0524B47CBD00AFAA55 /* ProBenefitViewController.swift */,
+				51DC7D0624B47CBD00AFAA55 /* ProBenefitViewController.xib */,
 				517EAA7E249270D50069EAD1 /* WelcomeToProViewController.swift */,
 				517EAA7F249270D50069EAD1 /* WelcomeToProViewController.xib */,
 				517EAA8224927C2C0069EAD1 /* AddToHomeScreenViewController.swift */,
@@ -368,6 +386,8 @@
 				51D6F82724A5270E0007625B /* MultiFileViewController.xib */,
 				51CEE4771B3EA6FC0031D1BE /* RunSketchViewController.h */,
 				51CEE4781B3EA6FC0031D1BE /* RunSketchViewController.m */,
+				513A14F124AB5F2A004E9D9B /* ARViewViewController.swift */,
+				513A14F224AB5F2A004E9D9B /* ARViewViewController.xib */,
 				513BF2A624A022C900825346 /* SelectableOptionsViewController.swift */,
 				513BF2A724A022C900825346 /* SelectableOptionsViewController.xib */,
 				513BF2AA24A029A700825346 /* CodeFixSuggestionTableViewCell.swift */,
@@ -507,10 +527,12 @@
 				5199DD7B1B3F232C004437DB /* SourceCodePro-Semibold.ttf in Resources */,
 				511A4BF21B6D12C200B03259 /* Example_Draw.pde in Resources */,
 				86CA24621E7ABF0F005FB881 /* processing.min.js in Resources */,
+				51DC7D0824B47CBD00AFAA55 /* ProBenefitViewController.xib in Resources */,
 				5165FF972496E16500A6B137 /* p5.sound.min.js in Resources */,
 				5199DD791B3F232C004437DB /* SourceCodePro-Medium.ttf in Resources */,
 				86D067411E5266C70033A4FF /* Example_Gyroscope_Accelerometer.pde in Resources */,
 				86D0673F1E509C390033A4FF /* PDEEditorViewController.xib in Resources */,
+				51DC7D0424B47CA400AFAA55 /* ProBenefitsPageViewController.xib in Resources */,
 				511A4BF81B6D13FF00B03259 /* Example_Multitouch.pde in Resources */,
 				5192E54E20A8A15E00354BC8 /* FolderContentBrowserTableViewController.xib in Resources */,
 				510F51B120ACB12C0082B979 /* EditorTabViewController.xib in Resources */,
@@ -528,6 +550,7 @@
 				51CEE47B1B3EAC1C0031D1BE /* container.html in Resources */,
 				51CEE4541B3E9A2F0031D1BE /* Images.xcassets in Resources */,
 				5165FF9B2496E17400A6B137 /* p5js-sketch.js in Resources */,
+				513A14F424AB5F2A004E9D9B /* ARViewViewController.xib in Resources */,
 				517EAA91249288520069EAD1 /* IconCollectionViewCell.xib in Resources */,
 				517EAA8D249287EC0069EAD1 /* ColorCollectionViewCell.xib in Resources */,
 				511A4BF61B6D134100B03259 /* Example_FollowMe.pde in Resources */,
@@ -627,6 +650,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51DC7D0324B47CA400AFAA55 /* ProBenefitsPageViewController.swift in Sources */,
 				5106B9C91C933F5600AE74CC /* UIColor+ProcessingColor.m in Sources */,
 				517EAA88249286F40069EAD1 /* SelectAppIconViewController.swift in Sources */,
 				5192E54D20A8A15E00354BC8 /* FolderContentBrowserTableViewController.swift in Sources */,
@@ -640,7 +664,9 @@
 				5165FF9F2496E46400A6B137 /* FRFileManager.m in Sources */,
 				510926FC1FA0CE1E00C255D1 /* SketchController.m in Sources */,
 				510926FF1FA0D72A00C255D1 /* PDESketch.m in Sources */,
+				51DC7D0724B47CBD00AFAA55 /* ProBenefitViewController.swift in Sources */,
 				517758DF24917B6200C9B79B /* HomeScreenSharer.swift in Sources */,
+				513A14F324AB5F2A004E9D9B /* ARViewViewController.swift in Sources */,
 				515230FA1B74B3D1003497F9 /* SettingsViewController.m in Sources */,
 				5192E55320A8A67300354BC8 /* FileContentTableViewCell.swift in Sources */,
 				51FD83B624A3B21A0008AB57 /* CodeErrorDetectionEngine.swift in Sources */,
@@ -807,14 +833,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 30;
+				CODE_SIGN_ENTITLEMENTS = "Processing for iOS/Processing for iOS.entitlements";
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 52U6XAJSSF;
 				INFOPLIST_FILE = "Processing for iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.6;
+				MARKETING_VERSION = 2.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.polarapps.processing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "Processing for iOS/Processing for iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -829,14 +857,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 30;
+				CODE_SIGN_ENTITLEMENTS = "Processing for iOS/Processing for iOS.entitlements";
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 52U6XAJSSF;
 				INFOPLIST_FILE = "Processing for iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.6;
+				MARKETING_VERSION = 2.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.polarapps.processing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Processing for iOS/Processing for iOS-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;

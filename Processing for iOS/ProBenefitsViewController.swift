@@ -15,10 +15,10 @@ import SwiftyStoreKit
 
 class ProBenefitsViewController: UIViewController {
     
-    @IBOutlet weak var proBenefitsTitle: UILabel!
-    @IBOutlet weak var proBenefitsExplanation: UILabel!
-    @IBOutlet weak var proBenefitsBanner: UIImageView!
+
+    @IBOutlet weak var containerView: UIView!
     
+    @IBOutlet weak var pageControl: UIPageControl!
     
     @IBOutlet weak var buyButton: ActivityButton!
     
@@ -31,21 +31,29 @@ class ProBenefitsViewController: UIViewController {
     private func reloadUI() {
         if isViewLoaded {
             if shownBenefits == .export {
-                proBenefitsTitle.text = "Export your Processing Projects as Apps on your home screen!"
-                proBenefitsExplanation.text = "With Processing Pro, you can support the further development of this app and get access to many exclusive features, such as exporting your sketches as apps!"
-                proBenefitsBanner.image = UIImage(named: "export_upsell")
-            } else if shownBenefits == .codeFix {
-                proBenefitsTitle.text = "Processing analyzes your code and tells you what‘s causing the bug!"
-                proBenefitsExplanation.text = "Processing Pro can now analyze your code and tells you where the problem is. That makes programming even more fun and enjoyable!"
-                proBenefitsBanner.image = UIImage(named: "bug_fixer_screenshot")
+                proPageVC.scrollToIndex(index: 0)
+                self.pageControl.currentPage = 0
+            } else {
+                proPageVC.scrollToIndex(index: 1)
+                self.pageControl.currentPage = 1
             }
         }
     }
     
+    let proPageVC = ProBenefitsPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        proPageVC.pageDelegate = self
+        
         buyButton.layer.cornerRadius = 16
+        
+        addChildViewController(proPageVC)
+        
+        containerView.addSubview(proPageVC.view)
+        proPageVC.view.frame = containerView.bounds
+        proPageVC.didMove(toParentViewController: self)
         
         reloadUI()
         // Do any additional setup after loading the view.
@@ -270,5 +278,12 @@ class ProBenefitsViewController: UIViewController {
             }
         }
         return latestExpirationDate
+    }
+}
+
+
+extension ProBenefitsViewController: ProBenefitsPageViewControllerDelegate {
+    func didChangePageToIndex(index: Int) {
+        self.pageControl.currentPage = index
     }
 }

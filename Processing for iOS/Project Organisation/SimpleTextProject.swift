@@ -14,7 +14,7 @@ import Foundation
     @objc var sourceCodeExtension: String
     @objc var appIcon: UIImage?
     
-    @objc init(with name: String, sourceCodeExtension: String) {
+    @objc init(with name: String, sourceCodeExtension: String, importingFiles: [URL] = []) {
         
         self.name = name
         self.sourceCodeExtension = sourceCodeExtension
@@ -24,8 +24,22 @@ import Foundation
         if !FileManager.default.fileExists(atPath: folder.path) {
             try? FileManager.default.createDirectory(atPath: folder.path, withIntermediateDirectories: true, attributes: nil)
             
-            let startFile = SourceCodeFile(filePath: folder.appendingPathComponent("\(name).\(sourceCodeExtension)").path)
-            startFile.save(newContent: self.emptyFile)
+            if importingFiles.isEmpty {
+                let startFile = SourceCodeFile(filePath: folder.appendingPathComponent("\(name).\(sourceCodeExtension)").path)
+                startFile.save(newContent: self.emptyFile)
+            } else {
+                importingFiles.forEach { (url) in
+                    url.startAccessingSecurityScopedResource()
+                    
+                    let content = try? String(contentsOf: url)
+                    
+                    let startFile = SourceCodeFile(filePath: folder.appendingPathComponent(url.lastPathComponent).path)
+                    startFile.save(newContent: content)
+                    
+                    url.stopAccessingSecurityScopedResource()
+                }
+            }
+            
             
         }
     }

@@ -10,8 +10,8 @@ import Foundation
 
 @objc class P5JSProject: SimpleTextProject {
     
-    @objc init(withProjectName name: String) {
-        super.init(with: name, sourceCodeExtension: "js")
+    @objc init(withProjectName name: String, importingFiles: [URL] = []) {
+        super.init(with: name, sourceCodeExtension: "js", importingFiles: importingFiles)
     }
     
     static var containerFile: String {

@@ -51,12 +51,20 @@
         [self startAccelerometerListener];
         [self startGyroscopeListener];
         
-        [[self navigationItem] setRightBarButtonItem: [[UIBarButtonItem alloc] initWithTitle:@"Add App to home screen…" style:UIBarButtonItemStylePlain target:self action: @selector(addToHomeScreen)]];
+//        UIBarButtonItem* startARSession = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"arkit"] style:UIBarButtonItemStylePlain target:self action:@selector(startARSession)];
+        
+        UIBarButtonItem* addToHomeScreen = [[UIBarButtonItem alloc] initWithTitle:@"Add App to home screen…" style:UIBarButtonItemStylePlain target:self action: @selector(addToHomeScreen)];
+        
+        [[self navigationItem] setRightBarButtonItems: @[ addToHomeScreen ]];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(upgradedToPro) name:@"upgradedToPro" object:nil];
     }
 
     return self;
+}
+
+-(void)startARSession {
+    
 }
 
 -(void) upgradedToPro {

@@ -10,8 +10,8 @@ import Foundation
 
 @objc class PDEProject: SimpleTextProject {
     
-    @objc init(withProjectName name: String) {
-        super.init(with: name, sourceCodeExtension: "pde")
+    @objc init(withProjectName name: String, importingFiles: [URL] = []) {
+        super.init(with: name, sourceCodeExtension: "pde", importingFiles: importingFiles)
     }
     
     static var containerFile: String {
