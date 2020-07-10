@@ -282,6 +282,30 @@
                     @"explanation_subtitle": @"“displayHeight” is not available on iOS. Use “screenHeight“ instead.",
                     @"explanation": @"Replace with “screenHeight”"
                 }
+        ],
+        @"pop": @[
+                @{
+                    @"suggestion": @"popMatrix",
+                    @"explanation_subtitle": @"“pop” is not available on iOS. Use “popMatrix“ instead.",
+                    @"explanation": @"Replace with “popMatrix”"
+                },
+                @{
+                    @"suggestion": @"popStyle",
+                    @"explanation_subtitle": @"“pop” is not available on iOS. Use “popStyle“ instead.",
+                    @"explanation": @"Replace with “popStyle”"
+                }
+        ],
+        @"push": @[
+                @{
+                    @"suggestion": @"pushMatrix",
+                    @"explanation_subtitle": @"“push” is not available on iOS. Use “pushMatrix“ instead.",
+                    @"explanation": @"Replace with “pushMatrix”"
+                },
+                @{
+                    @"suggestion": @"pushStyle",
+                    @"explanation_subtitle": @"“push” is not available on iOS. Use “pushStyle“ instead.",
+                    @"explanation": @"Replace with “pushStyle”"
+                }
         ]
     };
     
