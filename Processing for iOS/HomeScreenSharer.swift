@@ -52,6 +52,51 @@ class HomeScreenSharer: NSObject {
         UIApplication.shared.open(url)
     }
     
+    static func openLocalHostInstructions() {
+        
+        server.stop()
+        
+        server["localhostinstruction"] = { request in
+            return HttpResponse.ok(.text("""
+                                    <html>
+                                    <head>
+                                    <style>
+                                    body {
+                                        font-family: -apple-system, system-ui, BlinkMacSystemFont;
+                                    }
+                                    </style>
+
+                                    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+                                    <meta charset="utf-8">
+                                        
+                                    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';">
+
+                                    </head>
+
+                                    <body>
+                                    
+                                    <center><h3>⬆️ Paste into Safari‘s URL Bar. ⬆️</h3></center>
+                                    <br/>
+                                    <ul>
+                                    <li>Processing has already copied the required data/base64 string to your clipboard. </li>
+                                    <li>Pasting can take a couple of seconds, the generated string can be quite large. </li>
+                                    <li>Once the sketch is loaded, select “Add to Home Screen” from Safari‘s share sheet. </li>
+                                    </ul>
+                                    </body>
+                                    </html>
+                                    """))
+        }
+        
+        do {
+            try server.start(42069)
+        } catch {
+            print(error)
+        }
+        
+        guard let url = URL(string: "http://localhost:42069/localhostinstruction") else { return }
+        UIApplication.shared.open(url)
+    }
+    
 }
 
 

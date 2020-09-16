@@ -94,8 +94,6 @@
             }
             
             if ([fileFormat isEqualToString:@"pde"]) {
-                
-                
                 PDEProject* project = [[PDEProject alloc] initWithProjectName:projectFolder importingFiles:@[]];
                 [projects addObject:project];
                 

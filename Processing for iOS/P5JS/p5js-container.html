@@ -19,6 +19,24 @@
   
   </style>
   
+  <script type="text/javascript">
+      window.onerror = (msg, url, line, column, error) => {
+        const message = {
+          message: msg,
+          url: url,
+          line: line,
+          column: column,
+          error: JSON.stringify(error)
+        }
+
+        if (window.webkit) {
+          window.webkit.messageHandlers.error.postMessage(message);
+        } else {
+          console.log("Error:", message);
+        }
+      };
+  </script>
+  
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta charset="utf-8">
       
@@ -28,7 +46,7 @@
       
   <meta name="mobile-web-app-capable" content="yes">
       
-  <link rel="apple-touch-icon-precomposed" href="data:image/png;base64,%@">
+  <link rel="apple-touch-icon" href="data:image/png;base64,%@">
   
   <script type="text/javascript">
       %@

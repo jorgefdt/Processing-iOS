@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -64,6 +64,7 @@
 		5199DD791B3F232C004437DB /* SourceCodePro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5199DD721B3F232C004437DB /* SourceCodePro-Medium.ttf */; };
 		5199DD7A1B3F232C004437DB /* SourceCodePro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5199DD731B3F232C004437DB /* SourceCodePro-Regular.ttf */; };
 		5199DD7B1B3F232C004437DB /* SourceCodePro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5199DD741B3F232C004437DB /* SourceCodePro-Semibold.ttf */; };
+		519F0ACB2511F23400263EEA /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 519F0ACA2511F23400263EEA /* SwiftPackageProductDependency */; };
 		51CD5DD3249788D9008F2343 /* SimpleTextProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD5DD2249788D9008F2343 /* SimpleTextProject.swift */; };
 		51CD5DD524978AD4008F2343 /* PDEProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD5DD424978AD4008F2343 /* PDEProject.swift */; };
 		51CD5DD824978D5E008F2343 /* P5JSProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD5DD724978D5E008F2343 /* P5JSProject.swift */; };
@@ -216,6 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				519F0ACB2511F23400263EEA /* BuildFile in Frameworks */,
 				0708F45A019FA07554E4C242 /* Pods_Processing_for_iOS.framework in Frameworks */,
 				516A422224154D7100D0181B /* StoreKit.framework in Frameworks */,
 			);
@@ -450,6 +452,9 @@
 			dependencies = (
 			);
 			name = "Processing for iOS";
+			packageProductDependencies = (
+				519F0ACA2511F23400263EEA /* SwiftPackageProductDependency */,
+			);
 			productName = "Processing for iOS";
 			productReference = 51CEE4431B3E9A1D0031D1BE /* Processing for iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -503,6 +508,9 @@
 				English,
 			);
 			mainGroup = 51CEE43A1B3E9A1B0031D1BE;
+			packageReferences = (
+				519F0AC92511F23400263EEA /* RemoteSwiftPackageReference */,
+			);
 			productRefGroup = 51CEE4441B3E9A1D0031D1BE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -596,29 +604,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Processing for iOS/Pods-Processing for iOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AutoInsetter/AutoInsetter.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/NSString+LevenshteinDistance/NSString_LevenshteinDistance.framework",
-				"${BUILT_PRODUCTS_DIR}/Pageboy/Pageboy.framework",
-				"${BUILT_PRODUCTS_DIR}/Swifter/Swifter.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Tabman/Tabman.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Processing for iOS/Pods-Processing for iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AutoInsetter.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSString_LevenshteinDistance.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pageboy.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swifter.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tabman.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Processing for iOS/Pods-Processing for iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -838,7 +829,10 @@
 				DEVELOPMENT_TEAM = 52U6XAJSSF;
 				INFOPLIST_FILE = "Processing for iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 2.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.polarapps.processing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -862,7 +856,10 @@
 				DEVELOPMENT_TEAM = 52U6XAJSSF;
 				INFOPLIST_FILE = "Processing for iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 2.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.polarapps.processing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -888,7 +885,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Processing for iOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.polarapps.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Processing for iOS.app/Processing for iOS";
@@ -906,7 +907,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Processing for iOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.polarapps.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Processing for iOS.app/Processing for iOS";
@@ -944,6 +949,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		519F0AC92511F23400263EEA /* RemoteSwiftPackageReference */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/httpswift/swifter";
+			requirement = {
+				branch = "xcode12-swift5";
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		519F0ACA2511F23400263EEA /* SwiftPackageProductDependency */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 519F0AC92511F23400263EEA /* RemoteSwiftPackageReference */;
+			productName = Swifter;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 51CEE43B1B3E9A1B0031D1BE /* Project object */;
 }

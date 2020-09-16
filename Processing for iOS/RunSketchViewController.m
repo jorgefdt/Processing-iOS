@@ -48,8 +48,11 @@
         
         self.motionManager = [CMMotionManager new];
 
-        [self startAccelerometerListener];
-        [self startGyroscopeListener];
+        if ([project.sourceCodeExtension isEqualToString:@"pde"]) {
+            [self startAccelerometerListener];
+            [self startGyroscopeListener];
+        }
+        
         
 //        UIBarButtonItem* startARSession = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"arkit"] style:UIBarButtonItemStylePlain target:self action:@selector(startARSession)];
         
@@ -133,6 +136,8 @@
             [alert addAction:subscribe];
             
             [[self navigationController] presentViewController:alert animated:YES completion:nil];
+        } else {
+            NSLog(@"unknown error: %@", message.body);
         }
     } else {
         NSLog(@"didReceiveScriptMessage: %@", message.body);
