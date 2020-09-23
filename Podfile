@@ -21,3 +21,22 @@ target 'Processing for iOS' do
 end
 
 
+#post_install do |installer|
+#  installer.pods_project.targets.each do |target|
+#    if target.name == "Pods-Processing for iOS"
+#      puts "Updating #{target.name} to exclude Crashlytics/Fabric/Firebase"
+#      target.build_configurations.each do |config|
+#        xcconfig_path = config.base_configuration_reference.real_path
+#        xcconfig = File.read(xcconfig_path)
+#        xcconfig.sub!('-framework "FirebaseAnalytics"', '')
+#        xcconfig.sub!('-framework "FIRAnalyticsConnector"', '')
+#        xcconfig.sub!('-framework "GoogleMobileAds"', '')
+#        xcconfig.sub!('-framework "Google-Mobile-Ads-SDK"', '')
+#        xcconfig.sub!('-framework "GoogleAppMeasurement"', '')
+#        xcconfig.sub!('-framework "Fabric"', '')
+#        new_xcconfig = xcconfig + 'OTHER_LDFLAGS[sdk=iphone*] = -framework "Crashlytics" -framework "Fabric"'
+#        File.open(xcconfig_path, "w") { |file| file << new_xcconfig }
+#      end
+#    end
+#  end
+#end

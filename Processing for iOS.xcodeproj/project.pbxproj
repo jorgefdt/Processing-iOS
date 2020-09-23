@@ -22,8 +22,6 @@
 		511A4BF61B6D134100B03259 /* Example_FollowMe.pde in Resources */ = {isa = PBXBuildFile; fileRef = 511A4BF41B6D134100B03259 /* Example_FollowMe.pde */; };
 		511A4BF81B6D13FF00B03259 /* Example_Multitouch.pde in Resources */ = {isa = PBXBuildFile; fileRef = 511A4BF71B6D13FF00B03259 /* Example_Multitouch.pde */; };
 		5128B7531B3EEAA700572894 /* syntax-highlighting-pde.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5128B7521B3EEAA700572894 /* syntax-highlighting-pde.plist */; };
-		513A14F324AB5F2A004E9D9B /* ARViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513A14F124AB5F2A004E9D9B /* ARViewViewController.swift */; };
-		513A14F424AB5F2A004E9D9B /* ARViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 513A14F224AB5F2A004E9D9B /* ARViewViewController.xib */; };
 		513BF2A824A022C900825346 /* SelectableOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513BF2A624A022C900825346 /* SelectableOptionsViewController.swift */; };
 		513BF2A924A022C900825346 /* SelectableOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 513BF2A724A022C900825346 /* SelectableOptionsViewController.xib */; };
 		513BF2AC24A029A700825346 /* CodeFixSuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513BF2AA24A029A700825346 /* CodeFixSuggestionTableViewCell.swift */; };
@@ -64,7 +62,7 @@
 		5199DD791B3F232C004437DB /* SourceCodePro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5199DD721B3F232C004437DB /* SourceCodePro-Medium.ttf */; };
 		5199DD7A1B3F232C004437DB /* SourceCodePro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5199DD731B3F232C004437DB /* SourceCodePro-Regular.ttf */; };
 		5199DD7B1B3F232C004437DB /* SourceCodePro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5199DD741B3F232C004437DB /* SourceCodePro-Semibold.ttf */; };
-		519F0ACB2511F23400263EEA /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 519F0ACA2511F23400263EEA /* SwiftPackageProductDependency */; };
+		519F0ACB2511F23400263EEA /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = 519F0ACA2511F23400263EEA /* Swifter */; };
 		51CD5DD3249788D9008F2343 /* SimpleTextProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD5DD2249788D9008F2343 /* SimpleTextProject.swift */; };
 		51CD5DD524978AD4008F2343 /* PDEProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD5DD424978AD4008F2343 /* PDEProject.swift */; };
 		51CD5DD824978D5E008F2343 /* P5JSProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD5DD724978D5E008F2343 /* P5JSProject.swift */; };
@@ -125,8 +123,6 @@
 		511A4BF41B6D134100B03259 /* Example_FollowMe.pde */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Example_FollowMe.pde; sourceTree = "<group>"; };
 		511A4BF71B6D13FF00B03259 /* Example_Multitouch.pde */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Example_Multitouch.pde; sourceTree = "<group>"; };
 		5128B7521B3EEAA700572894 /* syntax-highlighting-pde.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "syntax-highlighting-pde.plist"; sourceTree = "<group>"; };
-		513A14F124AB5F2A004E9D9B /* ARViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewViewController.swift; sourceTree = "<group>"; };
-		513A14F224AB5F2A004E9D9B /* ARViewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ARViewViewController.xib; sourceTree = "<group>"; };
 		513BF2A624A022C900825346 /* SelectableOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableOptionsViewController.swift; sourceTree = "<group>"; };
 		513BF2A724A022C900825346 /* SelectableOptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectableOptionsViewController.xib; sourceTree = "<group>"; };
 		513BF2AA24A029A700825346 /* CodeFixSuggestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeFixSuggestionTableViewCell.swift; sourceTree = "<group>"; };
@@ -217,7 +213,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				519F0ACB2511F23400263EEA /* BuildFile in Frameworks */,
+				519F0ACB2511F23400263EEA /* Swifter in Frameworks */,
 				0708F45A019FA07554E4C242 /* Pods_Processing_for_iOS.framework in Frameworks */,
 				516A422224154D7100D0181B /* StoreKit.framework in Frameworks */,
 			);
@@ -388,8 +384,6 @@
 				51D6F82724A5270E0007625B /* MultiFileViewController.xib */,
 				51CEE4771B3EA6FC0031D1BE /* RunSketchViewController.h */,
 				51CEE4781B3EA6FC0031D1BE /* RunSketchViewController.m */,
-				513A14F124AB5F2A004E9D9B /* ARViewViewController.swift */,
-				513A14F224AB5F2A004E9D9B /* ARViewViewController.xib */,
 				513BF2A624A022C900825346 /* SelectableOptionsViewController.swift */,
 				513BF2A724A022C900825346 /* SelectableOptionsViewController.xib */,
 				513BF2AA24A029A700825346 /* CodeFixSuggestionTableViewCell.swift */,
@@ -453,7 +447,7 @@
 			);
 			name = "Processing for iOS";
 			packageProductDependencies = (
-				519F0ACA2511F23400263EEA /* SwiftPackageProductDependency */,
+				519F0ACA2511F23400263EEA /* Swifter */,
 			);
 			productName = "Processing for iOS";
 			productReference = 51CEE4431B3E9A1D0031D1BE /* Processing for iOS.app */;
@@ -509,7 +503,7 @@
 			);
 			mainGroup = 51CEE43A1B3E9A1B0031D1BE;
 			packageReferences = (
-				519F0AC92511F23400263EEA /* RemoteSwiftPackageReference */,
+				519F0AC92511F23400263EEA /* XCRemoteSwiftPackageReference "swifter" */,
 			);
 			productRefGroup = 51CEE4441B3E9A1D0031D1BE /* Products */;
 			projectDirPath = "";
@@ -558,7 +552,6 @@
 				51CEE47B1B3EAC1C0031D1BE /* container.html in Resources */,
 				51CEE4541B3E9A2F0031D1BE /* Images.xcassets in Resources */,
 				5165FF9B2496E17400A6B137 /* p5js-sketch.js in Resources */,
-				513A14F424AB5F2A004E9D9B /* ARViewViewController.xib in Resources */,
 				517EAA91249288520069EAD1 /* IconCollectionViewCell.xib in Resources */,
 				517EAA8D249287EC0069EAD1 /* ColorCollectionViewCell.xib in Resources */,
 				511A4BF61B6D134100B03259 /* Example_FollowMe.pde in Resources */,
@@ -657,7 +650,6 @@
 				510926FF1FA0D72A00C255D1 /* PDESketch.m in Sources */,
 				51DC7D0724B47CBD00AFAA55 /* ProBenefitViewController.swift in Sources */,
 				517758DF24917B6200C9B79B /* HomeScreenSharer.swift in Sources */,
-				513A14F324AB5F2A004E9D9B /* ARViewViewController.swift in Sources */,
 				515230FA1B74B3D1003497F9 /* SettingsViewController.m in Sources */,
 				5192E55320A8A67300354BC8 /* FileContentTableViewCell.swift in Sources */,
 				51FD83B624A3B21A0008AB57 /* CodeErrorDetectionEngine.swift in Sources */,
@@ -825,7 +817,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Processing for iOS/Processing for iOS.entitlements";
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = 52U6XAJSSF;
 				INFOPLIST_FILE = "Processing for iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -833,10 +825,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.1;
+				MARKETING_VERSION = 2.6.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.polarapps.processing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "Processing for iOS/Processing for iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -852,7 +844,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Processing for iOS/Processing for iOS.entitlements";
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = 52U6XAJSSF;
 				INFOPLIST_FILE = "Processing for iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -860,10 +852,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.1;
+				MARKETING_VERSION = 2.6.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.polarapps.processing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Processing for iOS/Processing for iOS-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
@@ -951,7 +943,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		519F0AC92511F23400263EEA /* RemoteSwiftPackageReference */ = {
+		519F0AC92511F23400263EEA /* XCRemoteSwiftPackageReference "swifter" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/httpswift/swifter";
 			requirement = {
@@ -962,9 +954,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		519F0ACA2511F23400263EEA /* SwiftPackageProductDependency */ = {
+		519F0ACA2511F23400263EEA /* Swifter */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 519F0AC92511F23400263EEA /* RemoteSwiftPackageReference */;
+			package = 519F0AC92511F23400263EEA /* XCRemoteSwiftPackageReference "swifter" */;
 			productName = Swifter;
 		};
 /* End XCSwiftPackageProductDependency section */

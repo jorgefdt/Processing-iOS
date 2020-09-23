@@ -83,7 +83,7 @@ UIAlertViewDelegate {
     
     @IBAction func importProject(_ sender: Any) {
         
-        let documentBrowser = UIDocumentPickerViewController(documentTypes: [kUTTypeText as String], in: .open)
+        let documentBrowser = UIDocumentPickerViewController(documentTypes: ["public.txt", "public.js", "io.frogg.processing.pde"], in: .open)
         documentBrowser.delegate = self
         self.present(documentBrowser, animated: true)
         
