@@ -56,7 +56,11 @@
         
 //        UIBarButtonItem* startARSession = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"arkit"] style:UIBarButtonItemStylePlain target:self action:@selector(startARSession)];
         
-        UIBarButtonItem* addToHomeScreen = [[UIBarButtonItem alloc] initWithTitle:@"Add App to home screen…" style:UIBarButtonItemStylePlain target:self action: @selector(addToHomeScreen)];
+        
+        
+        UIBarButtonItem* addToHomeScreen = [[UIBarButtonItem alloc] initWithTitle:@"Add to homescreen…" style:UIBarButtonItemStylePlain target:self action: @selector(addToHomeScreen)];
+        
+//        UIBarButtonItem* addToHomeScreen = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add_to_home_screen"] style:UIBarButtonItemStylePlain target:self action:@selector(addToHomeScreen)];
         
         [[self navigationItem] setRightBarButtonItems: @[ addToHomeScreen ]];
         
@@ -155,7 +159,11 @@
                                                      [self.sketchWebView evaluateJavaScript:[NSString stringWithFormat:@"var pjs = Processing.getInstanceById('Sketch');"
                                                                                              "pjs.accelerometerUpdated(%f,%f,%f);", accelerometerData.acceleration.x, accelerometerData.acceleration.y, accelerometerData.acceleration.z] completionHandler:^(id _Nullable result, NSError * _Nullable error) {
 
-//                                                         NSLog(@"%@, %@",result, error.description);
+                                                         if ([error.description containsString:@"pjs.accelerometerUpdated"]) {
+                                                             [self.motionManager stopAccelerometerUpdates];
+                                                         }
+                                                         
+                                                         NSLog(@"%@, %@",result, error.description);
 
 
                                                      }];
@@ -184,7 +192,13 @@
 
                  [self.sketchWebView evaluateJavaScript:[NSString stringWithFormat:@"var pjs = Processing.getInstanceById('Sketch');"
                                                          "pjs.gyroscopeUpdated(%f,%f,%f);", gyroData.rotationRate.x, gyroData.rotationRate.y, gyroData.rotationRate.z] completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-
+                     
+                     
+                     if ([error.description containsString:@"pjs.gyroscopeUpdated"]) {
+                         [self.motionManager stopGyroUpdates];
+                     }
+                     NSLog(@"%@, %@",result, error.description);
+                     
                  }];
              }];
     }

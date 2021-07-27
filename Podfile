@@ -9,6 +9,7 @@ target 'Processing for iOS' do
   pod 'Firebase/Storage'
   pod 'Tabman', '~> 1.0'
   pod 'SwiftyStoreKit'
+  pod 'Swifter', '~> 1.5.0'
   pod "NSString+LevenshteinDistance"
 
   # Pods for Processing for iOS

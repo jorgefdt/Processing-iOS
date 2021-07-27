@@ -62,7 +62,9 @@
 		5199DD791B3F232C004437DB /* SourceCodePro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5199DD721B3F232C004437DB /* SourceCodePro-Medium.ttf */; };
 		5199DD7A1B3F232C004437DB /* SourceCodePro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5199DD731B3F232C004437DB /* SourceCodePro-Regular.ttf */; };
 		5199DD7B1B3F232C004437DB /* SourceCodePro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5199DD741B3F232C004437DB /* SourceCodePro-Semibold.ttf */; };
-		519F0ACB2511F23400263EEA /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = 519F0ACA2511F23400263EEA /* Swifter */; };
+		51CC558A251E3613003ACFF5 /* ExternalScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CC5589251E3613003ACFF5 /* ExternalScreenController.swift */; };
+		51CC558F251E3769003ACFF5 /* ExternalScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CC558D251E3769003ACFF5 /* ExternalScreenViewController.swift */; };
+		51CC5590251E3769003ACFF5 /* ExternalScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51CC558E251E3769003ACFF5 /* ExternalScreenViewController.xib */; };
 		51CD5DD3249788D9008F2343 /* SimpleTextProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD5DD2249788D9008F2343 /* SimpleTextProject.swift */; };
 		51CD5DD524978AD4008F2343 /* PDEProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD5DD424978AD4008F2343 /* PDEProject.swift */; };
 		51CD5DD824978D5E008F2343 /* P5JSProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD5DD724978D5E008F2343 /* P5JSProject.swift */; };
@@ -168,6 +170,9 @@
 		5199DD721B3F232C004437DB /* SourceCodePro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Medium.ttf"; sourceTree = "<group>"; };
 		5199DD731B3F232C004437DB /* SourceCodePro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Regular.ttf"; sourceTree = "<group>"; };
 		5199DD741B3F232C004437DB /* SourceCodePro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Semibold.ttf"; sourceTree = "<group>"; };
+		51CC5589251E3613003ACFF5 /* ExternalScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalScreenController.swift; sourceTree = "<group>"; };
+		51CC558D251E3769003ACFF5 /* ExternalScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalScreenViewController.swift; sourceTree = "<group>"; };
+		51CC558E251E3769003ACFF5 /* ExternalScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExternalScreenViewController.xib; sourceTree = "<group>"; };
 		51CD5DD2249788D9008F2343 /* SimpleTextProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextProject.swift; sourceTree = "<group>"; };
 		51CD5DD424978AD4008F2343 /* PDEProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDEProject.swift; sourceTree = "<group>"; };
 		51CD5DD724978D5E008F2343 /* P5JSProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P5JSProject.swift; sourceTree = "<group>"; };
@@ -213,7 +218,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				519F0ACB2511F23400263EEA /* Swifter in Frameworks */,
 				0708F45A019FA07554E4C242 /* Pods_Processing_for_iOS.framework in Frameworks */,
 				516A422224154D7100D0181B /* StoreKit.framework in Frameworks */,
 			);
@@ -354,6 +358,9 @@
 				5199DD6D1B3F232C004437DB /* Schriftart */,
 				51CEE44A1B3E9A250031D1BE /* AppDelegate.h */,
 				51CEE44B1B3E9A270031D1BE /* AppDelegate.m */,
+				51CC558D251E3769003ACFF5 /* ExternalScreenViewController.swift */,
+				51CC558E251E3769003ACFF5 /* ExternalScreenViewController.xib */,
+				51CC5589251E3613003ACFF5 /* ExternalScreenController.swift */,
 				5192E55520A8AFFB00354BC8 /* ProcessingNavigationViewController.swift */,
 				510F51A120AB618E0082B979 /* ProjectSelectionTableViewController.swift */,
 				513CADDD1FCD712100B9A6F1 /* FirstStart.h */,
@@ -447,7 +454,6 @@
 			);
 			name = "Processing for iOS";
 			packageProductDependencies = (
-				519F0ACA2511F23400263EEA /* Swifter */,
 			);
 			productName = "Processing for iOS";
 			productReference = 51CEE4431B3E9A1D0031D1BE /* Processing for iOS.app */;
@@ -524,6 +530,7 @@
 				51CEE4571B3E9A300031D1BE /* LaunchScreen.xib in Resources */,
 				860DBA461E5736300022C90F /* AboutViewController.xib in Resources */,
 				517EAA8524927C2C0069EAD1 /* AddToHomeScreenViewController.xib in Resources */,
+				51CC5590251E3769003ACFF5 /* ExternalScreenViewController.xib in Resources */,
 				517EAA89249286F40069EAD1 /* SelectAppIconViewController.xib in Resources */,
 				5199DD781B3F232C004437DB /* SourceCodePro-Light.ttf in Resources */,
 				5199DD7B1B3F232C004437DB /* SourceCodePro-Semibold.ttf in Resources */,
@@ -656,6 +663,7 @@
 				86D0673E1E509C390033A4FF /* PDEEditorViewController.m in Sources */,
 				51CEE44C1B3E9A270031D1BE /* AppDelegate.m in Sources */,
 				510F51A420AB64C40082B979 /* ProjectTableViewCell.swift in Sources */,
+				51CC558A251E3613003ACFF5 /* ExternalScreenController.swift in Sources */,
 				517EAA79249265650069EAD1 /* SourceCodeFile.swift in Sources */,
 				513BF2A824A022C900825346 /* SelectableOptionsViewController.swift in Sources */,
 				513CADDF1FCD712100B9A6F1 /* FirstStart.m in Sources */,
@@ -666,6 +674,7 @@
 				51CD5DD3249788D9008F2343 /* SimpleTextProject.swift in Sources */,
 				51CD5DD524978AD4008F2343 /* PDEProject.swift in Sources */,
 				517EAA8C249287EC0069EAD1 /* ColorCollectionViewCell.swift in Sources */,
+				51CC558F251E3769003ACFF5 /* ExternalScreenViewController.swift in Sources */,
 				510F51A220AB618E0082B979 /* ProjectSelectionTableViewController.swift in Sources */,
 				517EAA90249288520069EAD1 /* IconCollectionViewCell.swift in Sources */,
 				5192E55620A8AFFB00354BC8 /* ProcessingNavigationViewController.swift in Sources */,
@@ -817,7 +826,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Processing for iOS/Processing for iOS.entitlements";
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = 52U6XAJSSF;
 				INFOPLIST_FILE = "Processing for iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -825,7 +834,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.3;
+				MARKETING_VERSION = 2.6.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.polarapps.processing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -844,7 +853,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Processing for iOS/Processing for iOS.entitlements";
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = 52U6XAJSSF;
 				INFOPLIST_FILE = "Processing for iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -852,7 +861,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.3;
+				MARKETING_VERSION = 2.6.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.polarapps.processing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -952,14 +961,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		519F0ACA2511F23400263EEA /* Swifter */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 519F0AC92511F23400263EEA /* XCRemoteSwiftPackageReference "swifter" */;
-			productName = Swifter;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 51CEE43B1B3E9A1B0031D1BE /* Project object */;
 }

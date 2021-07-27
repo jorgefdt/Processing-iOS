@@ -83,37 +83,30 @@ UIAlertViewDelegate {
     
     @IBAction func importProject(_ sender: Any) {
         
-        let documentBrowser = UIDocumentPickerViewController(documentTypes: ["public.txt", "public.js", "io.frogg.processing.pde"], in: .open)
-        documentBrowser.delegate = self
-        self.present(documentBrowser, animated: true)
+        let actionSheet = UIAlertController(title: "Import…", message: "Would you like to import a project folder or an individual file?", preferredStyle: .actionSheet)
         
-//        let actionSheet = UIAlertController(title: "Import folder or file?", message: "Do you want to import a whole project, consisting of multiple files, or a single .pde or .js file?", preferredStyle: .alert)
-//
-//        let folderOption = UIAlertAction(title: "Import folder…", style: .default) { (_) in
-//            let documentBrowser = UIDocumentPickerViewController(documentTypes: [kUTTypeFolder as String], in: .open)
-//            documentBrowser.delegate = self
-//            self.present(documentBrowser, animated: true)
-//        }
-//
-//        let fileOption = UIAlertAction(title: "Import single file…", style: .default) { (_) in
-//            let documentBrowser = UIDocumentPickerViewController(documentTypes: [kUTTypeText as String], in: .open)
-//            documentBrowser.delegate = self
-//            self.present(documentBrowser, animated: true)
-//        }
-//
-//        let cancelOption = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
-//
-//        }
-//
-//        actionSheet.addAction(folderOption)
-//        actionSheet.addAction(fileOption)
-//        actionSheet.addAction(cancelOption)
-//
-//
-//        present(actionSheet, animated: true)
- 
+        let singleFile = UIAlertAction(title: "Import individual file…", style: .default) { _ in
+            let documentBrowser = UIDocumentPickerViewController(documentTypes: ["public.txt", "public.js", "io.frogg.processing.pde", ], in: .open)
+            documentBrowser.delegate = self
+            self.present(documentBrowser, animated: true)
+        }
         
-
+        let projectFolder = UIAlertAction(title: "Import project folder…", style: .default) { _ in
+            let documentBrowser = UIDocumentPickerViewController(documentTypes: [kUTTypeFolder as String], in: .open)
+            documentBrowser.delegate = self
+            self.present(documentBrowser, animated: true)
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            
+        }
+        
+        actionSheet.addAction(singleFile)
+        actionSheet.addAction(projectFolder)
+        actionSheet.addAction(cancel)
+        
+        self.present(actionSheet, animated: true)
+        
     }
     
     @objc func didChangeSubscriptionStatus() {
@@ -315,10 +308,15 @@ UIAlertViewDelegate {
         let importButton = UIAlertAction(title: "Import Project…", style: .default) { (sender) in
             self.importProject(sender)
         }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
+            
+        }
 
         actionSheet.addAction(processing)
         actionSheet.addAction(p5js)
         actionSheet.addAction(importButton)
+        actionSheet.addAction(cancel)
 
         if let popover = actionSheet.popoverPresentationController {
             popover.sourceView = button
@@ -341,39 +339,17 @@ UIAlertViewDelegate {
     }
     
     
-    func importFiles(files: [URL]) {
-        
-        if files.isEmpty {
-            showImportError(error: "No file has been selected.")
-            return
-        }
-        
-        var fileType = ""
-        var fileName = ""
-        if files.count == 1 {
-            fileType = files.first!.pathExtension
-            fileName = files.first!.lastPathComponent.replacingOccurrences(of: ".\(fileType)", with: "")
-        } else {
-            
-            let firstKnownFileExtension = files.first { (url) -> Bool in
-                return url.pathExtension == "pde" || url.pathExtension == "js"
-            }?.pathExtension
-            
-            if let firstKnowFileExtension = firstKnownFileExtension {
-                fileType = firstKnowFileExtension
-            } else {
-                showImportError(error: "Folder does not conain any known file formats (.pde or .js).")
-                return
-            }
-        }
-        
-        if fileType == "" {
-            showImportError(error: "Unknown file format.")
-            return
-        }
-        
-        
-        showCreateAlert(title: "Import Project", name: fileName, type: fileType, importingFiles: files)
+    func importSingleFile(file: URL) {
+        let fileType = file.pathExtension
+        let fileName = file.lastPathComponent.replacingOccurrences(of: ".\(fileType)", with: "")
+        showCreateAlert(title: "Import Project", name: fileName, type: fileType, importingFiles: [file])
+    }
+    
+    func importProjectFolder(folder: URL) {
+        // todo import js as well
+        let fileType = "pde"
+        let fileName = folder.lastPathComponent
+        showCreateAlert(title: "Import Project", name: fileName, type: fileType, importingFiles: [folder])
     }
     
     func showCreateAlert(title: String, name: String, type: String = "pde", importingFiles: [URL] = []) {
@@ -422,7 +398,7 @@ UIAlertViewDelegate {
                     return
                 }
                 
-                self.showCreateAlert(title: message, name: suggestedName)
+                self.showCreateAlert(title: message, name: suggestedName, type: type, importingFiles: importingFiles)
             }
         })
     }
@@ -537,19 +513,19 @@ extension ProjectSelectionTableViewController: UISearchResultsUpdating {
 
 extension ProjectSelectionTableViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+            
         
-        if let folder = urls.first {
-            folder.startAccessingSecurityScopedResource()
-            if let filesInFolder = try? FileManager.default.contentsOfDirectory(atPath: folder.path) {
-                self.importFiles(files: filesInFolder.map({ (path) -> URL in
-                    return URL(fileURLWithPath: path)
-                }))
-                folder.stopAccessingSecurityScopedResource()
+        if let selectedUrl = urls.first {
+            selectedUrl.startAccessingSecurityScopedResource()
+            if selectedUrl.isDirectory {
+                self.importProjectFolder(folder: selectedUrl)
+                selectedUrl.stopAccessingSecurityScopedResource()
                 return
+            } else {
+                self.importSingleFile(file: selectedUrl)
+                selectedUrl.stopAccessingSecurityScopedResource()
             }
-            folder.stopAccessingSecurityScopedResource()
+            
         }
-        
-        self.importFiles(files: urls)
     }
 }

@@ -20,6 +20,8 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
         super.init(nibName: "EditorTabViewController", bundle: Bundle.main)
         self.automaticallyAdjustsChildScrollViewInsets = true
         self.dataSource = self
+        
+//        ExternalScreenController.showSketch(project: project)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -125,6 +127,12 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
                 discoverabilityTitle: "Format Code"
             ),
             UIKeyCommand(
+                input: "s",
+                modifierFlags: .command,
+                action: #selector(EditorTabViewController.saveCode),
+                discoverabilityTitle: "Save Code"
+            ),
+            UIKeyCommand(
                 input: "r",
                 modifierFlags: .command,
                 action: #selector(EditorTabViewController.runSketch),
@@ -215,11 +223,22 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
             
         }
         
+        let exportFolder = UIAlertAction(title: "Export Project", style: .default) { (_) in
+            let sourceCodeURLs = self.project.sourceCodeFiles.map { (sourceCodeFile) -> URL in
+                return URL(fileURLWithPath: sourceCodeFile.filePath)
+            }
+            let activityViewController = UIActivityViewController(activityItems: sourceCodeURLs, applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = view
+            self.present(activityViewController, animated: true)
+        }
+        
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
             
         }
         
+        
         actionSheet.addAction(homescreen)
+        actionSheet.addAction(exportFolder)
         actionSheet.addAction(cancel)
         
         if let popover = actionSheet.popoverPresentationController {
@@ -244,6 +263,7 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
     }
     
     @objc func saveCode() {
+        
         let pdeFileViewController = currentViewController as? PDEEditorViewController
         pdeFileViewController?.saveCode()
     }

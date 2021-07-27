@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17502"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,25 +13,38 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5s-pB-khH">
-                    <rect key="frame" x="48" y="172" width="384" height="136.5"/>
-                    <string key="text">Processing and P5.js
-for iOS</string>
-                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="38"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="c3t-0a-nKy">
+                    <rect key="frame" x="43" y="122.5" width="394" height="235"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Processing for iOS Icon" translatesAutoresizingMaskIntoConstraints="NO" id="cax-Vq-WEZ">
+                            <rect key="frame" x="133" y="0.0" width="128" height="128"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="128" id="Nis-BZ-oDi"/>
+                                <constraint firstAttribute="width" secondItem="cax-Vq-WEZ" secondAttribute="height" multiplier="1:1" id="zAs-F3-TrI"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Processing and P5.js for iOS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5s-pB-khH">
+                            <rect key="frame" x="46.5" y="144" width="301" height="91"/>
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="38"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="0.092438970247884999" green="0.22335862282599106" blue="0.38397428415810775" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="F5s-pB-khH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0xT-2p-yFk"/>
-                <constraint firstItem="F5s-pB-khH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="48" id="YVD-Qr-tuI"/>
-                <constraint firstItem="F5s-pB-khH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="YcL-xb-Wvy"/>
-                <constraint firstAttribute="trailing" secondItem="F5s-pB-khH" secondAttribute="trailing" constant="48" id="uQn-aP-7xQ"/>
+                <constraint firstItem="c3t-0a-nKy" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Uew-71-Nnd"/>
+                <constraint firstItem="c3t-0a-nKy" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Une-Re-bBb"/>
+                <constraint firstItem="c3t-0a-nKy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="43" id="cKL-EU-cws"/>
+                <constraint firstAttribute="trailing" secondItem="c3t-0a-nKy" secondAttribute="trailing" constant="43" id="gNx-sx-EIo"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
+    <resources>
+        <image name="Processing for iOS Icon" width="1014" height="1014"/>
+    </resources>
 </document>

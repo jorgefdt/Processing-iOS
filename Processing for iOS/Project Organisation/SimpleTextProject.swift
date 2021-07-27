@@ -27,20 +27,26 @@ import Foundation
             if importingFiles.isEmpty {
                 let startFile = SourceCodeFile(filePath: folder.appendingPathComponent("\(name).\(sourceCodeExtension)").path)
                 startFile.save(newContent: self.emptyFile)
-            } else {
-                importingFiles.forEach { (url) in
-                    url.startAccessingSecurityScopedResource()
-                    
-                    let content = try? String(contentsOf: url)
-                    
-                    let startFile = SourceCodeFile(filePath: folder.appendingPathComponent(url.lastPathComponent).path)
-                    startFile.save(newContent: content)
-                    
-                    url.stopAccessingSecurityScopedResource()
-                }
             }
             
+        } else {
+            print("already exists: \(folder.lastPathComponent)")
+        }
+        
+        
+        importingFiles.forEach { (url) in
+            url.startAccessingSecurityScopedResource()
             
+            if url.isDirectory {
+                try! FileManager.default.removeItem(at: folder)
+                try! FileManager.default.copyItem(at: url, to: folder)
+            } else {
+                let content = try? String(contentsOf: url)
+                let startFile = SourceCodeFile(filePath: folder.appendingPathComponent(url.lastPathComponent).path)
+                startFile.save(newContent: content)
+            }
+            
+            url.stopAccessingSecurityScopedResource()
         }
     }
     
@@ -104,4 +110,10 @@ import Foundation
         
     }
     
+}
+
+extension URL {
+    var isDirectory: Bool {
+       return (try? resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true
+    }
 }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExternalScreenViewController" customModule="Processing_for_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Processing for iOS Icon" translatesAutoresizingMaskIntoConstraints="NO" id="alu-V0-gzV">
+                    <rect key="frame" x="563" y="389.5" width="240" height="225"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="Lf1-zD-RxP"/>
+                        <constraint firstAttribute="width" secondItem="alu-V0-gzV" secondAttribute="height" multiplier="16:15" id="xFA-Oy-mQT"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are using Processing on an External Display. Run some code on your device to see the result here. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQV-Ms-fxB">
+                    <rect key="frame" x="563" y="658.5" width="240" height="81.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="processing_color"/>
+            <constraints>
+                <constraint firstItem="GQV-Ms-fxB" firstAttribute="width" secondItem="alu-V0-gzV" secondAttribute="width" id="39d-JL-aCQ"/>
+                <constraint firstItem="GQV-Ms-fxB" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="7CS-EZ-KUD"/>
+                <constraint firstItem="alu-V0-gzV" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="9qE-oh-xa5"/>
+                <constraint firstItem="GQV-Ms-fxB" firstAttribute="top" secondItem="alu-V0-gzV" secondAttribute="bottom" constant="44" id="gJd-T5-hVU"/>
+                <constraint firstItem="alu-V0-gzV" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="kDp-te-qjV"/>
+            </constraints>
+            <point key="canvasLocation" x="22.840409956076133" y="93.75"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Processing for iOS Icon" width="1014" height="1014"/>
+        <namedColor name="processing_color">
+            <color red="0.10840637240000001" green="0.18557241560000001" blue="0.30197399850000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

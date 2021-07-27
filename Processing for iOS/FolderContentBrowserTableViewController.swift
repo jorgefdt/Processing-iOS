@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreServices
 
 class FolderContentBrowserTableViewController: UITableViewController, UIDocumentPickerDelegate {
 
@@ -121,7 +122,7 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
         var directory: ObjCBool = ObjCBool(false)
         let exists = FileManager.default.fileExists(atPath: path, isDirectory: &directory)
         if exists && directory.boolValue {
-            cell.fileTypeIcon.image = UIImage(named: "folder")
+            cell.fileTypeIcon.image = UIImage(named: "folder_icon")
         } else {
             cell.fileTypeIcon.image = UIImage(named: "pde-file-icon")
         }
@@ -160,8 +161,17 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
     }
 
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        let destinationURL = URL(string: basePath)!
+        var destinationURL = URL(string: basePath)!
             .appendingPathComponent("data").appendingPathComponent(url.lastPathComponent)
+        
+        var shouldShowDataFolder = true
+        
+        if url.pathExtension == "pde" || url.pathExtension == "js" {
+            destinationURL = URL(string: basePath)!.appendingPathComponent(url.lastPathComponent)
+            shouldShowDataFolder = false
+        }
+        
+        
         do {
             FileManager.ensureFolderExists(folderPath: destinationURL.deletingLastPathComponent().path)
             try FileManager.default.copyItem(atPath: url.path, toPath: destinationURL.path)
@@ -170,7 +180,7 @@ class FolderContentBrowserTableViewController: UITableViewController, UIDocument
         }
 
         if let lastPathComponent = URL(string: currentPath)?.lastPathComponent {
-            if lastPathComponent != "data" {
+            if lastPathComponent != "data" && shouldShowDataFolder {
                 let dataFolderVC = FolderContentBrowserTableViewController(
                     withPath: URL(string: currentPath)!.appendingPathComponent("data").path,
                     basePath: basePath)
