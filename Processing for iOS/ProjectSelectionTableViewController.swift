@@ -8,10 +8,12 @@
 
 import UIKit
 import CoreServices
+import FredKit
+import SwiftyStoreKit
 
 class ProjectSelectionTableViewController: UITableViewController,
-    UIViewControllerPreviewingDelegate,
-UIAlertViewDelegate {
+                                           UIViewControllerPreviewingDelegate,
+                                           UIAlertViewDelegate {
     
     @IBOutlet weak var projectsCountLabel: UIBarButtonItem!
     
@@ -23,6 +25,12 @@ UIAlertViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        FredKitSubscriptionManager.setup(productIds: [
+            "io.frogg.processing.tier1", "io.frogg.processing.tier2"
+        ], sharedSecret: "8b73ae394efe4d4aa96306dc11d48c5a", delegate: self)
+        
+        self.title = NSLocalizedString("My Projects", comment: "")
         
         if Int.random(in: (0...1)) == 1 {
             adType = .codeFix
@@ -59,10 +67,10 @@ UIAlertViewDelegate {
             self.tableView.reloadData()
         }
         
-//        SketchController.loadSketches { (projects) in
-//            self.projects = projects
-//            self.tableView.reloadData()
-//        }
+        //        SketchController.loadSketches { (projects) in
+        //            self.projects = projects
+        //            self.tableView.reloadData()
+        //        }
         
         refreshProjectsCountLabel()
         projectsCountLabel.isEnabled = false
@@ -81,9 +89,11 @@ UIAlertViewDelegate {
     }
     
     
-    @IBAction func importProject(_ sender: Any) {
+    @IBAction func importProject(_ sender: UIBarButtonItem) {
         
         let actionSheet = UIAlertController(title: "Import…", message: "Would you like to import a project folder or an individual file?", preferredStyle: .actionSheet)
+        
+        actionSheet.popoverPresentationController?.barButtonItem = sender
         
         let singleFile = UIAlertAction(title: "Import individual file…", style: .default) { _ in
             let documentBrowser = UIDocumentPickerViewController(documentTypes: ["public.txt", "public.js", "io.frogg.processing.pde", ], in: .open)
@@ -92,7 +102,9 @@ UIAlertViewDelegate {
         }
         
         let projectFolder = UIAlertAction(title: "Import project folder…", style: .default) { _ in
+            
             let documentBrowser = UIDocumentPickerViewController(documentTypes: [kUTTypeFolder as String], in: .open)
+            documentBrowser.navigationController?.navigationBar.tintColor = .processing()
             documentBrowser.delegate = self
             self.present(documentBrowser, animated: true)
         }
@@ -171,9 +183,9 @@ UIAlertViewDelegate {
         }
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "project-cell", for: indexPath)
-            as? ProjectTableViewCell else {
-                fatalError("Misconfigured cell type!")
-        }
+                as? ProjectTableViewCell else {
+                    fatalError("Misconfigured cell type!")
+                }
         
         if isFiltering() {
             if let project = filteredProjects?[indexPath.row] {
@@ -275,53 +287,75 @@ UIAlertViewDelegate {
         }
     }
     
+    
     @IBAction func about(_ sender: Any) {
-        let aboutVC = AboutViewController()
-        let aboutNavigationController = ProcessingNavigationViewController(rootViewController: aboutVC)
-        aboutNavigationController.modalTransitionStyle = .coverVertical
-        aboutNavigationController.modalPresentationStyle = .formSheet
+        let aboutVC = FredKitAboutViewController.defaultViewController
         
-        self.navigationController?.present(aboutNavigationController, animated: true, completion: nil)
+        
+        aboutVC.inAppPurchaseCells = [
+            InAppPurchaseCell(title: "Tip", subtitle: "Recommended for students and private use.", productID: "io.frogg.processing.tier1"),
+            InAppPurchaseCell(title: "Tip", subtitle: "Recommended for professionals and organisations.", productID: "io.frogg.processing.tier2")
+        ]
+        
+        if #available(iOS 13.0, *) {
+            aboutVC.additionalAppLinks = [
+                WebLinkCell(title: "Telegram Group", url: "https://t.me/processing_ios", icon: UIImage(systemName: "bubble.left.fill"))
+            ]
+        }
+        
+        aboutVC.modalTransitionStyle = .coverVertical
+        aboutVC.modalPresentationStyle = .formSheet
+        
+        self.navigationController?.present(aboutVC.wrappedInNavigationController, animated: true, completion: nil)
+    }
+    
+    func showTipSuccessfulAlert() {
+        let alert = UIAlertController(title: "Thank you ❤️", message: "Thanks a lot for your support, this is very much appreciated. Enjoy the app!\n\n– Frederik", preferredStyle: .alert)
+        let continueButton = UIAlertAction(title: "Continue", style: .default) { _ in
+            
+        }
+        alert.addAction(continueButton)
+        self.present(alert, animated: true)
     }
     
     @IBAction func createNewProject(_ sender: UIBarButtonItem) {
         
-//        self.showCreateAlert(title: "New Processing Project", name: "")
+        //        self.showCreateAlert(title: "New Processing Project", name: "")
         
         guard let button = sender.value(forKey: "view") as? UIView else {
             return
         }
-
+        
         let actionSheet = UIAlertController(title: "Create a new Project", message: "This app supports working with Processing (.pde) and P5.js (.js) project files.", preferredStyle: .actionSheet)
-
+        
         actionSheet.modalPresentationStyle = .popover
-
-
+        
+        
         let processing = UIAlertAction(title: "New Processing Project", style: .default) { (_) in
             self.showCreateAlert(title: "New Processing Project", name: "")
         }
-
+        
         let p5js = UIAlertAction(title: "New P5.js Project", style: .default) { (_) in
             self.showCreateAlert(title: "New P5.js Project", name: "", type: "js")
         }
         
-        let importButton = UIAlertAction(title: "Import Project…", style: .default) { (sender) in
+        let importButton = UIAlertAction(title: "Import Project…", style: .default) { (_) in
             self.importProject(sender)
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
             
         }
-
+        
         actionSheet.addAction(processing)
         actionSheet.addAction(p5js)
         actionSheet.addAction(importButton)
         actionSheet.addAction(cancel)
-
+        
         if let popover = actionSheet.popoverPresentationController {
             popover.sourceView = button
         }
-
+        
         present(actionSheet, animated: true)
     }
     
@@ -440,7 +474,7 @@ UIAlertViewDelegate {
             
         }
         
-    
+        
     }
     
     
@@ -513,7 +547,7 @@ extension ProjectSelectionTableViewController: UISearchResultsUpdating {
 
 extension ProjectSelectionTableViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-            
+        
         
         if let selectedUrl = urls.first {
             selectedUrl.startAccessingSecurityScopedResource()
@@ -529,3 +563,11 @@ extension ProjectSelectionTableViewController: UIDocumentPickerDelegate {
         }
     }
 }
+
+extension ProjectSelectionTableViewController: FredKitSubscriptionManagerDelegate {
+    func didFinishFetchingProducts(products: [SKProduct]) {
+        
+    }
+}
+
+

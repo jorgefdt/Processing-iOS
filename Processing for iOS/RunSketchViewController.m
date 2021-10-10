@@ -58,7 +58,7 @@
         
         
         
-        UIBarButtonItem* addToHomeScreen = [[UIBarButtonItem alloc] initWithTitle:@"Add to homescreen…" style:UIBarButtonItemStylePlain target:self action: @selector(addToHomeScreen)];
+        UIBarButtonItem* addToHomeScreen = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Add to Homescreen…", @"") style:UIBarButtonItemStylePlain target:self action: @selector(addToHomeScreen)];
         
 //        UIBarButtonItem* addToHomeScreen = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add_to_home_screen"] style:UIBarButtonItemStylePlain target:self action:@selector(addToHomeScreen)];
         

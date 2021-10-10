@@ -52,14 +52,14 @@ class EditorTabViewController: TabmanViewController, PageboyViewControllerDataSo
         self.navigationItem.rightBarButtonItems = [runButton, addNewPDEFile, shareButton]
         
         let formatButton = UIBarButtonItem(
-            title: "Format Code",
+            title: NSLocalizedString("Format Code", comment: ""),
             style: .plain,
             target: self,
             action: #selector(EditorTabViewController.formatCode)
         )
         
         let codeReferenceButton = UIBarButtonItem(
-            title: "Reference",
+            title: NSLocalizedString("Reference", comment: ""),
             style: .plain,
             target: self,
             action: #selector(EditorTabViewController.showCodeReference)

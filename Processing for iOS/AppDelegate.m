@@ -29,7 +29,7 @@
     [FIRApp configure];
     #endif
     
-    [[UINavigationBar appearance] setTintColor: [UIColor whiteColor]];
+    [[UINavigationBar appearanceWhenContainedInInstancesOfClasses: @[ProcessingNavigationViewController.class]] setTintColor: [UIColor whiteColor]];
     
     [[UISegmentedControl appearance] setTintColor: [UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor: [UIColor processingColor]];
@@ -41,7 +41,9 @@
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     if (@available(iOS 11.0, *)) {
         [[UINavigationBar appearance] setLargeTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+        
     }
+    
     
     
 //    [ExternalScreenController start];

@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Processing for iOS
+
+  Created by Frederik Riedel on 9/23/21.
+  Copyright © 2021 Frederik Riedel. All rights reserved.
+*/
+
+"Reference" = "参考";
+"Format Code" = "フォーマットコード";
+"My Projects" = "マイプロジェクト";
+"Add to Homescreen…" = "ホームスクリーンに追加...";

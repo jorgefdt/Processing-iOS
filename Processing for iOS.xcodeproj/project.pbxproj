@@ -22,6 +22,7 @@
 		511A4BF61B6D134100B03259 /* Example_FollowMe.pde in Resources */ = {isa = PBXBuildFile; fileRef = 511A4BF41B6D134100B03259 /* Example_FollowMe.pde */; };
 		511A4BF81B6D13FF00B03259 /* Example_Multitouch.pde in Resources */ = {isa = PBXBuildFile; fileRef = 511A4BF71B6D13FF00B03259 /* Example_Multitouch.pde */; };
 		5128B7531B3EEAA700572894 /* syntax-highlighting-pde.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5128B7521B3EEAA700572894 /* syntax-highlighting-pde.plist */; };
+		5134C2B227105CAD005A58E7 /* FredKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5134C2B127105CAD005A58E7 /* FredKit */; };
 		513BF2A824A022C900825346 /* SelectableOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513BF2A624A022C900825346 /* SelectableOptionsViewController.swift */; };
 		513BF2A924A022C900825346 /* SelectableOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 513BF2A724A022C900825346 /* SelectableOptionsViewController.xib */; };
 		513BF2AC24A029A700825346 /* CodeFixSuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513BF2AA24A029A700825346 /* CodeFixSuggestionTableViewCell.swift */; };
@@ -37,6 +38,7 @@
 		517758DF24917B6200C9B79B /* HomeScreenSharer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517758DE24917B6200C9B79B /* HomeScreenSharer.swift */; };
 		517758E2249182C000C9B79B /* ProBenefitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517758E0249182C000C9B79B /* ProBenefitsViewController.swift */; };
 		517758E3249182C000C9B79B /* ProBenefitsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 517758E1249182C000C9B79B /* ProBenefitsViewController.xib */; };
+		517A804926FC665E008CD0F3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 517A804B26FC665E008CD0F3 /* Localizable.strings */; };
 		517EAA79249265650069EAD1 /* SourceCodeFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAA78249265650069EAD1 /* SourceCodeFile.swift */; };
 		517EAA7B24926CBC0069EAD1 /* ActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAA7A24926CBC0069EAD1 /* ActivityButton.swift */; };
 		517EAA7D24926E900069EAD1 /* FredKitTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EAA7C24926E900069EAD1 /* FredKitTimeInterval.swift */; };
@@ -144,6 +146,9 @@
 		517758DE24917B6200C9B79B /* HomeScreenSharer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenSharer.swift; sourceTree = "<group>"; };
 		517758E0249182C000C9B79B /* ProBenefitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProBenefitsViewController.swift; sourceTree = "<group>"; };
 		517758E1249182C000C9B79B /* ProBenefitsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProBenefitsViewController.xib; sourceTree = "<group>"; };
+		517A804626FBDBDD008CD0F3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		517A804A26FC665E008CD0F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		517A804C26FC6660008CD0F3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		517EAA78249265650069EAD1 /* SourceCodeFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceCodeFile.swift; sourceTree = "<group>"; };
 		517EAA7A24926CBC0069EAD1 /* ActivityButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityButton.swift; sourceTree = "<group>"; };
 		517EAA7C24926E900069EAD1 /* FredKitTimeInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FredKitTimeInterval.swift; sourceTree = "<group>"; };
@@ -218,6 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5134C2B227105CAD005A58E7 /* FredKit in Frameworks */,
 				0708F45A019FA07554E4C242 /* Pods_Processing_for_iOS.framework in Frameworks */,
 				516A422224154D7100D0181B /* StoreKit.framework in Frameworks */,
 			);
@@ -311,6 +317,7 @@
 		51CEE43A1B3E9A1B0031D1BE = {
 			isa = PBXGroup;
 			children = (
+				517A804B26FC665E008CD0F3 /* Localizable.strings */,
 				51CEE4451B3E9A1D0031D1BE /* Processing for iOS */,
 				51CEE45F1B3E9A310031D1BE /* Processing for iOSTests */,
 				51CEE4441B3E9A1D0031D1BE /* Products */,
@@ -454,6 +461,7 @@
 			);
 			name = "Processing for iOS";
 			packageProductDependencies = (
+				5134C2B127105CAD005A58E7 /* FredKit */,
 			);
 			productName = "Processing for iOS";
 			productReference = 51CEE4431B3E9A1D0031D1BE /* Processing for iOS.app */;
@@ -506,10 +514,12 @@
 				en,
 				Base,
 				English,
+				ja,
 			);
 			mainGroup = 51CEE43A1B3E9A1B0031D1BE;
 			packageReferences = (
 				519F0AC92511F23400263EEA /* XCRemoteSwiftPackageReference "swifter" */,
+				5134C2B027105CAD005A58E7 /* XCRemoteSwiftPackageReference "fredkit" */,
 			);
 			productRefGroup = 51CEE4441B3E9A1D0031D1BE /* Products */;
 			projectDirPath = "";
@@ -534,6 +544,7 @@
 				517EAA89249286F40069EAD1 /* SelectAppIconViewController.xib in Resources */,
 				5199DD781B3F232C004437DB /* SourceCodePro-Light.ttf in Resources */,
 				5199DD7B1B3F232C004437DB /* SourceCodePro-Semibold.ttf in Resources */,
+				517A804926FC665E008CD0F3 /* Localizable.strings in Resources */,
 				511A4BF21B6D12C200B03259 /* Example_Draw.pde in Resources */,
 				86CA24621E7ABF0F005FB881 /* processing.min.js in Resources */,
 				51DC7D0824B47CBD00AFAA55 /* ProBenefitViewController.xib in Resources */,
@@ -702,10 +713,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		517A804B26FC665E008CD0F3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				517A804A26FC665E008CD0F3 /* en */,
+				517A804C26FC6660008CD0F3 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		51CEE4551B3E9A300031D1BE /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				51CEE4561B3E9A300031D1BE /* Base */,
+				517A804626FBDBDD008CD0F3 /* ja */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -826,7 +847,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Processing for iOS/Processing for iOS.entitlements";
-				CURRENT_PROJECT_VERSION = 36;
+				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_TEAM = 52U6XAJSSF;
 				INFOPLIST_FILE = "Processing for iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -834,7 +855,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.4;
+				MARKETING_VERSION = 2.6.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.polarapps.processing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -853,7 +874,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Processing for iOS/Processing for iOS.entitlements";
-				CURRENT_PROJECT_VERSION = 36;
+				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_TEAM = 52U6XAJSSF;
 				INFOPLIST_FILE = "Processing for iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -861,7 +882,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.4;
+				MARKETING_VERSION = 2.6.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.polarapps.processing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -952,6 +973,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5134C2B027105CAD005A58E7 /* XCRemoteSwiftPackageReference "fredkit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/frogg/fredkit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		519F0AC92511F23400263EEA /* XCRemoteSwiftPackageReference "swifter" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/httpswift/swifter";
@@ -961,6 +990,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5134C2B127105CAD005A58E7 /* FredKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5134C2B027105CAD005A58E7 /* XCRemoteSwiftPackageReference "fredkit" */;
+			productName = FredKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 51CEE43B1B3E9A1B0031D1BE /* Project object */;
 }
